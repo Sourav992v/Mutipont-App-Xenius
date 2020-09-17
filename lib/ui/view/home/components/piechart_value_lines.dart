@@ -35,43 +35,8 @@ class PiechartRecyclerView extends StatefulWidget {
 }
 
 class _PiechartRecyclerViewState extends State<PiechartRecyclerView> {
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        height: 400.0,
-        width: double.infinity,
-        padding:
-            EdgeInsets.only(top: 16.0, bottom: 16.0, left: 16.0, right: 16.0),
-        child: SizedBox(
-          child: ListView.builder(
-            itemCount: 2,
-            itemBuilder: (context, index) {
-              return Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0)),
-                color: Colors.white,
-                shadowColor: Colors.white70,
-                elevation: 5.0,
-                child: ListTile(
-                  title: Center(child: Text('${pieChartListText[index]}')),
-                  subtitle: PieChartOverView(),
-                ),
-              );
-            },
-          ),
-        ),
-      ),
-    );
-  }
-}
+  List<PieChartController> _pieChartController = List();
 
-class PieChartOverView extends StatefulWidget {
-  @override
-  _PieChartOverViewState createState() => _PieChartOverViewState();
-}
-
-class _PieChartOverViewState extends State<PieChartOverView> {
   HomeViewModel model = locator<HomeViewModel>();
   PieChartController controller;
   Resource resourceEntity;
@@ -88,97 +53,101 @@ class _PieChartOverViewState extends State<PieChartOverView> {
   @override
   Widget build(BuildContext context) {
     return BaseView<HomeViewModel>(builder: (context, value, child) {
-      if (resourceEntity != null) {
-        _initController();
-        _initPieData(resourceEntity);
-      }
-      return Container(
-          child: resourceEntity == null
-              ? Center(
-                  child: SpinKitFadingCircle(
-                    color: kColorPrimaryDark,
-                    size: 24.0,
+      return Expanded(
+        child: resourceEntity == null
+            ? Center(
+                child: SpinKitFadingCircle(
+                  color: kColorPrimaryDark,
+                  size: 24.0,
+                ),
+              )
+            : Container(
+                height: 400.0,
+                width: double.maxFinite,
+                padding: EdgeInsets.only(
+                    top: 16.0, bottom: 16.0, left: 16.0, right: 16.0),
+                child: SizedBox(
+                  child: ListView.builder(
+                    controller: ScrollController(),
+                    itemCount: 2,
+                    physics: PageScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)),
+                        margin: EdgeInsets.only(
+                            top: 4.0, bottom: 4.0, left: 4.0, right: 4.0),
+                        color: Colors.white,
+                        shadowColor: Colors.white70,
+                        elevation: 16.0,
+                        child: ListTile(
+                          title: Padding(
+                            padding:
+                                const EdgeInsets.only(top: 16.0, bottom: 0),
+                            child: Center(
+                                child: Text(
+                              '${pieChartListText[index]}',
+                              style: kLabelTextStyle,
+                            )),
+                          ),
+                          subtitle:
+                              _initPieChart(index, pieChartListText.length),
+                        ),
+                      );
+                    },
                   ),
-                )
-              : Container(
-                  height: 400.0,
-                  child: Column(
-                    children: <Widget>[
-                      Expanded(
-                        child: _initPieChart(),
-                      )
-                    ],
-                  ),
-                ));
+                ),
+              ),
+      );
     });
   }
 
-  final List<String> PARTIES = List()
-    ..add("Party A")
-    ..add("Party B")
-    ..add("Party C")
-    ..add("Party D")
-    ..add("Party E")
-    ..add("Party F")
-    ..add("Party G")
-    ..add("Party H")
-    ..add("Party I")
-    ..add("Party J")
-    ..add("Party K")
-    ..add("Party L")
-    ..add("Party M")
-    ..add("Party N")
-    ..add("Party O")
-    ..add("Party P")
-    ..add("Party Q")
-    ..add("Party R")
-    ..add("Party S")
-    ..add("Party T")
-    ..add("Party U")
-    ..add("Party V")
-    ..add("Party W")
-    ..add("Party X")
-    ..add("Party Y")
-    ..add("Party Z");
-
-  void _initController() async {
+  void _initController(int size) async {
+    _pieChartController.clear();
     var desc = Description()..enabled = false;
-
-    controller = PieChartController(
-        legendSettingFunction: (legend, controller) {
-          _formatter.setPieChartPainter(controller);
-          legend
-            ..verticalAlignment = (LegendVerticalAlignment.BOTTOM)
-            ..horizontalAlignment = (LegendHorizontalAlignment.RIGHT)
-            ..orientation = (LegendOrientation.HORIZONTAL)
-            ..drawInside = (false)
-            ..enabled = (true);
-        },
-        rendererSettingFunction: (renderer) {
-          (renderer as PieChartRenderer)
-            ..setHoleColor(ColorUtils.WHITE)
-            ..setHoleColor(ColorUtils.WHITE)
-            ..setTransparentCircleColor(ColorUtils.WHITE)
-            ..setTransparentCircleAlpha(110);
-        },
-        rotateEnabled: true,
-        drawHole: true,
-        drawCenterText: true,
-        extraLeftOffset: 20,
-        extraTopOffset: 0,
-        extraRightOffset: 20,
-        extraBottomOffset: 0,
-        usePercentValues: true,
-        centerText: "value lines",
-        holeRadiusPercent: 58,
-        transparentCircleRadiusPercent: 61,
-        highLightPerTapEnabled: false,
-        description: desc);
+    for (int i = 0; i <= size; i++) {
+      _pieChartController.add(PieChartController(
+          legendSettingFunction: (legend, controller) {
+            _formatter.setPieChartPainter(controller);
+            legend
+              ..verticalAlignment = (LegendVerticalAlignment.BOTTOM)
+              ..horizontalAlignment = (LegendHorizontalAlignment.LEFT)
+              ..orientation = (LegendOrientation.VERTICAL)
+              ..drawInside = (true)
+              ..enabled = (true);
+          },
+          rendererSettingFunction: (renderer) {
+            (renderer as PieChartRenderer)
+              ..setHoleColor(ColorUtils.WHITE)
+              ..setHoleColor(ColorUtils.WHITE)
+              ..setTransparentCircleColor(ColorUtils.WHITE)
+              ..setTransparentCircleAlpha(110);
+          },
+          rotateEnabled: true,
+          rotationAngle: 90,
+          drawHole: false,
+          drawCenterText: false,
+          extraLeftOffset: 90,
+          extraTopOffset: 0,
+          extraRightOffset: 10,
+          extraBottomOffset: 0,
+          drawEntryLabels: false,
+          usePercentValues: false,
+          centerText: "value lines",
+          highLightPerTapEnabled: true,
+          description: desc));
+    }
   }
 
   PercentFormatter _formatter = PercentFormatter();
 
-  void _initPieData(Resource resourceEntity) {
+  void _initPieData(int index) {
+    var type = index == 0 ? 'Today' : 'Month';
+
+    _pieChartController[index].data = generatePieData(type);
+  }
+
+  PieData generatePieData(var type) {
     var gridUnit = "Grid " + resourceEntity.readingUnit;
     var dgUnit = "DG " + resourceEntity.readingUnit;
     var gridValue = resourceEntity.dailyGridUnit;
@@ -191,28 +160,28 @@ class _PieChartOverViewState extends State<PieChartOverView> {
     List<PieEntry> pieEntriesMonth = List();
 
     entries.add(PieEntry(
-      value: 100.00,
-      label: 'Grid $gridUnit',
+      value: gridValue,
+      label: '$gridUnit',
     ));
     entries.add(PieEntry(
-      value: 200.00,
-      label: 'DG $dgUnit',
+      value: dgValue,
+      label: '$dgUnit',
     ));
 
     pieEntriesMonth.add(PieEntry(
       value: gridValueMonth,
-      label: gridUnit,
+      label: '$gridUnit',
     ));
     pieEntriesMonth.add(PieEntry(
       value: dgValueMonth,
-      label: dgUnit,
+      label: '$dgUnit',
     ));
 
     Map<String, List<PieEntry>> pieEntries = HashMap();
     pieEntries.putIfAbsent('Today', () => entries);
     pieEntries.putIfAbsent('Month', () => pieEntriesMonth);
 
-    PieDataSet dataSet = PieDataSet(pieEntries['Today'], "Consumptions");
+    PieDataSet dataSet = PieDataSet(pieEntries[type], "");
     dataSet.setSliceSpace(3);
     dataSet.setSelectionShift(5);
 
@@ -227,22 +196,22 @@ class _PieChartOverViewState extends State<PieChartOverView> {
     dataSet.setValueLinePart1OffsetPercentage(80.0);
     dataSet.setValueLinePart1Length(0.8);
     dataSet.setValueLinePart2Length(0.8);
+    dataSet.setUsingSliceColorAsValueLineColor(true);
 
     dataSet.setYValuePosition(ValuePosition.OUTSIDE_SLICE);
 
-    controller.data = PieData(dataSet)
-      ..setValueFormatter(_formatter)
-      ..setValueTextSize(11)
-      ..setValueTextColor(ColorUtils.BLACK)
-      ..setValueTypeface(
-          TypeFace(fontFamily: "Lato", fontWeight: FontWeight.w400));
+    PieData pieData = PieData(dataSet);
+    return pieData;
   }
 
-  Widget _initPieChart() {
-    var pieChart = PieChart(controller);
-    controller.animator
+  Widget _initPieChart(int index, int size) {
+    _initController(size);
+    _initPieData(index);
+
+    var pieChart = PieChart(_pieChartController[index]);
+    _pieChartController[index].animator
       ..reset()
       ..animateY2(1400, Easing.EaseInOutQuad);
-    return pieChart;
+    return Container(height: 190, child: pieChart);
   }
 }

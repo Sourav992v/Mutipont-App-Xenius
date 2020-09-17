@@ -43,6 +43,7 @@ class _HomeState extends State<Home> {
           ];
         },
         body: Container(
+          width: double.infinity,
           child: _widgetOption.elementAt(_selectedIndex),
         ),
       ),

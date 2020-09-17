@@ -8,7 +8,7 @@ import 'package:multipoint_app_xenius/ui/view/login/login_view.dart';
 void main() {
   setupLoactor();
   _setUpLogging();
-  runApp(MyApp());
+  runApp(MultipointAppXenius());
 }
 
 void _setUpLogging() {
@@ -18,7 +18,7 @@ void _setUpLogging() {
   });
 }
 
-class MyApp extends StatelessWidget {
+class MultipointAppXenius extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
