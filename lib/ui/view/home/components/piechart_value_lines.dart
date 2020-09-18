@@ -53,52 +53,54 @@ class _PiechartRecyclerViewState extends State<PiechartRecyclerView> {
   @override
   Widget build(BuildContext context) {
     return BaseView<HomeViewModel>(builder: (context, value, child) {
-      return Expanded(
-        child: resourceEntity == null
-            ? Center(
-                child: SpinKitFadingCircle(
-                  color: kColorPrimaryDark,
-                  size: 24.0,
-                ),
-              )
-            : Container(
-                height: 400.0,
-                width: double.maxFinite,
-                padding: EdgeInsets.only(
-                    top: 16.0, bottom: 16.0, left: 16.0, right: 16.0),
-                child: SizedBox(
-                  child: ListView.builder(
-                    controller: ScrollController(),
-                    itemCount: 2,
-                    physics: PageScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0)),
-                        margin: EdgeInsets.only(
-                            top: 4.0, bottom: 4.0, left: 4.0, right: 4.0),
-                        color: Colors.white,
-                        shadowColor: Colors.white70,
-                        elevation: 16.0,
-                        child: ListTile(
-                          title: Padding(
-                            padding:
-                                const EdgeInsets.only(top: 16.0, bottom: 0),
-                            child: Center(
-                                child: Text(
-                              '${pieChartListText[index]}',
-                              style: kLabelTextStyle,
-                            )),
-                          ),
-                          subtitle:
-                              _initPieChart(index, pieChartListText.length),
-                        ),
-                      );
-                    },
-                  ),
-                ),
+      if (resourceEntity == null) {
+        return Center(
+          child: SpinKitFadingCircle(
+            color: kColorPrimaryDark,
+            size: 24.0,
+          ),
+        );
+      } else {
+        return Expanded(
+          child: Container(
+            height: double.infinity,
+            width: double.infinity,
+            padding:
+                EdgeInsets.only(top: 0, bottom: 0, left: 16.0, right: 16.0),
+            child: Card(
+              shadowColor: Colors.white70,
+              elevation: 16.0,
+              child: ListView.builder(
+                controller: ScrollController(),
+                itemCount: 2,
+                physics: PageScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0)),
+                    margin: EdgeInsets.only(
+                        top: 4.0, bottom: 4.0, left: 4.0, right: 4.0),
+                    color: Colors.white,
+                    shadowColor: Colors.white70,
+                    elevation: 16.0,
+                    child: ListTile(
+                      title: Padding(
+                        padding: const EdgeInsets.only(top: 16.0, bottom: 0),
+                        child: Center(
+                            child: Text(
+                          '${pieChartListText[index]}',
+                          style: kLabelTextStyle,
+                        )),
+                      ),
+                      subtitle: _initPieChart(index, pieChartListText.length),
+                    ),
+                  );
+                },
               ),
-      );
+            ),
+          ),
+        );
+      }
     });
   }
 

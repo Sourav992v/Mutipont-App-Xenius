@@ -18,6 +18,7 @@ class OverviewPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         child: Column(
+          mainAxisSize: MainAxisSize.max,
           children: [
             PageViewBalance(),
             PiechartRecyclerView(),
@@ -49,7 +50,7 @@ class _PageViewState extends State<PageViewBalance> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
+      child: Stack(
         children: [
           CarouselSlider(
             items: imageSliders,
@@ -66,22 +67,27 @@ class _PageViewState extends State<PageViewBalance> {
               },
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: layoutList.map((url) {
-              int index = layoutList.indexOf(url);
-              return Container(
-                width: 8.0,
-                height: 8.0,
-                margin: EdgeInsets.symmetric(vertical: 0, horizontal: 2.0),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: _current == index
-                      ? Color.fromRGBO(0, 0, 0, 0.9)
-                      : Color.fromRGBO(0, 0, 0, 0.4),
-                ),
-              );
-            }).toList(),
+          Positioned(
+            bottom: 25.0,
+            right: 10.0,
+            left: 10.0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: layoutList.map((url) {
+                int index = layoutList.indexOf(url);
+                return Container(
+                  width: 8.0,
+                  height: 8.0,
+                  margin: EdgeInsets.symmetric(vertical: 0, horizontal: 2.0),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: _current == index
+                        ? Color.fromRGBO(0, 0, 0, 0.9)
+                        : Color.fromRGBO(0, 0, 0, 0.4),
+                  ),
+                );
+              }).toList(),
+            ),
           ),
         ],
       ),

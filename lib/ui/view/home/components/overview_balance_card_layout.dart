@@ -30,34 +30,36 @@ class _OverviewBalanceState extends State<OverviewBalance> {
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<HomeViewModel>(builder: (context, value, child) {
-      return Container(
-        child: resource == null
-            ? Center(
-                child: SpinKitFadingCircle(
-                  color: kColorPrimaryDark,
-                  size: 24.0,
+    return BaseView<HomeViewModel>(
+      builder: (context, value, child) {
+        return Container(
+          child: resource == null
+              ? Center(
+                  child: SpinKitFadingCircle(
+                    color: kColorPrimaryDark,
+                    size: 24.0,
+                  ),
+                )
+              : Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  margin: EdgeInsets.all(12.0),
+                  color: Colors.white24,
+                  elevation: 5.0,
+                  child: Column(
+                    children: [
+                      GridBalanceCard(resource),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                      DGBalanceCard(resource),
+                    ],
+                  ),
                 ),
-              )
-            : Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                ),
-                margin: EdgeInsets.all(12.0),
-                color: Colors.white24,
-                elevation: 5.0,
-                child: Column(
-                  children: [
-                    GridBalanceCard(resource),
-                    SizedBox(
-                      height: 8.0,
-                    ),
-                    DGBalanceCard(resource),
-                  ],
-                ),
-              ),
-      );
-    });
+        );
+      },
+    );
   }
 }
 
@@ -92,7 +94,7 @@ class GridBalanceCard extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 12),
+              SizedBox(height: 8.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -106,7 +108,7 @@ class GridBalanceCard extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 8.0),
+              SizedBox(height: 4.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -120,7 +122,7 @@ class GridBalanceCard extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 8.0),
+              SizedBox(height: 4.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -130,6 +132,20 @@ class GridBalanceCard extends StatelessWidget {
                   ),
                   Text(
                     'INR ${resource.balanceAmount}',
+                    style: kSubValueTextStyle,
+                  ),
+                ],
+              ),
+              SizedBox(height: 4.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Sanctioned Load',
+                    style: kSubLabelTextStyle,
+                  ),
+                  Text(
+                    '${resource.gridSanctionedLoad} ${resource.loadUnit}',
                     style: kSubValueTextStyle,
                   ),
                 ],
@@ -186,7 +202,7 @@ class DGBalanceCard extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 12.0),
+              SizedBox(height: 8.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -200,7 +216,7 @@ class DGBalanceCard extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 8.0),
+              SizedBox(height: 4.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -214,7 +230,7 @@ class DGBalanceCard extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 8.0),
+              SizedBox(height: 4.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -224,6 +240,20 @@ class DGBalanceCard extends StatelessWidget {
                   ),
                   Text(
                     'INR ${resource.dgBalanceAmount}',
+                    style: kSubValueTextStyle,
+                  ),
+                ],
+              ),
+              SizedBox(height: 4.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Sanctioned Load',
+                    style: kSubLabelTextStyle,
+                  ),
+                  Text(
+                    '${resource.dgSanctionedLoad} ${resource.loadUnit}',
                     style: kSubValueTextStyle,
                   ),
                 ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:multipoint_app_xenius/constants.dart';
 import 'package:multipoint_app_xenius/ui/view/home/components/collapsing_toolbar.dart';
 import 'package:multipoint_app_xenius/ui/view/home/components/overview.dart';
+import 'package:multipoint_app_xenius/ui/view/report/report_view.dart';
 
 class Home extends StatefulWidget {
   static const String id = 'home';
@@ -21,10 +22,7 @@ class _HomeState extends State<Home> {
       'Index 1: Recharge',
       style: optionStyle,
     ),
-    Text(
-      'Index 2: Report',
-      style: optionStyle,
-    ),
+    ReportView(),
   ];
 
   void _onItemTapped(int index) {
@@ -36,16 +34,14 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white70,
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool isScrolled) {
           return <Widget>[
             CollapsingToolBar(),
           ];
         },
-        body: Container(
-          width: double.infinity,
-          child: _widgetOption.elementAt(_selectedIndex),
-        ),
+        body: _widgetOption.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         elevation: 5.0,
