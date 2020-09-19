@@ -5,6 +5,7 @@ import 'package:multipoint_app_xenius/business_logic/viewmodels/home_viewmodel.d
 import 'package:multipoint_app_xenius/constants.dart';
 import 'package:multipoint_app_xenius/locator.dart';
 import 'package:multipoint_app_xenius/ui/view/base_view.dart';
+import 'package:multipoint_app_xenius/ui/view/report/daily_report.dart';
 
 class ReportView extends StatefulWidget {
   static const String id = 'ReportView';
@@ -58,92 +59,122 @@ class ReportViewCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Card(
-              elevation: 16.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
+            Container(
+              margin: EdgeInsets.only(top: 16.0),
+              height: 96.0,
+              child: Card(
+                elevation: 16.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                color: Colors.white,
+                margin: EdgeInsets.only(
+                    top: 0.0, bottom: 8.0, left: 16.0, right: 16.0),
+                child: ListTile(
+                  leading: Padding(
+                    padding:
+                        const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 4.0),
+                    child: Container(
+                        height: 64.0,
+                        width: 64.0,
+                        child: Image.asset('assets/images/ic_line_chart.png')),
+                  ),
+                  title: Center(
+                    child: Text(
+                      'Daily',
+                      style: kLabelTextStyle,
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.pushNamed(context, DailyReportView.id);
+                  },
+                ),
               ),
-              color: Colors.white,
-              margin: EdgeInsets.only(
-                  top: 16.0, bottom: 8.0, left: 16.0, right: 16.0),
-              child: ListTile(
-                leading: Icon(Icons.insert_chart),
-                title: Center(
-                  child: Text(
-                    'Daily',
-                    style: kValueTextStyle,
+            ),
+            Container(
+              height: 96.0,
+              child: Card(
+                elevation: 16.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                color: Colors.white,
+                margin: EdgeInsets.only(
+                    top: 4.0, bottom: 8.0, left: 16.0, right: 16.0),
+                child: ListTile(
+                  leading: Image.asset('assets/images/ic_bar_chart.png'),
+                  title: Center(
+                    child: Text(
+                      'Monthly',
+                      style: kLabelTextStyle,
+                    ),
                   ),
                 ),
               ),
             ),
-            Card(
-              elevation: 16.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              color: Colors.white,
-              margin: EdgeInsets.only(
-                  top: 2.0, bottom: 8.0, left: 16.0, right: 16.0),
-              child: ListTile(
-                leading: Icon(Icons.insert_chart),
-                title: Center(
-                  child: Text(
-                    'Monthly',
-                    style: kValueTextStyle,
+            Container(
+              height: 96.0,
+              child: Card(
+                elevation: 16.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                color: Colors.white,
+                margin: EdgeInsets.only(
+                    top: 4.0, bottom: 8.0, left: 16.0, right: 16.0),
+                child: ListTile(
+                  leading:
+                      Image.asset('assets/images/ic_bar_comparative_chart.png'),
+                  title: Center(
+                    child: Text(
+                      'Comparative',
+                      style: kLabelTextStyle,
+                    ),
                   ),
                 ),
               ),
             ),
-            Card(
-              elevation: 16.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              color: Colors.white,
-              margin: EdgeInsets.only(
-                  top: 2.0, bottom: 8.0, left: 16.0, right: 16.0),
-              child: ListTile(
-                leading: Icon(Icons.insert_chart),
-                title: Center(
-                  child: Text(
-                    'Comparartive',
-                    style: kValueTextStyle,
+            Container(
+              height: 96.0,
+              child: Card(
+                elevation: 16.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                color: Colors.white,
+                margin: EdgeInsets.only(
+                    top: 4.0, bottom: 8.0, left: 16.0, right: 16.0),
+                child: ListTile(
+                  leading: Image.asset('assets/images/ic_tariff.png'),
+                  title: Center(
+                    child: Text(
+                      'Current Tariff',
+                      style: kLabelTextStyle,
+                    ),
                   ),
                 ),
               ),
             ),
-            Card(
-              elevation: 16.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              color: Colors.white,
-              margin: EdgeInsets.only(
-                  top: 2.0, bottom: 8.0, left: 16.0, right: 16.0),
-              child: ListTile(
-                leading: Icon(Icons.insert_chart),
-                title: Center(
-                  child: Text(
-                    'Current Tariff',
-                    style: kValueTextStyle,
-                  ),
+            Container(
+              height: 96.0,
+              child: Card(
+                elevation: 16.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
-              ),
-            ),
-            Card(
-              elevation: 16.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              color: Colors.white,
-              margin: EdgeInsets.only(
-                  top: 2.0, bottom: 8.0, left: 16.0, right: 16.0),
-              child: ListTile(
-                leading: Icon(Icons.insert_chart),
-                title: Center(
-                  child: Text(
-                    'Bill Download',
-                    style: kValueTextStyle,
+                color: Colors.white,
+                margin: EdgeInsets.only(
+                    top: 4.0, bottom: 8.0, left: 16.0, right: 16.0),
+                child: ListTile(
+                  leading: Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: Image.asset('assets/images/ic_bill.png'),
+                  ),
+                  title: Center(
+                    child: Text(
+                      'Bill Download',
+                      style: kLabelTextStyle,
+                    ),
                   ),
                 ),
               ),

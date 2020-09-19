@@ -16,6 +16,32 @@ class CollapsingToolBar extends StatelessWidget {
             child: Container(
               height: 24.0,
               width: 24.0,
+              child: Icon(Icons.notifications),
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(right: 20),
+          child: GestureDetector(
+            onTap: () {},
+            child: Container(
+              height: 24.0,
+              width: 24.0,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                    image: AssetImage('assets/images/ic_dg_event_logging.png')),
+              ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(right: 20),
+          child: GestureDetector(
+            onTap: () {},
+            child: Container(
+              height: 24.0,
+              width: 24.0,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
@@ -35,24 +61,29 @@ class CollapsingToolBar extends StatelessWidget {
       floating: false,
       pinned: true,
       flexibleSpace: FlexibleSpaceBar(
-        title: Text(
-          'Unit No',
-          style: TextStyle(
-            fontFamily: 'Open Sans',
-            fontSize: 14.0,
+        title: Container(
+          child: Text(
+            'Unit No\nXYZ',
+            style: TextStyle(
+              fontFamily: 'Lato',
+              fontSize: 12.0,
+            ),
+            textAlign: TextAlign.justify,
           ),
-          textAlign: TextAlign.justify,
         ),
-        background: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Image.asset(
-            'assets/images/ic_xenius_logo.png',
-            fit: BoxFit.contain,
-            color: Color.fromRGBO(
-              255,
-              255,
-              255,
-              0.5,
+        background: Container(
+          height: 96,
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Image.asset(
+              'assets/images/ic_xenius_logo.png',
+              fit: BoxFit.contain,
+              color: Color.fromRGBO(
+                255,
+                255,
+                255,
+                0.5,
+              ),
             ),
           ),
         ),

@@ -13,9 +13,14 @@ class _DailyReportViewState extends State<DailyReportView> {
     return Scaffold(
       backgroundColor: Colors.white70,
       appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back,
-          color: Colors.white,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
         ),
         title: Text(
           'Daily Report',
