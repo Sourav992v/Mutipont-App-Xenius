@@ -1,13 +1,13 @@
-import 'package:charts_flutter/flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:multipoint_app_xenius/constants.dart';
 import 'package:multipoint_app_xenius/locator.dart';
-import 'package:multipoint_app_xenius/ui/view/home/components/month_consumption.dart';
+
 import 'package:multipoint_app_xenius/ui/view/home/home.dart';
 import 'package:multipoint_app_xenius/ui/view/login/login_view.dart';
-import 'package:multipoint_app_xenius/ui/view/report/daily_report.dart';
-import 'package:multipoint_app_xenius/ui/view/report/monthly_report_view.dart';
+
+import 'package:multipoint_app_xenius/ui/view/report/daily_report/daily_report_view.dart';
+import 'package:multipoint_app_xenius/ui/view/report/monthly_report/monthly_report_view.dart';
 
 void main() {
   setupLoactor();
@@ -33,7 +33,7 @@ class MultipointAppXenius extends StatelessWidget {
         fontFamily: 'Lato',
         scaffoldBackgroundColor: Colors.white,
       ),
-      initialRoute: LoginView.id,
+      initialRoute: MonthlyReportView.id,
       routes: {
         LoginView.id: (context) => LoginView(),
         Home.id: (context) => Home(),

@@ -5,8 +5,9 @@ import 'package:multipoint_app_xenius/business_logic/viewmodels/home_viewmodel.d
 import 'package:multipoint_app_xenius/constants.dart';
 import 'package:multipoint_app_xenius/locator.dart';
 import 'package:multipoint_app_xenius/ui/view/base_view.dart';
-import 'package:multipoint_app_xenius/ui/view/report/daily_report.dart';
-import 'package:multipoint_app_xenius/ui/view/report/monthly_report_view.dart';
+
+import 'daily_report/daily_report_view.dart';
+import 'monthly_report/monthly_report_view.dart';
 
 class ReportView extends StatefulWidget {
   static const String id = 'ReportView';
@@ -95,14 +96,14 @@ class ReportViewCard extends StatelessWidget {
             Container(
               height: 96.0,
               child: Card(
-                elevation: 16.0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                color: Colors.white,
-                margin: EdgeInsets.only(
-                    top: 4.0, bottom: 8.0, left: 16.0, right: 16.0),
-                child: ListTile(
+                  elevation: 16.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  color: Colors.white,
+                  margin: EdgeInsets.only(
+                      top: 4.0, bottom: 8.0, left: 16.0, right: 16.0),
+                  child: ListTile(
                     leading: Image.asset('assets/images/ic_bar_chart.png'),
                     title: Center(
                       child: Text(
@@ -110,9 +111,10 @@ class ReportViewCard extends StatelessWidget {
                         style: kLabelTextStyle,
                       ),
                     ),
-                    onTap: () =>
-                        Navigator.pushNamed(context, MonthlyReportView.id)),
-              ),
+                    onTap: () {
+                      Navigator.pushNamed(context, MonthlyReportView.id);
+                    },
+                  )),
             ),
             Container(
               height: 96.0,

@@ -5,61 +5,61 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:intl/intl.dart';
 import 'package:multipoint_app_xenius/constants.dart';
 
-List<charts.Series<LinearSales, DateTime>> _createSampleData() {
-  final myFakeDesktopData = [
-    new LinearSales(new DateTime(2020, 09, 11), 5),
-    new LinearSales(new DateTime(2020, 09, 12), 25),
-    new LinearSales(new DateTime(2020, 09, 13), 100),
-    new LinearSales(new DateTime(2020, 09, 14), 75),
-  ];
-
-  var myFakeTabletData = [
-    new LinearSales(new DateTime(2020, 09, 11), 10),
-    new LinearSales(new DateTime(2020, 09, 12), 50),
-    new LinearSales(new DateTime(2020, 09, 13), 200),
-    new LinearSales(new DateTime(2020, 09, 14), 150),
-  ];
-
-  var myFakeMobileData = [
-    new LinearSales(new DateTime(2020, 09, 11), 15),
-    new LinearSales(new DateTime(2020, 09, 12), 75),
-    new LinearSales(new DateTime(2020, 09, 13), 300),
-    new LinearSales(new DateTime(2020, 09, 14), 225),
-  ];
-
-  return [
-    new charts.Series<LinearSales, DateTime>(
-      id: 'Desktop',
-      colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-      domainFn: (LinearSales sales, _) => sales.year,
-      measureFn: (LinearSales sales, _) => sales.sales,
-      data: myFakeDesktopData,
-    ),
-    new charts.Series<LinearSales, DateTime>(
-      id: 'Tablet',
-      colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
-      domainFn: (LinearSales sales, _) => sales.year,
-      measureFn: (LinearSales sales, _) => sales.sales,
-      data: myFakeTabletData,
-    ),
-    new charts.Series<LinearSales, DateTime>(
-      id: 'Mobile',
-      colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
-      domainFn: (LinearSales sales, _) => sales.year,
-      measureFn: (LinearSales sales, _) => sales.sales,
-      data: myFakeMobileData,
-    ),
-  ];
-}
-
-class MonthlyReportView extends StatefulWidget {
-  static const String id = 'monthly_report';
+class DailyReportView extends StatefulWidget {
+  static const String id = 'daily_report_view';
 
   @override
-  _MonthlyReportViewState createState() => _MonthlyReportViewState();
+  _DailyReportViewState createState() => _DailyReportViewState();
 }
 
-class _MonthlyReportViewState extends State<MonthlyReportView> {
+class _DailyReportViewState extends State<DailyReportView> {
+  List<charts.Series<LinearSales, DateTime>> _createSampleData() {
+    var myFakeDesktopData = [
+      new LinearSales(new DateTime(2020, 09, 11), 5),
+      new LinearSales(new DateTime(2020, 09, 12), 25),
+      new LinearSales(new DateTime(2020, 09, 13), 100),
+      new LinearSales(new DateTime(2020, 09, 14), 75),
+    ];
+
+    var myFakeTabletData = [
+      new LinearSales(new DateTime(2020, 09, 11), 10),
+      new LinearSales(new DateTime(2020, 09, 12), 50),
+      new LinearSales(new DateTime(2020, 09, 13), 200),
+      new LinearSales(new DateTime(2020, 09, 14), 150),
+    ];
+
+    var myFakeMobileData = [
+      new LinearSales(new DateTime(2020, 09, 11), 15),
+      new LinearSales(new DateTime(2020, 09, 12), 75),
+      new LinearSales(new DateTime(2020, 09, 13), 300),
+      new LinearSales(new DateTime(2020, 09, 14), 225),
+    ];
+
+    return [
+      charts.Series<LinearSales, DateTime>(
+        id: 'Desktop',
+        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        domainFn: (LinearSales sales, _) => sales.year,
+        measureFn: (LinearSales sales, _) => sales.sales,
+        data: myFakeDesktopData,
+      ),
+      charts.Series<LinearSales, DateTime>(
+        id: 'Tablet',
+        colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
+        domainFn: (LinearSales sales, _) => sales.year,
+        measureFn: (LinearSales sales, _) => sales.sales,
+        data: myFakeTabletData,
+      ),
+      charts.Series<LinearSales, DateTime>(
+        id: 'Mobile',
+        colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
+        domainFn: (LinearSales sales, _) => sales.year,
+        measureFn: (LinearSales sales, _) => sales.sales,
+        data: myFakeMobileData,
+      ),
+    ];
+  }
+
   String dateString =
       DateFormat('yyyy-MMM-dd').format(DateTime.now().toLocal());
 
@@ -123,7 +123,7 @@ class _MonthlyReportViewState extends State<MonthlyReportView> {
           ),
         ),
         title: Text(
-          'Monthly Report',
+          'Daily Report',
           style: TextStyle(
               fontWeight: FontWeight.bold, color: Colors.white, fontSize: 16.0),
         ),
@@ -136,7 +136,7 @@ class _MonthlyReportViewState extends State<MonthlyReportView> {
           child: SizedBox(
             height: double.infinity,
             child: ListView.builder(
-                itemCount: 12,
+                itemCount: 2,
                 itemBuilder: (context, index) {
                   return Card(
                     shape: RoundedRectangleBorder(
@@ -144,7 +144,7 @@ class _MonthlyReportViewState extends State<MonthlyReportView> {
                     margin: EdgeInsets.only(
                         top: 16.0, bottom: 16.0, left: 4.0, right: 4.0),
                     color: Colors.white,
-                    shadowColor: Colors.white70,
+                    shadowColor: Colors.white54,
                     elevation: 16.0,
                     child: ListTile(
                       title: Padding(
