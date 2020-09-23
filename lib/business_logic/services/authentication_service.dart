@@ -1,3 +1,5 @@
+import 'package:multipoint_app_xenius/business_logic/models/daily_report_resource.dart';
+
 import 'package:multipoint_app_xenius/business_logic/models/login_resource.dart';
 
 import 'package:chopper/chopper.dart';
@@ -25,4 +27,10 @@ abstract class AuthenticationService extends ChopperService {
 
   @Get(path: 'login')
   Future<Response<LoginResource>> getUser();
+
+  @Get(path: 'consumption/daily')
+  Future<Response<DailyReportResource>> getDailyReport(
+    @Query('year') String year,
+    @Query('month') String month,
+  );
 }

@@ -299,7 +299,7 @@ class Resource {
   double fixCharges;
 
   @JsonKey(name: 'dr_cr')
-  String drCr;
+  double drCr;
 
   @JsonKey(name: 'fix_charges_monthly')
   double fixChargesMonthly;

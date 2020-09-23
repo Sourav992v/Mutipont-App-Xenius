@@ -108,7 +108,7 @@ Resource _$ResourceFromJson(Map<String, dynamic> json) {
     monthlyDgAmount: (json['monthly_dg_amount'] as num)?.toDouble(),
     monthlyGridAmount: (json['monthly_grid_amount'] as num)?.toDouble(),
     fixCharges: (json['fix_charges'] as num)?.toDouble(),
-    drCr: json['dr_cr'] as String,
+    drCr: (json['dr_cr'] as num)?.toDouble(),
     fixChargesMonthly: (json['fix_charges_monthly'] as num)?.toDouble(),
     drCrMonthly: json['dr_cr_monthly'] as String,
     dgFixChargesMonthly: (json['dg_fix_charges_monthly'] as num)?.toDouble(),

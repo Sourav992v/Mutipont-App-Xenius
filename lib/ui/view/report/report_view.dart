@@ -6,6 +6,7 @@ import 'package:multipoint_app_xenius/constants.dart';
 import 'package:multipoint_app_xenius/locator.dart';
 import 'package:multipoint_app_xenius/ui/view/base_view.dart';
 import 'package:multipoint_app_xenius/ui/view/report/daily_report.dart';
+import 'package:multipoint_app_xenius/ui/view/report/monthly_report_view.dart';
 
 class ReportView extends StatefulWidget {
   static const String id = 'ReportView';
@@ -102,14 +103,15 @@ class ReportViewCard extends StatelessWidget {
                 margin: EdgeInsets.only(
                     top: 4.0, bottom: 8.0, left: 16.0, right: 16.0),
                 child: ListTile(
-                  leading: Image.asset('assets/images/ic_bar_chart.png'),
-                  title: Center(
-                    child: Text(
-                      'Monthly',
-                      style: kLabelTextStyle,
+                    leading: Image.asset('assets/images/ic_bar_chart.png'),
+                    title: Center(
+                      child: Text(
+                        'Monthly',
+                        style: kLabelTextStyle,
+                      ),
                     ),
-                  ),
-                ),
+                    onTap: () =>
+                        Navigator.pushNamed(context, MonthlyReportView.id)),
               ),
             ),
             Container(

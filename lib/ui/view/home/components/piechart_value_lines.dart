@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mp_chart/mp/chart/pie_chart.dart';
 import 'package:mp_chart/mp/controller/pie_chart_controller.dart';
-import 'package:mp_chart/mp/core/adapter_android_mp.dart';
+
 import 'package:mp_chart/mp/core/animator.dart';
 
 import 'package:mp_chart/mp/core/data/pie_data.dart';
@@ -38,7 +38,7 @@ class _PiechartRecyclerViewState extends State<PiechartRecyclerView> {
   List<PieChartController> _pieChartController = List();
 
   HomeViewModel model = locator<HomeViewModel>();
-  PieChartController controller;
+
   Resource resourceEntity;
 
   @override
@@ -62,41 +62,33 @@ class _PiechartRecyclerViewState extends State<PiechartRecyclerView> {
         );
       } else {
         return Expanded(
-          child: Container(
-            height: double.infinity,
-            width: double.infinity,
-            padding:
-                EdgeInsets.only(top: 0, bottom: 0, left: 16.0, right: 16.0),
-            child: Card(
-              shadowColor: Colors.white70,
-              elevation: 16.0,
-              child: ListView.builder(
-                controller: ScrollController(),
-                itemCount: 2,
-                physics: PageScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0)),
-                    margin: EdgeInsets.only(
-                        top: 4.0, bottom: 4.0, left: 4.0, right: 4.0),
-                    color: Colors.white,
-                    shadowColor: Colors.white70,
-                    elevation: 16.0,
-                    child: ListTile(
-                      title: Padding(
-                        padding: const EdgeInsets.only(top: 16.0, bottom: 0),
-                        child: Center(
-                            child: Text(
-                          '${pieChartListText[index]}',
-                          style: kLabelTextStyle,
-                        )),
-                      ),
-                      subtitle: _initPieChart(index, pieChartListText.length),
+          child: SizedBox(
+            height: 300,
+            child: ListView.builder(
+              controller: ScrollController(),
+              itemCount: 2,
+              itemBuilder: (context, index) {
+                return Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0)),
+                  margin: EdgeInsets.only(
+                      top: 4.0, bottom: 4.0, left: 4.0, right: 4.0),
+                  color: Colors.white,
+                  shadowColor: Colors.white70,
+                  elevation: 16.0,
+                  child: ListTile(
+                    title: Padding(
+                      padding: const EdgeInsets.only(top: 16.0, bottom: 0),
+                      child: Center(
+                          child: Text(
+                        '${pieChartListText[index]}',
+                        style: kLabelTextStyle,
+                      )),
                     ),
-                  );
-                },
-              ),
+                    subtitle: _initPieChart(index, pieChartListText.length),
+                  ),
+                );
+              },
             ),
           ),
         );
