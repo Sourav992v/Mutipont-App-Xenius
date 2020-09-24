@@ -13,34 +13,28 @@ class BarChartListView extends StatefulWidget {
 class _BarChartListViewState extends State<BarChartListView> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: new ThemeData(
-        primaryColor: Color.fromRGBO(24, 24, 24, 1.0),
-        canvasColor: Color.fromRGBO(46, 49, 49, 1.0),
-        brightness: Brightness.dark,
-      ),
-      home: Scaffold(
-        appBar: new AppBar(
-          title: Text('Charts in List View'),
-        ),
-        body: _buildList(context),
-      ),
-    );
+    return Container(child: _buildList(context));
   }
 
   Widget _buildList(BuildContext context) {
-    return ListView.separated(
-      itemCount: widget.items.length,
-      separatorBuilder: (BuildContext context, int index) => Divider(
-        thickness: 2.0,
+    return Expanded(
+      child: SizedBox(
+        child: ListView.builder(
+          itemCount: widget.items.length,
+          itemBuilder: (context, index) {
+            final item = widget.items[index];
+            return Container(
+              margin: EdgeInsets.all(16),
+              child: Card(
+                child: ListTile(
+                  title: item.buildTitle(context),
+                  subtitle: item.buildChartTitle(context),
+                ),
+              ),
+            );
+          },
+        ),
       ),
-      itemBuilder: (context, index) {
-        final item = widget.items[index];
-        return ListTile(
-          title: item.buildTitle(context),
-          subtitle: item.buildChartTitle(context),
-        );
-      },
     );
   }
 }

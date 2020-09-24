@@ -89,7 +89,7 @@ class TodayConsumptionCard extends StatelessWidget {
                 style: kSubLabelTextStyle,
               ),
               trailing: Text(
-                '${loginResource.dailyGridAmount}',
+                '${loginResource.daily_grid_amount}',
                 style: kValueTextStyle,
               ),
             ),
@@ -108,7 +108,7 @@ class TodayConsumptionCard extends StatelessWidget {
                 style: kSubLabelTextStyle,
               ),
               trailing: Text(
-                '${loginResource.dailyDgAmount}',
+                '${loginResource.daily_dg_amount}',
                 style: kValueTextStyle,
               ),
             ),
@@ -127,7 +127,7 @@ class TodayConsumptionCard extends StatelessWidget {
                   style: kSubLabelTextStyle,
                 ),
                 trailing: Text(
-                  '${loginResource.fixCharges}',
+                  '${loginResource.fix_charges}',
                   style: kValueTextStyle,
                 )),
           ),
@@ -146,9 +146,9 @@ class TodayConsumptionCard extends StatelessWidget {
 }
 
 Widget totalBalance(Resource loginResource) {
-  double total = loginResource.dailyGridAmount +
-      loginResource.dailyDgAmount +
-      loginResource.fixCharges;
+  double total = loginResource.daily_grid_amount +
+      loginResource.daily_dg_amount +
+      loginResource.fix_charges;
   return Card(
     elevation: 0.0,
     shape: RoundedRectangleBorder(

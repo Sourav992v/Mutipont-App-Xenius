@@ -12,17 +12,11 @@ import 'base_viewmodel.dart';
 class HomeViewModel extends BaseViewModel {
   AuthenticationService _authService = locator<AuthenticationService>();
 
-  Resource loginResource = Resource();
-
   Future<Response<LoginResource>> getLoginResource() async {
     setState(ViewState.Busy);
     var resource = await _authService.getUser();
-    loginResource = resource.body.resource;
+
     setState(ViewState.Idle);
     return resource;
-  }
-
-  Resource getResource() {
-    return loginResource;
   }
 }

@@ -4,11 +4,16 @@ part 'grid.g.dart';
 
 @JsonSerializable()
 class Grid {
-  String month;
+  @JsonKey(name: 'date')
+  String date;
+
+  @JsonKey(name: 'grid_unit')
   String gridUnit;
+
+  @JsonKey(name: 'grid_amt')
   double gridAmt;
 
-  Grid({this.month, this.gridUnit, this.gridAmt});
+  Grid({this.date, this.gridUnit, this.gridAmt});
 
   factory Grid.fromJson(Map<String, dynamic> json) => _$GridFromJson(json);
 

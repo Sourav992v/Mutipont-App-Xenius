@@ -191,9 +191,9 @@ class ReportViewCard extends StatelessWidget {
 }
 
 Widget totalBalance(Resource loginResource) {
-  double total = loginResource.dailyGridAmount +
-      loginResource.dailyDgAmount +
-      loginResource.fixCharges;
+  double total = loginResource.daily_grid_amount +
+      loginResource.daily_dg_amount +
+      loginResource.fix_charges;
   return Card(
     elevation: 0.0,
     shape: RoundedRectangleBorder(

@@ -88,7 +88,7 @@ class MonthConsumptionCard extends StatelessWidget {
                 style: kSubLabelTextStyle,
               ),
               trailing: Text(
-                '${monthlyResource.monthlyGridAmount}',
+                '${monthlyResource.monthly_grid_amount}',
                 style: kValueTextStyle,
               ),
             ),
@@ -107,7 +107,7 @@ class MonthConsumptionCard extends StatelessWidget {
                 style: kSubLabelTextStyle,
               ),
               trailing: Text(
-                '${monthlyResource.monthlyDgAmount}',
+                '${monthlyResource.monthly_dg_amount}',
                 style: kValueTextStyle,
               ),
             ),
@@ -126,7 +126,7 @@ class MonthConsumptionCard extends StatelessWidget {
                   style: kSubLabelTextStyle,
                 ),
                 trailing: Text(
-                  '${monthlyResource.fixChargesMonthly}',
+                  '${monthlyResource.fix_charges_monthly}',
                   style: kValueTextStyle,
                 )),
           ),
@@ -144,9 +144,9 @@ class MonthConsumptionCard extends StatelessWidget {
   }
 
   Card monthlyTotalCharges(Resource monthlyResource) {
-    double total = monthlyResource.monthlyGridAmount +
-        monthlyResource.monthlyDgAmount +
-        monthlyResource.fixChargesMonthly;
+    double total = monthlyResource.monthly_grid_amount +
+        monthlyResource.monthly_dg_amount +
+        monthlyResource.fix_charges_monthly;
     return Card(
       elevation: 0.0,
       shape: RoundedRectangleBorder(

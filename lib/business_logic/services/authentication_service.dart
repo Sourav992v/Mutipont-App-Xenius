@@ -1,11 +1,11 @@
-import 'package:multipoint_app_xenius/business_logic/models/daily_report_resource.dart';
+import 'package:multipoint_app_xenius/business_logic/models/daily_report_response.dart';
 
 import 'package:multipoint_app_xenius/business_logic/models/login_resource.dart';
 
 import 'package:chopper/chopper.dart';
+import 'package:multipoint_app_xenius/business_logic/services/built_value_converter.dart';
 
 import 'interceptor/header_interceptor.dart';
-import 'model_converter.dart';
 
 part 'authentication_service.chopper.dart';
 
@@ -15,7 +15,7 @@ abstract class AuthenticationService extends ChopperService {
     final client = ChopperClient(
       baseUrl: 'http://13.232.173.148/thirdparty/api',
       interceptors: [HeaderInterceptor(), HttpLoggingInterceptor()],
-      converter: ModelConverter(),
+      converter: BuiltValueConverter(),
       errorConverter: JsonConverter(),
       services: [
         _$AuthenticationService(),
@@ -29,8 +29,8 @@ abstract class AuthenticationService extends ChopperService {
   Future<Response<LoginResource>> getUser();
 
   @Get(path: 'consumption/daily')
-  Future<Response<DailyReportResource>> getDailyReport(
-    @Query('year') String year,
-    @Query('month') String month,
+  Future<Response<DailyReportResponse>> getDailyReport(
+    @Query('year') int year,
+    @Query('month') int month,
   );
 }

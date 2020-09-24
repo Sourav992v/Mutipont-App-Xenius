@@ -8,14 +8,14 @@ part of 'dg.dart';
 
 Dg _$DgFromJson(Map<String, dynamic> json) {
   return Dg(
-    month: json['month'] as String,
-    dgUnit: json['dgUnit'] as String,
-    dgAmt: (json['dgAmt'] as num)?.toDouble(),
+    date: json['date'] as String,
+    dgUnit: json['dg_unit'] as String,
+    dgAmt: (json['dg_amt'] as num)?.toDouble(),
   );
 }
 
 Map<String, dynamic> _$DgToJson(Dg instance) => <String, dynamic>{
-      'month': instance.month,
-      'dgUnit': instance.dgUnit,
-      'dgAmt': instance.dgAmt,
+      'date': instance.date,
+      'dg_unit': instance.dgUnit,
+      'dg_amt': instance.dgAmt,
     };

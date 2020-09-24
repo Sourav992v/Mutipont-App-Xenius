@@ -1,424 +1,332 @@
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'resource.g.dart';
 
 @JsonSerializable()
-class Resource {
+abstract class Resource implements Built<Resource, ResourceBuilder> {
+  @nullable
   @JsonKey(name: 'android_version')
-  String androidVersion;
+  String get android_version;
 
+  @nullable
   @JsonKey(name: 'ios_version')
-  String iosVersion;
+  String get ios_version;
 
+  @nullable
   @JsonKey(name: 'mobile_app_status')
-  String mobileAppStatus;
+  String get mobile_app_status;
 
   @JsonKey(name: 'location_id')
-  String locationId;
+  String get location_id;
 
   @JsonKey(name: 'login_count')
-  String loginCount;
+  String get login_count;
 
+  @nullable
   @JsonKey(name: 'device_app_ver')
-  String deviceAppVer;
+  String get device_app_ver;
 
   @JsonKey(name: 'flat_number')
-  String flatNumber;
+  String get flat_number;
 
   @JsonKey(name: 'consumer_name')
-  String consumerName;
+  String get consumer_name;
 
   @JsonKey(name: 'consumer_mobile_no')
-  String consumerMobileNo;
+  String get consumer_mobile_no;
 
+  @nullable
   @JsonKey(name: 'consumer_email_id')
-  String consumerEmailId;
+  String get consumer_email_id;
 
   @JsonKey(name: 'balance_amount')
-  String balanceAmount;
+  String get balance_amount;
 
   @JsonKey(name: 'dg_balance_amount')
-  String dgBalanceAmount;
+  String get dg_balance_amount;
 
+  @nullable
   @JsonKey(name: 'last_recharge_time')
-  String lastRechargeTime;
+  String get last_recharge_time;
 
   @JsonKey(name: 'dg_last_recharge_time')
-  String dgLastRechargeTime;
+  String get dg_last_recharge_time;
 
+  @nullable
   @JsonKey(name: 'last_coupon_number')
-  String lastCouponNumber;
+  String get last_coupon_number;
 
   @JsonKey(name: 'dg_last_coupon_number')
-  String dgLastCouponNumber;
+  String get dg_last_coupon_number;
 
   @JsonKey(name: 'last_coupon_amount')
-  String lastCouponAmount;
+  String get last_coupon_amount;
 
   @JsonKey(name: 'dg_last_coupon_amount')
-  String dgLastCouponAmount;
+  String get dg_last_coupon_amount;
 
   @JsonKey(name: 'dg_reading')
-  String dgReading;
+  String get dg_reading;
 
   @JsonKey(name: 'grid_reading')
-  String gridReading;
+  String get grid_reading;
 
   @JsonKey(name: 'dg_amt')
-  String dgAmt;
+  String get dg_amt;
 
   @JsonKey(name: 'grid_amt')
-  String gridAmt;
+  String get grid_amt;
 
   @JsonKey(name: 'last_reading_updated')
-  String lastReadingUpdated;
+  String get last_reading_updated;
 
   @JsonKey(name: 'dg_last_reading_updated')
-  String dgLastReadingUpdated;
+  String get dg_last_reading_updated;
 
   @JsonKey(name: 'notification_email')
-  String notificationEmail;
+  String get notification_email;
 
   @JsonKey(name: 'notification_sms')
-  String notificationSms;
+  String get notification_sms;
 
   @JsonKey(name: 'bp_no')
-  String bpNo;
+  String get bp_no;
 
-  @JsonKey(name: 'consumerNo')
-  String consumerNo;
+  @JsonKey(name: 'consumer_no')
+  String get consumer_no;
 
   @JsonKey(name: 'account_no')
-  String accountNo;
+  String get account_no;
 
   @JsonKey(name: 'move_in_date')
-  String moveInDate;
+  String get move_in_date;
 
   @JsonKey(name: 'notification_ivrs')
-  String notificationIvrs;
+  String get notification_ivrs;
 
   @JsonKey(name: 'notification_app_load')
-  String notificationAppLoad;
+  String get notification_app_load;
 
   @JsonKey(name: 'notification_app_balance')
-  String notificationAppBalance;
+  String get notification_app_balance;
 
   @JsonKey(name: 'low_bal_alert')
-  String lowBalAlert;
+  String get low_bal_alert;
 
   @JsonKey(name: 'dg_low_bal_alert')
-  String dgLowBalAlert;
+  String get dg_low_bal_alert;
 
   @JsonKey(name: 'notification_app_esource')
-  String notificationAppEsource;
+  String get notification_app_esource;
 
   @JsonKey(name: 'notification_app_unit_consumption')
-  String notificationAppUnitConsumption;
+  String get notification_app_unit_consumption;
 
   @JsonKey(name: 'alert_daily_consumption_grid')
-  String alertDailyConsumptionGrid;
+  String get alert_daily_consumption_grid;
 
   @JsonKey(name: 'alert_daily_consumption_dg')
-  String alertDailyConsumptionDg;
+  String get alert_daily_consumption_dg;
 
   @JsonKey(name: 'load_setting_enabled')
-  String loadSettingEnabled;
+  String get load_setting_enabled;
 
   @JsonKey(name: 'power_cut_restore_notification')
-  String powerCutRestoreNotification;
+  String get power_cut_restore_notification;
 
   @JsonKey(name: 'recharge_notification')
-  String rechargeNotification;
+  String get recharge_notification;
 
   @JsonKey(name: 'grid_sanctioned_load')
-  String gridSanctionedLoad;
+  String get grid_sanctioned_load;
 
   @JsonKey(name: 'dg_sanctioned_load')
-  String dgSanctionedLoad;
+  String get dg_sanctioned_load;
 
   @JsonKey(name: 'load_unit')
-  String loadUnit;
+  String get load_unit;
 
   @JsonKey(name: 'meter_type')
-  String meterType;
+  String get meter_type;
 
   @JsonKey(name: 'grid_load_alarm')
-  String gridLoadAlarm;
+  String get grid_load_alarm;
 
   @JsonKey(name: 'dg_load_alarm')
-  String dgLoadAlarm;
+  String get dg_load_alarm;
 
   @JsonKey(name: 'grid_overload_setting')
-  String gridOverloadSetting;
+  String get grid_overload_setting;
 
   @JsonKey(name: 'dg_overload_setting')
-  String dgOverloadSetting;
+  String get dg_overload_setting;
 
   @JsonKey(name: 'grid_overload_from_time')
-  String gridOverloadFromTime;
+  String get grid_overload_from_time;
 
   @JsonKey(name: 'grid_overload_to_time')
-  String gridOverloadToTime;
+  String get grid_overload_to_time;
 
   @JsonKey(name: 'dg_overload_from_time')
-  String dgOverloadFromTime;
+  String get dg_overload_from_time;
 
   @JsonKey(name: 'dg_overload_to_time')
-  String dgOverloadToTime;
+  String get dg_overload_to_time;
 
   @JsonKey(name: 'overload_grid')
-  String overloadGrid;
+  String get overload_grid;
 
   @JsonKey(name: 'overload_dg')
-  String overloadDg;
+  String get overload_dg;
 
   @JsonKey(name: 'site_id')
-  String siteId;
+  String get site_id;
 
   @JsonKey(name: 'site_name')
-  String siteName;
+  String get site_name;
 
   @JsonKey(name: 'site_address')
-  String siteAddress;
+  String get site_address;
 
   @JsonKey(name: 'site_city')
-  String siteCity;
+  String get site_city;
 
   @JsonKey(name: 'site_state')
-  String siteState;
+  String get site_state;
 
   @JsonKey(name: 'site_country')
-  String siteCountry;
+  String get site_country;
 
   @JsonKey(name: 'site_zipcode')
-  String siteZipcode;
+  String get site_zipcode;
 
+  @nullable
   @JsonKey(name: 'site_supervisor_name')
-  String siteSupervisorName;
-
+  String get site_supervisor_name;
+  @nullable
   @JsonKey(name: 'site_supervisor_contact_no')
-  String siteSupervisorContactNo;
-
+  String get site_supervisor_contact_no;
+  @nullable
   @JsonKey(name: 'site_supervisor_email_id')
-  String siteSupervisorEmailId;
-
+  String get site_supervisor_email_id;
+  @nullable
   @JsonKey(name: 'site_support_concern_name')
-  String siteSupportConcernName;
-
+  String get site_support_concern_name;
+  @nullable
   @JsonKey(name: 'site_support_contact_no')
-  String siteSupportContactNo;
-
+  String get site_support_contact_no;
+  @nullable
   @JsonKey(name: 'site_support_email_id')
-  String siteSupportEmailId;
-
+  String get site_support_email_id;
+  @nullable
   @JsonKey(name: 'main_license')
-  String mainLicense;
+  String get main_license;
 
   @JsonKey(name: 'application')
-  String application;
+  String get application;
 
   @JsonKey(name: 'reading_unit')
-  String readingUnit;
+  String get reading_unit;
 
   @JsonKey(name: 'currency')
-  String currency;
+  String get currency;
 
   @JsonKey(name: 'site_code')
-  String siteCode;
+  String get site_code;
 
   @JsonKey(name: 'balance_enable')
-  String balanceEnable;
+  String get balance_enable;
 
   @JsonKey(name: 'reading_enable')
-  String readingEnable;
+  String get reading_enable;
 
   @JsonKey(name: 'monthly_bill_enable')
-  String monthlyBillEnable;
+  String get monthly_bill_enable;
 
   @JsonKey(name: 'monthly_bill_no_of_month')
-  String monthlyBillNoOfMonth;
+  String get monthly_bill_no_of_month;
 
   @JsonKey(name: 'PLM')
-  String pLM;
+  String get PLM;
 
+  @nullable
   @JsonKey(name: 'pg_enable_paytm')
-  String pgEnablePaytm;
-
+  String get pg_enable_paytm;
+  @nullable
   @JsonKey(name: 'pg_enable_mobikwik')
-  String pgEnableMobikwik;
-
+  String get pg_enable_mobikwik;
+  @nullable
   @JsonKey(name: 'paytm_mobile_url')
-  String paytmMobileUrl;
-
+  String get paytmMobileUrl;
+  @nullable
   @JsonKey(name: 'mobikwik_mobile_url')
-  String mobikwikMobileUrl;
+  String get mobikwik_mobile_url;
 
   @JsonKey(name: 'pg_enable_hdfc')
-  String pgEnableHdfc;
+  String get pg_enable_hdfc;
 
   @JsonKey(name: 'paytm_image')
-  String paytmImage;
-
+  String get paytm_image;
+  @nullable
   @JsonKey(name: 'recharge_popup_message')
-  String rechargePopupMessage;
+  String get recharge_popup_message;
 
   @JsonKey(name: 'energy_source')
-  String energySource;
+  String get energy_source;
 
   @JsonKey(name: 'last_reading_updated_dg')
-  String lastReadingUpdatedDg;
+  String get last_reading_updated_dg;
 
   @JsonKey(name: 'display_load_setting_screen')
-  String displayLoadSettingScreen;
+  String get display_load_setting_screen;
 
   @JsonKey(name: 'daily_dg_unit')
-  double dailyDgUnit;
+  double get daily_dg_unit;
 
   @JsonKey(name: 'daily_grid_unit')
-  double dailyGridUnit;
+  double get daily_grid_unit;
 
   @JsonKey(name: 'monthly_dg_unit')
-  double monthlyDgUnit;
+  double get monthly_dg_unit;
 
   @JsonKey(name: 'monthly_grid_unit')
-  double monthlyGridUnit;
+  double get monthly_grid_unit;
 
   @JsonKey(name: 'daily_dg_amount')
-  double dailyDgAmount;
+  double get daily_dg_amount;
 
   @JsonKey(name: 'daily_grid_amount')
-  double dailyGridAmount;
+  double get daily_grid_amount;
 
   @JsonKey(name: 'monthly_dg_amount')
-  double monthlyDgAmount;
+  double get monthly_dg_amount;
 
   @JsonKey(name: 'monthly_grid_amount')
-  double monthlyGridAmount;
+  double get monthly_grid_amount;
 
   @JsonKey(name: 'fix_charges')
-  double fixCharges;
+  double get fix_charges;
 
   @JsonKey(name: 'dr_cr')
-  double drCr;
+  double get dr_cr;
 
   @JsonKey(name: 'fix_charges_monthly')
-  double fixChargesMonthly;
+  double get fix_charges_monthly;
 
   @JsonKey(name: 'dr_cr_monthly')
-  String drCrMonthly;
+  String get dr_cr_monthly;
 
   @JsonKey(name: 'dg_fix_charges_monthly')
-  double dgFixChargesMonthly;
+  double get dg_fix_charges_monthly;
 
   @JsonKey(name: 'dg_dr_cr_monthly')
-  String dgDrCrMonthly;
+  String get dg_dr_cr_monthly;
 
-  Resource(
-      {this.androidVersion,
-      this.iosVersion,
-      this.mobileAppStatus,
-      this.locationId,
-      this.loginCount,
-      this.deviceAppVer,
-      this.flatNumber,
-      this.consumerName,
-      this.consumerMobileNo,
-      this.consumerEmailId,
-      this.balanceAmount,
-      this.dgBalanceAmount,
-      this.lastRechargeTime,
-      this.dgLastRechargeTime,
-      this.lastCouponNumber,
-      this.dgLastCouponNumber,
-      this.lastCouponAmount,
-      this.dgLastCouponAmount,
-      this.dgReading,
-      this.gridReading,
-      this.dgAmt,
-      this.gridAmt,
-      this.lastReadingUpdated,
-      this.dgLastReadingUpdated,
-      this.notificationEmail,
-      this.notificationSms,
-      this.bpNo,
-      this.consumerNo,
-      this.accountNo,
-      this.moveInDate,
-      this.notificationIvrs,
-      this.notificationAppLoad,
-      this.notificationAppBalance,
-      this.lowBalAlert,
-      this.dgLowBalAlert,
-      this.notificationAppEsource,
-      this.notificationAppUnitConsumption,
-      this.alertDailyConsumptionGrid,
-      this.alertDailyConsumptionDg,
-      this.loadSettingEnabled,
-      this.powerCutRestoreNotification,
-      this.rechargeNotification,
-      this.gridSanctionedLoad,
-      this.dgSanctionedLoad,
-      this.loadUnit,
-      this.meterType,
-      this.gridLoadAlarm,
-      this.dgLoadAlarm,
-      this.gridOverloadSetting,
-      this.dgOverloadSetting,
-      this.gridOverloadFromTime,
-      this.gridOverloadToTime,
-      this.dgOverloadFromTime,
-      this.dgOverloadToTime,
-      this.overloadGrid,
-      this.overloadDg,
-      this.siteId,
-      this.siteName,
-      this.siteAddress,
-      this.siteCity,
-      this.siteState,
-      this.siteCountry,
-      this.siteZipcode,
-      this.siteSupervisorName,
-      this.siteSupervisorContactNo,
-      this.siteSupervisorEmailId,
-      this.siteSupportConcernName,
-      this.siteSupportContactNo,
-      this.siteSupportEmailId,
-      this.mainLicense,
-      this.application,
-      this.readingUnit,
-      this.currency,
-      this.siteCode,
-      this.balanceEnable,
-      this.readingEnable,
-      this.monthlyBillEnable,
-      this.monthlyBillNoOfMonth,
-      this.pLM,
-      this.pgEnablePaytm,
-      this.pgEnableMobikwik,
-      this.paytmMobileUrl,
-      this.mobikwikMobileUrl,
-      this.pgEnableHdfc,
-      this.paytmImage,
-      this.rechargePopupMessage,
-      this.energySource,
-      this.lastReadingUpdatedDg,
-      this.displayLoadSettingScreen,
-      this.dailyDgUnit,
-      this.dailyGridUnit,
-      this.monthlyDgUnit,
-      this.monthlyGridUnit,
-      this.dailyDgAmount,
-      this.dailyGridAmount,
-      this.monthlyDgAmount,
-      this.monthlyGridAmount,
-      this.fixCharges,
-      this.drCr,
-      this.fixChargesMonthly,
-      this.drCrMonthly,
-      this.dgFixChargesMonthly,
-      this.dgDrCrMonthly});
+  Resource._();
 
-  factory Resource.fromJson(Map<String, dynamic> json) =>
-      _$ResourceFromJson(json);
-  Map<String, dynamic> toJson() => _$ResourceToJson(this);
+  factory Resource([updates(ResourceBuilder b)]) = _$Resource;
+
+  static Serializer<Resource> get serializer => _$resourceSerializer;
 }

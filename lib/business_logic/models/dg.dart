@@ -3,11 +3,16 @@ part 'dg.g.dart';
 
 @JsonSerializable()
 class Dg {
-  String month;
+  @JsonKey(name: 'date')
+  String date;
+
+  @JsonKey(name: 'dg_unit')
   String dgUnit;
+
+  @JsonKey(name: 'dg_amt')
   double dgAmt;
 
-  Dg({this.month, this.dgUnit, this.dgAmt});
+  Dg({this.date, this.dgUnit, this.dgAmt});
 
   factory Dg.fromJson(Map<String, dynamic> json) => _$DgFromJson(json);
 

@@ -142,13 +142,13 @@ class _PiechartRecyclerViewState extends State<PiechartRecyclerView> {
   }
 
   PieData generatePieData(var type) {
-    var gridUnit = "Grid " + resourceEntity.readingUnit;
-    var dgUnit = "DG " + resourceEntity.readingUnit;
-    var gridValue = resourceEntity.dailyGridUnit;
-    var dgValue = resourceEntity.dailyDgUnit;
+    var gridUnit = "Grid " + resourceEntity.reading_unit;
+    var dgUnit = "DG " + resourceEntity.reading_unit;
+    var gridValue = resourceEntity.daily_grid_unit;
+    var dgValue = resourceEntity.daily_dg_unit;
 
-    var gridValueMonth = resourceEntity.monthlyGridUnit;
-    var dgValueMonth = resourceEntity.monthlyDgUnit;
+    var gridValueMonth = resourceEntity.monthly_grid_unit;
+    var dgValueMonth = resourceEntity.monthly_dg_unit;
 
     List<PieEntry> entries = List();
     List<PieEntry> pieEntriesMonth = List();

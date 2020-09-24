@@ -1,6 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:intl/intl.dart';
+import 'package:multipoint_app_xenius/business_logic/models/daily_report_resource.dart';
+import 'package:multipoint_app_xenius/business_logic/viewmodels/home_viewmodel.dart';
+import 'package:multipoint_app_xenius/constants.dart';
+import 'package:multipoint_app_xenius/ui/view/base_view.dart';
 import 'package:multipoint_app_xenius/ui/view/report/monthly_report/bar_chart_list_view.dart';
 import 'package:multipoint_app_xenius/ui/view/report/monthly_report/list_item.dart';
 
@@ -11,8 +16,17 @@ class MonthlyReportView extends StatefulWidget {
 }
 
 class _MonthlyReportViewState extends State<MonthlyReportView> {
-  String dateString =
-      DateFormat('yyyy-MMM-dd').format(DateTime.now().toLocal());
+  String dateString = DateFormat('yyyy-MMM').format(DateTime.now().toLocal());
+
+  List<String> dateStringValue = [];
+
+  DailyReportResource reportResource;
+
+  void _date(int month, int year) {
+    for (int i = month; i > 0; i--) {
+      dateStringValue.add('$i $year');
+    }
+  }
 
   _selectedDate(BuildContext context) async {
     DateTime selectedDate = DateTime.now();
@@ -23,7 +37,7 @@ class _MonthlyReportViewState extends State<MonthlyReportView> {
         lastDate: DateTime(2025));
     if (pickedDate != null && pickedDate != selectedDate) {
       setState(() {
-        dateString = DateFormat('yyyy-MMM-dd').format(pickedDate);
+        dateString = DateFormat('yyyy-MMM').format(pickedDate);
       });
     }
   }
@@ -47,7 +61,10 @@ class _MonthlyReportViewState extends State<MonthlyReportView> {
                 onDateTimeChanged: (pickedDate) {
                   if (pickedDate != null && pickedDate != selectedDate) {
                     setState(() {
-                      dateString = DateFormat('yyyy-MMM-dd').format(pickedDate);
+                      dateString = DateFormat('yyyy-MMM').format(pickedDate);
+                      int month = pickedDate.toLocal().month;
+                      int year = pickedDate.toLocal().year;
+                      _date(month, year);
                     });
                   }
                 },
@@ -63,31 +80,32 @@ class _MonthlyReportViewState extends State<MonthlyReportView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white70,
-      appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Icon(
-            Icons.arrow_back,
-            color: Colors.white,
+        backgroundColor: Colors.white70,
+        appBar: AppBar(
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
           ),
+          title: Text(
+            'Monthly Report',
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                fontSize: 16.0),
+          ),
+          centerTitle: true,
         ),
-        title: Text(
-          'Monthly Report',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, color: Colors.white, fontSize: 16.0),
-        ),
-        centerTitle: true,
-      ),
-      body: Stack(children: [
-        BarChartListView(
-            items:
-                List<ListItem>.generate(5, (i) => HeadingItem('Monthly $i'))),
-        Positioned(top: 25.0, right: 25.0, child: datePickerDaily(context)),
-      ]),
-    );
+        body: Stack(children: [
+          BarChartListView(
+              items: List<ListItem>.generate(
+                  4, (i) => HeadingItem(reportResource, 'Month $i'))),
+          Positioned(top: 25.0, right: 25.0, child: datePickerDaily(context)),
+        ]));
   }
 
   Container datePickerDaily(BuildContext context) {
@@ -98,17 +116,11 @@ class _MonthlyReportViewState extends State<MonthlyReportView> {
           _cupertinoDatePicker(context);
         },
         child: Container(
-            height: 72.0,
+            height: 48.0,
             width: 48.0,
             color: Colors.white,
             child: Column(
               children: [
-                Container(
-                  height: 24.0,
-                  width: 32.0,
-                  color: Colors.white,
-                  child: Center(child: Text('$dateString'.split('-')[2])),
-                ),
                 Container(
                   height: 24.0,
                   width: 48.0,

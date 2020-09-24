@@ -1,9 +1,15 @@
+import 'package:chopper/chopper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:intl/intl.dart';
+import 'package:multipoint_app_xenius/business_logic/models/daily_report_response.dart';
+import 'package:multipoint_app_xenius/business_logic/models/dg.dart';
+import 'package:multipoint_app_xenius/business_logic/models/grid.dart';
+import 'package:multipoint_app_xenius/business_logic/viewmodels/daily_report_viewmodel.dart';
 import 'package:multipoint_app_xenius/constants.dart';
+import 'package:multipoint_app_xenius/locator.dart';
 
 class DailyReportView extends StatefulWidget {
   static const String id = 'daily_report_view';
@@ -13,51 +19,94 @@ class DailyReportView extends StatefulWidget {
 }
 
 class _DailyReportViewState extends State<DailyReportView> {
-  List<charts.Series<LinearSales, DateTime>> _createSampleData() {
-    var myFakeDesktopData = [
-      new LinearSales(new DateTime(2020, 09, 11), 5),
-      new LinearSales(new DateTime(2020, 09, 12), 25),
-      new LinearSales(new DateTime(2020, 09, 13), 100),
-      new LinearSales(new DateTime(2020, 09, 14), 75),
-    ];
+  DailyReportViewModel dailyReportViewModel = locator<DailyReportViewModel>();
+  List<Grid> gridData;
+  List<Dg> dgData;
 
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void _loadDailyReport() async {
+    Response<DailyReportResponse> dailyReportResponse =
+        await dailyReportViewModel.getDailyReportResource(2020, 09);
+
+    gridData = dailyReportResponse.body.resource.grid;
+    dgData = dailyReportResponse.body.resource.dg;
+  }
+
+  List<charts.Series<ChartData, DateTime>> _createSampleData(int index) {
     var myFakeTabletData = [
-      new LinearSales(new DateTime(2020, 09, 11), 10),
-      new LinearSales(new DateTime(2020, 09, 12), 50),
-      new LinearSales(new DateTime(2020, 09, 13), 200),
-      new LinearSales(new DateTime(2020, 09, 14), 150),
+      new ChartData(new DateTime(2020, 9, 25), 34, 10),
+      new ChartData(new DateTime(2020, 9, 26), 54, 455),
+      new ChartData(new DateTime(2020, 9, 27), 53, 4443),
+      new ChartData(new DateTime(2020, 9, 28), 56, 345),
+      new ChartData(new DateTime(2020, 9, 29), 43, 107),
+      new ChartData(new DateTime(2020, 9, 30), 24, 108),
+      new ChartData(new DateTime(2020, 9, 31), 76, 109),
+      new ChartData(DateTime(2020, 10, 1), 90, 1109),
     ];
 
     var myFakeMobileData = [
-      new LinearSales(new DateTime(2020, 09, 11), 15),
-      new LinearSales(new DateTime(2020, 09, 12), 75),
-      new LinearSales(new DateTime(2020, 09, 13), 300),
-      new LinearSales(new DateTime(2020, 09, 14), 225),
+      new ChartData(new DateTime(2020, 9, 25), 43, 101),
+      new ChartData(new DateTime(2020, 9, 26), 54, 230),
+      new ChartData(new DateTime(2020, 9, 27), 64, 450),
+      new ChartData(new DateTime(2020, 9, 28), 74, 540),
+      new ChartData(new DateTime(2020, 9, 29), 51, 10),
+      new ChartData(new DateTime(2020, 9, 30), 61, 102),
+      new ChartData(new DateTime(2020, 9, 31), 71, 103),
+      new ChartData(new DateTime(2020, 10, 1), 81, 104),
+    ];
+    var myFakeTabletData1 = [
+      new ChartData(new DateTime(2017, 9, 25), 51, 10),
+      new ChartData(new DateTime(2017, 9, 26), 61, 102),
+      new ChartData(new DateTime(2017, 9, 27), 71, 103),
+      new ChartData(new DateTime(2017, 9, 28), 81, 104),
     ];
 
-    return [
-      charts.Series<LinearSales, DateTime>(
-        id: 'Desktop',
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-        domainFn: (LinearSales sales, _) => sales.year,
-        measureFn: (LinearSales sales, _) => sales.sales,
-        data: myFakeDesktopData,
-      ),
-      charts.Series<LinearSales, DateTime>(
-        id: 'Tablet',
-        colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
-        domainFn: (LinearSales sales, _) => sales.year,
-        measureFn: (LinearSales sales, _) => sales.sales,
-        data: myFakeTabletData,
-      ),
-      charts.Series<LinearSales, DateTime>(
-        id: 'Mobile',
-        colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
-        domainFn: (LinearSales sales, _) => sales.year,
-        measureFn: (LinearSales sales, _) => sales.sales,
-        data: myFakeMobileData,
-      ),
+    var myFakeMobileData2 = [
+      new ChartData(new DateTime(2017, 9, 25), 43, 107),
+      new ChartData(new DateTime(2017, 9, 26), 24, 108),
+      new ChartData(new DateTime(2017, 9, 27), 76, 109),
+      new ChartData(DateTime(2017, 9, 28), 90, 1109),
     ];
+
+    if (index == 1) {
+      return [
+        charts.Series<ChartData, DateTime>(
+          id: 'Tablet',
+          colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
+          domainFn: (ChartData date, _) => date.date,
+          measureFn: (ChartData unit, _) => unit.unit,
+          data: myFakeTabletData,
+        ),
+        charts.Series<ChartData, DateTime>(
+          id: 'Mobile',
+          colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
+          domainFn: (ChartData date, _) => date.date,
+          measureFn: (ChartData unit, _) => unit.unit,
+          data: myFakeMobileData,
+        ),
+      ];
+    } else {
+      return [
+        charts.Series<ChartData, DateTime>(
+          id: 'Tablet',
+          colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
+          domainFn: (ChartData unit, _) => unit.date,
+          measureFn: (ChartData unit, _) => unit.unit,
+          data: myFakeTabletData1,
+        ),
+        charts.Series<ChartData, DateTime>(
+          id: 'Mobile',
+          colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
+          domainFn: (ChartData unit, _) => unit.date,
+          measureFn: (ChartData unit, _) => unit.unit,
+          data: myFakeMobileData2,
+        ),
+      ];
+    }
   }
 
   String dateString =
@@ -151,38 +200,33 @@ class _DailyReportViewState extends State<DailyReportView> {
                         padding: const EdgeInsets.only(top: 16.0, bottom: 0),
                         child: Center(
                             child: Text(
-                          'one',
+                          '$dateString'.split('-')[1],
                           style: kLabelTextStyle,
                         )),
                       ),
-                      subtitle: Container(
-                        height: 300.0,
-                        child: charts.TimeSeriesChart(
-                          _createSampleData(),
-                          animate: true,
-                          behaviors: [
-                            new charts.RangeAnnotation([
-                              new charts.LineAnnotationSegment(
-                                  new DateTime(2020, 09, 11),
-                                  charts.RangeAnnotationAxisType.domain,
-                                  startLabel: 'Sep'),
-                              new charts.LineAnnotationSegment(
-                                  new DateTime(2020, 09, 14),
-                                  charts.RangeAnnotationAxisType.domain,
-                                  endLabel: 'Sep'),
-                            ]),
-                            new charts.SeriesLegend(
-                              position: charts.BehaviorPosition.bottom,
-                              horizontalFirst: true,
-                              cellPadding:
-                                  new EdgeInsets.only(right: 4.0, bottom: 4.0),
-                              showMeasures: true,
-                              measureFormatter: (num value) {
-                                return value == null ? '-' : '$value';
-                              },
-                            )
-                          ],
-                        ),
+                      subtitle: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Container(
+                            width: 500,
+                            height: 300,
+                            child: charts.TimeSeriesChart(
+                              _createSampleData(index),
+                              animate: true,
+                              defaultRenderer: new charts.LineRendererConfig(
+                                  includePoints: true,
+                                  includeArea: true,
+                                  stacked: true),
+                              behaviors: [
+                                charts.SlidingViewport(),
+                                charts.PanAndZoomBehavior(),
+                              ],
+                              domainAxis: new charts.DateTimeAxisSpec(
+                                  tickFormatterSpec:
+                                      new charts.AutoDateTimeTickFormatterSpec(
+                                          day: new charts.TimeFormatterSpec(
+                                              format: 'd',
+                                              transitionFormat: 'dd MMM'))),
+                            )),
                       ),
                     ),
                   );
@@ -242,9 +286,10 @@ class _DailyReportViewState extends State<DailyReportView> {
 
 /// Sample linear data type.
 
-class LinearSales {
-  final DateTime year;
-  final int sales;
+class ChartData {
+  final DateTime date;
+  final double unit;
+  final double amount;
 
-  LinearSales(this.year, this.sales);
+  ChartData(this.date, this.unit, this.amount);
 }

@@ -102,7 +102,7 @@ class GridBalanceCard extends StatelessWidget {
                     style: kSubLabelTextStyle,
                   ),
                   Text(
-                    '${resource.lastReadingUpdated}',
+                    '${resource.last_reading_updated}',
                     style: kSubValueTextStyle,
                   ),
                 ],
@@ -116,7 +116,7 @@ class GridBalanceCard extends StatelessWidget {
                     style: kSubLabelTextStyle,
                   ),
                   Text(
-                    '${resource.gridReading} ${resource.readingUnit}',
+                    '${resource.grid_reading} ${resource.reading_unit}',
                     style: kSubValueTextStyle,
                   ),
                 ],
@@ -130,7 +130,7 @@ class GridBalanceCard extends StatelessWidget {
                     style: kSubLabelTextStyle,
                   ),
                   Text(
-                    'INR ${resource.balanceAmount}',
+                    'INR ${resource.balance_amount}',
                     style: kSubValueTextStyle,
                   ),
                 ],
@@ -144,7 +144,7 @@ class GridBalanceCard extends StatelessWidget {
                     style: kSubLabelTextStyle,
                   ),
                   Text(
-                    '${resource.gridSanctionedLoad} ${resource.loadUnit}',
+                    '${resource.grid_sanctioned_load} ${resource.load_unit}',
                     style: kSubValueTextStyle,
                   ),
                 ],
@@ -158,7 +158,7 @@ class GridBalanceCard extends StatelessWidget {
 }
 
 Widget energySourceGrid(Resource resource) {
-  String energySource = resource.energySource;
+  String energySource = resource.energy_source;
   return energySource == "Grid"
       ? SpinKitDoubleBounce(
           color: kColorPrimary,
@@ -210,7 +210,7 @@ class DGBalanceCard extends StatelessWidget {
                     style: kSubLabelTextStyle,
                   ),
                   Text(
-                    '${resource.dgLastReadingUpdated}',
+                    '${resource.dg_last_reading_updated}',
                     style: kSubValueTextStyle,
                   ),
                 ],
@@ -224,7 +224,7 @@ class DGBalanceCard extends StatelessWidget {
                     style: kSubLabelTextStyle,
                   ),
                   Text(
-                    '${resource.dgReading} ${resource.readingUnit}',
+                    '${resource.dg_reading} ${resource.reading_unit}',
                     style: kSubValueTextStyle,
                   ),
                 ],
@@ -238,7 +238,7 @@ class DGBalanceCard extends StatelessWidget {
                     style: kSubLabelTextStyle,
                   ),
                   Text(
-                    'INR ${resource.dgBalanceAmount}',
+                    'INR ${resource.dg_balance_amount}',
                     style: kSubValueTextStyle,
                   ),
                 ],
@@ -252,7 +252,7 @@ class DGBalanceCard extends StatelessWidget {
                     style: kSubLabelTextStyle,
                   ),
                   Text(
-                    '${resource.dgSanctionedLoad} ${resource.loadUnit}',
+                    '${resource.dg_sanctioned_load} ${resource.load_unit}',
                     style: kSubValueTextStyle,
                   ),
                 ],
@@ -271,7 +271,7 @@ class DgEnergySource extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return resource.energySource == 'DG'
+    return resource.energy_source == 'DG'
         ? SpinKitDoubleBounce(
             color: kColorAccentRed,
             size: 24.0,

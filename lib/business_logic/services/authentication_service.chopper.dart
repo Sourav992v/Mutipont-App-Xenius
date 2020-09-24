@@ -24,11 +24,10 @@ class _$AuthenticationService extends AuthenticationService {
   }
 
   @override
-  Future<Response<DailyReportResource>> getDailyReport(
-      String year, String month) {
+  Future<Response<DailyReportResponse>> getDailyReport(int year, int month) {
     final $url = 'consumption/daily';
     final $params = <String, dynamic>{'year': year, 'month': month};
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
-    return client.send<DailyReportResource, DailyReportResource>($request);
+    return client.send<DailyReportResponse, DailyReportResponse>($request);
   }
 }

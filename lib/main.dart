@@ -33,7 +33,7 @@ class MultipointAppXenius extends StatelessWidget {
         fontFamily: 'Lato',
         scaffoldBackgroundColor: Colors.white,
       ),
-      initialRoute: MonthlyReportView.id,
+      initialRoute: LoginView.id,
       routes: {
         LoginView.id: (context) => LoginView(),
         Home.id: (context) => Home(),

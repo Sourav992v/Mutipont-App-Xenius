@@ -8,14 +8,14 @@ part of 'grid.dart';
 
 Grid _$GridFromJson(Map<String, dynamic> json) {
   return Grid(
-    month: json['month'] as String,
-    gridUnit: json['gridUnit'] as String,
-    gridAmt: (json['gridAmt'] as num)?.toDouble(),
+    date: json['date'] as String,
+    gridUnit: json['grid_unit'] as String,
+    gridAmt: (json['grid_amt'] as num)?.toDouble(),
   );
 }
 
 Map<String, dynamic> _$GridToJson(Grid instance) => <String, dynamic>{
-      'month': instance.month,
-      'gridUnit': instance.gridUnit,
-      'gridAmt': instance.gridAmt,
+      'date': instance.date,
+      'grid_unit': instance.gridUnit,
+      'grid_amt': instance.gridAmt,
     };
