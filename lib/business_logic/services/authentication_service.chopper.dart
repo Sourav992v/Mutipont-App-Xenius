@@ -17,16 +17,26 @@ class _$AuthenticationService extends AuthenticationService {
   final definitionType = AuthenticationService;
 
   @override
-  Future<Response<LoginResource>> getUser() {
+  Future<Response<LoginResource>> getUser(String login_id, String password) {
     final $url = 'login';
-    final $request = Request('GET', $url, client.baseUrl);
+    final $params = <String, dynamic>{
+      'login_id': login_id,
+      'password': password
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<LoginResource, LoginResource>($request);
   }
 
   @override
-  Future<Response<DailyReportResponse>> getDailyReport(int year, int month) {
+  Future<Response<DailyReportResponse>> getDailyReport(
+      String login_id, String password, int year, int month) {
     final $url = 'consumption/daily';
-    final $params = <String, dynamic>{'year': year, 'month': month};
+    final $params = <String, dynamic>{
+      'login_id': login_id,
+      'password': password,
+      'year': year,
+      'month': month
+    };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<DailyReportResponse, DailyReportResponse>($request);
   }

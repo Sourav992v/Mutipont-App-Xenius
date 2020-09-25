@@ -17,259 +17,7 @@ class _$ResourceSerializer implements StructuredSerializer<Resource> {
   @override
   Iterable<Object> serialize(Serializers serializers, Resource object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
-      'location_id',
-      serializers.serialize(object.location_id,
-          specifiedType: const FullType(String)),
-      'login_count',
-      serializers.serialize(object.login_count,
-          specifiedType: const FullType(String)),
-      'flat_number',
-      serializers.serialize(object.flat_number,
-          specifiedType: const FullType(String)),
-      'consumer_name',
-      serializers.serialize(object.consumer_name,
-          specifiedType: const FullType(String)),
-      'consumer_mobile_no',
-      serializers.serialize(object.consumer_mobile_no,
-          specifiedType: const FullType(String)),
-      'balance_amount',
-      serializers.serialize(object.balance_amount,
-          specifiedType: const FullType(String)),
-      'dg_balance_amount',
-      serializers.serialize(object.dg_balance_amount,
-          specifiedType: const FullType(String)),
-      'dg_last_recharge_time',
-      serializers.serialize(object.dg_last_recharge_time,
-          specifiedType: const FullType(String)),
-      'dg_last_coupon_number',
-      serializers.serialize(object.dg_last_coupon_number,
-          specifiedType: const FullType(String)),
-      'last_coupon_amount',
-      serializers.serialize(object.last_coupon_amount,
-          specifiedType: const FullType(String)),
-      'dg_last_coupon_amount',
-      serializers.serialize(object.dg_last_coupon_amount,
-          specifiedType: const FullType(String)),
-      'dg_reading',
-      serializers.serialize(object.dg_reading,
-          specifiedType: const FullType(String)),
-      'grid_reading',
-      serializers.serialize(object.grid_reading,
-          specifiedType: const FullType(String)),
-      'dg_amt',
-      serializers.serialize(object.dg_amt,
-          specifiedType: const FullType(String)),
-      'grid_amt',
-      serializers.serialize(object.grid_amt,
-          specifiedType: const FullType(String)),
-      'last_reading_updated',
-      serializers.serialize(object.last_reading_updated,
-          specifiedType: const FullType(String)),
-      'dg_last_reading_updated',
-      serializers.serialize(object.dg_last_reading_updated,
-          specifiedType: const FullType(String)),
-      'notification_email',
-      serializers.serialize(object.notification_email,
-          specifiedType: const FullType(String)),
-      'notification_sms',
-      serializers.serialize(object.notification_sms,
-          specifiedType: const FullType(String)),
-      'bp_no',
-      serializers.serialize(object.bp_no,
-          specifiedType: const FullType(String)),
-      'consumer_no',
-      serializers.serialize(object.consumer_no,
-          specifiedType: const FullType(String)),
-      'account_no',
-      serializers.serialize(object.account_no,
-          specifiedType: const FullType(String)),
-      'move_in_date',
-      serializers.serialize(object.move_in_date,
-          specifiedType: const FullType(String)),
-      'notification_ivrs',
-      serializers.serialize(object.notification_ivrs,
-          specifiedType: const FullType(String)),
-      'notification_app_load',
-      serializers.serialize(object.notification_app_load,
-          specifiedType: const FullType(String)),
-      'notification_app_balance',
-      serializers.serialize(object.notification_app_balance,
-          specifiedType: const FullType(String)),
-      'low_bal_alert',
-      serializers.serialize(object.low_bal_alert,
-          specifiedType: const FullType(String)),
-      'dg_low_bal_alert',
-      serializers.serialize(object.dg_low_bal_alert,
-          specifiedType: const FullType(String)),
-      'notification_app_esource',
-      serializers.serialize(object.notification_app_esource,
-          specifiedType: const FullType(String)),
-      'notification_app_unit_consumption',
-      serializers.serialize(object.notification_app_unit_consumption,
-          specifiedType: const FullType(String)),
-      'alert_daily_consumption_grid',
-      serializers.serialize(object.alert_daily_consumption_grid,
-          specifiedType: const FullType(String)),
-      'alert_daily_consumption_dg',
-      serializers.serialize(object.alert_daily_consumption_dg,
-          specifiedType: const FullType(String)),
-      'load_setting_enabled',
-      serializers.serialize(object.load_setting_enabled,
-          specifiedType: const FullType(String)),
-      'power_cut_restore_notification',
-      serializers.serialize(object.power_cut_restore_notification,
-          specifiedType: const FullType(String)),
-      'recharge_notification',
-      serializers.serialize(object.recharge_notification,
-          specifiedType: const FullType(String)),
-      'grid_sanctioned_load',
-      serializers.serialize(object.grid_sanctioned_load,
-          specifiedType: const FullType(String)),
-      'dg_sanctioned_load',
-      serializers.serialize(object.dg_sanctioned_load,
-          specifiedType: const FullType(String)),
-      'load_unit',
-      serializers.serialize(object.load_unit,
-          specifiedType: const FullType(String)),
-      'meter_type',
-      serializers.serialize(object.meter_type,
-          specifiedType: const FullType(String)),
-      'grid_load_alarm',
-      serializers.serialize(object.grid_load_alarm,
-          specifiedType: const FullType(String)),
-      'dg_load_alarm',
-      serializers.serialize(object.dg_load_alarm,
-          specifiedType: const FullType(String)),
-      'grid_overload_setting',
-      serializers.serialize(object.grid_overload_setting,
-          specifiedType: const FullType(String)),
-      'dg_overload_setting',
-      serializers.serialize(object.dg_overload_setting,
-          specifiedType: const FullType(String)),
-      'grid_overload_from_time',
-      serializers.serialize(object.grid_overload_from_time,
-          specifiedType: const FullType(String)),
-      'grid_overload_to_time',
-      serializers.serialize(object.grid_overload_to_time,
-          specifiedType: const FullType(String)),
-      'dg_overload_from_time',
-      serializers.serialize(object.dg_overload_from_time,
-          specifiedType: const FullType(String)),
-      'dg_overload_to_time',
-      serializers.serialize(object.dg_overload_to_time,
-          specifiedType: const FullType(String)),
-      'overload_grid',
-      serializers.serialize(object.overload_grid,
-          specifiedType: const FullType(String)),
-      'overload_dg',
-      serializers.serialize(object.overload_dg,
-          specifiedType: const FullType(String)),
-      'site_id',
-      serializers.serialize(object.site_id,
-          specifiedType: const FullType(String)),
-      'site_name',
-      serializers.serialize(object.site_name,
-          specifiedType: const FullType(String)),
-      'site_address',
-      serializers.serialize(object.site_address,
-          specifiedType: const FullType(String)),
-      'site_city',
-      serializers.serialize(object.site_city,
-          specifiedType: const FullType(String)),
-      'site_state',
-      serializers.serialize(object.site_state,
-          specifiedType: const FullType(String)),
-      'site_country',
-      serializers.serialize(object.site_country,
-          specifiedType: const FullType(String)),
-      'site_zipcode',
-      serializers.serialize(object.site_zipcode,
-          specifiedType: const FullType(String)),
-      'application',
-      serializers.serialize(object.application,
-          specifiedType: const FullType(String)),
-      'reading_unit',
-      serializers.serialize(object.reading_unit,
-          specifiedType: const FullType(String)),
-      'currency',
-      serializers.serialize(object.currency,
-          specifiedType: const FullType(String)),
-      'site_code',
-      serializers.serialize(object.site_code,
-          specifiedType: const FullType(String)),
-      'balance_enable',
-      serializers.serialize(object.balance_enable,
-          specifiedType: const FullType(String)),
-      'reading_enable',
-      serializers.serialize(object.reading_enable,
-          specifiedType: const FullType(String)),
-      'monthly_bill_enable',
-      serializers.serialize(object.monthly_bill_enable,
-          specifiedType: const FullType(String)),
-      'monthly_bill_no_of_month',
-      serializers.serialize(object.monthly_bill_no_of_month,
-          specifiedType: const FullType(String)),
-      'PLM',
-      serializers.serialize(object.PLM, specifiedType: const FullType(String)),
-      'pg_enable_hdfc',
-      serializers.serialize(object.pg_enable_hdfc,
-          specifiedType: const FullType(String)),
-      'paytm_image',
-      serializers.serialize(object.paytm_image,
-          specifiedType: const FullType(String)),
-      'energy_source',
-      serializers.serialize(object.energy_source,
-          specifiedType: const FullType(String)),
-      'last_reading_updated_dg',
-      serializers.serialize(object.last_reading_updated_dg,
-          specifiedType: const FullType(String)),
-      'display_load_setting_screen',
-      serializers.serialize(object.display_load_setting_screen,
-          specifiedType: const FullType(String)),
-      'daily_dg_unit',
-      serializers.serialize(object.daily_dg_unit,
-          specifiedType: const FullType(double)),
-      'daily_grid_unit',
-      serializers.serialize(object.daily_grid_unit,
-          specifiedType: const FullType(double)),
-      'monthly_dg_unit',
-      serializers.serialize(object.monthly_dg_unit,
-          specifiedType: const FullType(double)),
-      'monthly_grid_unit',
-      serializers.serialize(object.monthly_grid_unit,
-          specifiedType: const FullType(double)),
-      'daily_dg_amount',
-      serializers.serialize(object.daily_dg_amount,
-          specifiedType: const FullType(double)),
-      'daily_grid_amount',
-      serializers.serialize(object.daily_grid_amount,
-          specifiedType: const FullType(double)),
-      'monthly_dg_amount',
-      serializers.serialize(object.monthly_dg_amount,
-          specifiedType: const FullType(double)),
-      'monthly_grid_amount',
-      serializers.serialize(object.monthly_grid_amount,
-          specifiedType: const FullType(double)),
-      'fix_charges',
-      serializers.serialize(object.fix_charges,
-          specifiedType: const FullType(double)),
-      'dr_cr',
-      serializers.serialize(object.dr_cr,
-          specifiedType: const FullType(double)),
-      'fix_charges_monthly',
-      serializers.serialize(object.fix_charges_monthly,
-          specifiedType: const FullType(double)),
-      'dr_cr_monthly',
-      serializers.serialize(object.dr_cr_monthly,
-          specifiedType: const FullType(String)),
-      'dg_fix_charges_monthly',
-      serializers.serialize(object.dg_fix_charges_monthly,
-          specifiedType: const FullType(double)),
-      'dg_dr_cr_monthly',
-      serializers.serialize(object.dg_dr_cr_monthly,
-          specifiedType: const FullType(String)),
-    ];
+    final result = <Object>[];
     if (object.android_version != null) {
       result
         ..add('android_version')
@@ -288,10 +36,40 @@ class _$ResourceSerializer implements StructuredSerializer<Resource> {
         ..add(serializers.serialize(object.mobile_app_status,
             specifiedType: const FullType(String)));
     }
+    if (object.location_id != null) {
+      result
+        ..add('location_id')
+        ..add(serializers.serialize(object.location_id,
+            specifiedType: const FullType(String)));
+    }
+    if (object.login_count != null) {
+      result
+        ..add('login_count')
+        ..add(serializers.serialize(object.login_count,
+            specifiedType: const FullType(String)));
+    }
     if (object.device_app_ver != null) {
       result
         ..add('device_app_ver')
         ..add(serializers.serialize(object.device_app_ver,
+            specifiedType: const FullType(String)));
+    }
+    if (object.flat_number != null) {
+      result
+        ..add('flat_number')
+        ..add(serializers.serialize(object.flat_number,
+            specifiedType: const FullType(String)));
+    }
+    if (object.consumer_name != null) {
+      result
+        ..add('consumer_name')
+        ..add(serializers.serialize(object.consumer_name,
+            specifiedType: const FullType(String)));
+    }
+    if (object.consumer_mobile_no != null) {
+      result
+        ..add('consumer_mobile_no')
+        ..add(serializers.serialize(object.consumer_mobile_no,
             specifiedType: const FullType(String)));
     }
     if (object.consumer_email_id != null) {
@@ -300,16 +78,322 @@ class _$ResourceSerializer implements StructuredSerializer<Resource> {
         ..add(serializers.serialize(object.consumer_email_id,
             specifiedType: const FullType(String)));
     }
+    if (object.balance_amount != null) {
+      result
+        ..add('balance_amount')
+        ..add(serializers.serialize(object.balance_amount,
+            specifiedType: const FullType(String)));
+    }
+    if (object.dg_balance_amount != null) {
+      result
+        ..add('dg_balance_amount')
+        ..add(serializers.serialize(object.dg_balance_amount,
+            specifiedType: const FullType(String)));
+    }
     if (object.last_recharge_time != null) {
       result
         ..add('last_recharge_time')
         ..add(serializers.serialize(object.last_recharge_time,
             specifiedType: const FullType(String)));
     }
+    if (object.dg_last_recharge_time != null) {
+      result
+        ..add('dg_last_recharge_time')
+        ..add(serializers.serialize(object.dg_last_recharge_time,
+            specifiedType: const FullType(String)));
+    }
     if (object.last_coupon_number != null) {
       result
         ..add('last_coupon_number')
         ..add(serializers.serialize(object.last_coupon_number,
+            specifiedType: const FullType(String)));
+    }
+    if (object.dg_last_coupon_number != null) {
+      result
+        ..add('dg_last_coupon_number')
+        ..add(serializers.serialize(object.dg_last_coupon_number,
+            specifiedType: const FullType(String)));
+    }
+    if (object.last_coupon_amount != null) {
+      result
+        ..add('last_coupon_amount')
+        ..add(serializers.serialize(object.last_coupon_amount,
+            specifiedType: const FullType(String)));
+    }
+    if (object.dg_last_coupon_amount != null) {
+      result
+        ..add('dg_last_coupon_amount')
+        ..add(serializers.serialize(object.dg_last_coupon_amount,
+            specifiedType: const FullType(String)));
+    }
+    if (object.dg_reading != null) {
+      result
+        ..add('dg_reading')
+        ..add(serializers.serialize(object.dg_reading,
+            specifiedType: const FullType(String)));
+    }
+    if (object.grid_reading != null) {
+      result
+        ..add('grid_reading')
+        ..add(serializers.serialize(object.grid_reading,
+            specifiedType: const FullType(String)));
+    }
+    if (object.dg_amt != null) {
+      result
+        ..add('dg_amt')
+        ..add(serializers.serialize(object.dg_amt,
+            specifiedType: const FullType(String)));
+    }
+    if (object.grid_amt != null) {
+      result
+        ..add('grid_amt')
+        ..add(serializers.serialize(object.grid_amt,
+            specifiedType: const FullType(String)));
+    }
+    if (object.last_reading_updated != null) {
+      result
+        ..add('last_reading_updated')
+        ..add(serializers.serialize(object.last_reading_updated,
+            specifiedType: const FullType(String)));
+    }
+    if (object.dg_last_reading_updated != null) {
+      result
+        ..add('dg_last_reading_updated')
+        ..add(serializers.serialize(object.dg_last_reading_updated,
+            specifiedType: const FullType(String)));
+    }
+    if (object.notification_email != null) {
+      result
+        ..add('notification_email')
+        ..add(serializers.serialize(object.notification_email,
+            specifiedType: const FullType(String)));
+    }
+    if (object.notification_sms != null) {
+      result
+        ..add('notification_sms')
+        ..add(serializers.serialize(object.notification_sms,
+            specifiedType: const FullType(String)));
+    }
+    if (object.bp_no != null) {
+      result
+        ..add('bp_no')
+        ..add(serializers.serialize(object.bp_no,
+            specifiedType: const FullType(String)));
+    }
+    if (object.consumer_no != null) {
+      result
+        ..add('consumer_no')
+        ..add(serializers.serialize(object.consumer_no,
+            specifiedType: const FullType(String)));
+    }
+    if (object.account_no != null) {
+      result
+        ..add('account_no')
+        ..add(serializers.serialize(object.account_no,
+            specifiedType: const FullType(String)));
+    }
+    if (object.move_in_date != null) {
+      result
+        ..add('move_in_date')
+        ..add(serializers.serialize(object.move_in_date,
+            specifiedType: const FullType(String)));
+    }
+    if (object.notification_ivrs != null) {
+      result
+        ..add('notification_ivrs')
+        ..add(serializers.serialize(object.notification_ivrs,
+            specifiedType: const FullType(String)));
+    }
+    if (object.notification_app_load != null) {
+      result
+        ..add('notification_app_load')
+        ..add(serializers.serialize(object.notification_app_load,
+            specifiedType: const FullType(String)));
+    }
+    if (object.notification_app_balance != null) {
+      result
+        ..add('notification_app_balance')
+        ..add(serializers.serialize(object.notification_app_balance,
+            specifiedType: const FullType(String)));
+    }
+    if (object.low_bal_alert != null) {
+      result
+        ..add('low_bal_alert')
+        ..add(serializers.serialize(object.low_bal_alert,
+            specifiedType: const FullType(String)));
+    }
+    if (object.dg_low_bal_alert != null) {
+      result
+        ..add('dg_low_bal_alert')
+        ..add(serializers.serialize(object.dg_low_bal_alert,
+            specifiedType: const FullType(String)));
+    }
+    if (object.notification_app_esource != null) {
+      result
+        ..add('notification_app_esource')
+        ..add(serializers.serialize(object.notification_app_esource,
+            specifiedType: const FullType(String)));
+    }
+    if (object.notification_app_unit_consumption != null) {
+      result
+        ..add('notification_app_unit_consumption')
+        ..add(serializers.serialize(object.notification_app_unit_consumption,
+            specifiedType: const FullType(String)));
+    }
+    if (object.alert_daily_consumption_grid != null) {
+      result
+        ..add('alert_daily_consumption_grid')
+        ..add(serializers.serialize(object.alert_daily_consumption_grid,
+            specifiedType: const FullType(String)));
+    }
+    if (object.alert_daily_consumption_dg != null) {
+      result
+        ..add('alert_daily_consumption_dg')
+        ..add(serializers.serialize(object.alert_daily_consumption_dg,
+            specifiedType: const FullType(String)));
+    }
+    if (object.load_setting_enabled != null) {
+      result
+        ..add('load_setting_enabled')
+        ..add(serializers.serialize(object.load_setting_enabled,
+            specifiedType: const FullType(String)));
+    }
+    if (object.power_cut_restore_notification != null) {
+      result
+        ..add('power_cut_restore_notification')
+        ..add(serializers.serialize(object.power_cut_restore_notification,
+            specifiedType: const FullType(String)));
+    }
+    if (object.recharge_notification != null) {
+      result
+        ..add('recharge_notification')
+        ..add(serializers.serialize(object.recharge_notification,
+            specifiedType: const FullType(String)));
+    }
+    if (object.grid_sanctioned_load != null) {
+      result
+        ..add('grid_sanctioned_load')
+        ..add(serializers.serialize(object.grid_sanctioned_load,
+            specifiedType: const FullType(String)));
+    }
+    if (object.dg_sanctioned_load != null) {
+      result
+        ..add('dg_sanctioned_load')
+        ..add(serializers.serialize(object.dg_sanctioned_load,
+            specifiedType: const FullType(String)));
+    }
+    if (object.load_unit != null) {
+      result
+        ..add('load_unit')
+        ..add(serializers.serialize(object.load_unit,
+            specifiedType: const FullType(String)));
+    }
+    if (object.meter_type != null) {
+      result
+        ..add('meter_type')
+        ..add(serializers.serialize(object.meter_type,
+            specifiedType: const FullType(String)));
+    }
+    if (object.grid_load_alarm != null) {
+      result
+        ..add('grid_load_alarm')
+        ..add(serializers.serialize(object.grid_load_alarm,
+            specifiedType: const FullType(String)));
+    }
+    if (object.dg_load_alarm != null) {
+      result
+        ..add('dg_load_alarm')
+        ..add(serializers.serialize(object.dg_load_alarm,
+            specifiedType: const FullType(String)));
+    }
+    if (object.grid_overload_setting != null) {
+      result
+        ..add('grid_overload_setting')
+        ..add(serializers.serialize(object.grid_overload_setting,
+            specifiedType: const FullType(String)));
+    }
+    if (object.dg_overload_setting != null) {
+      result
+        ..add('dg_overload_setting')
+        ..add(serializers.serialize(object.dg_overload_setting,
+            specifiedType: const FullType(String)));
+    }
+    if (object.grid_overload_from_time != null) {
+      result
+        ..add('grid_overload_from_time')
+        ..add(serializers.serialize(object.grid_overload_from_time,
+            specifiedType: const FullType(String)));
+    }
+    if (object.grid_overload_to_time != null) {
+      result
+        ..add('grid_overload_to_time')
+        ..add(serializers.serialize(object.grid_overload_to_time,
+            specifiedType: const FullType(String)));
+    }
+    if (object.dg_overload_from_time != null) {
+      result
+        ..add('dg_overload_from_time')
+        ..add(serializers.serialize(object.dg_overload_from_time,
+            specifiedType: const FullType(String)));
+    }
+    if (object.dg_overload_to_time != null) {
+      result
+        ..add('dg_overload_to_time')
+        ..add(serializers.serialize(object.dg_overload_to_time,
+            specifiedType: const FullType(String)));
+    }
+    if (object.overload_grid != null) {
+      result
+        ..add('overload_grid')
+        ..add(serializers.serialize(object.overload_grid,
+            specifiedType: const FullType(String)));
+    }
+    if (object.overload_dg != null) {
+      result
+        ..add('overload_dg')
+        ..add(serializers.serialize(object.overload_dg,
+            specifiedType: const FullType(String)));
+    }
+    if (object.site_id != null) {
+      result
+        ..add('site_id')
+        ..add(serializers.serialize(object.site_id,
+            specifiedType: const FullType(String)));
+    }
+    if (object.site_name != null) {
+      result
+        ..add('site_name')
+        ..add(serializers.serialize(object.site_name,
+            specifiedType: const FullType(String)));
+    }
+    if (object.site_address != null) {
+      result
+        ..add('site_address')
+        ..add(serializers.serialize(object.site_address,
+            specifiedType: const FullType(String)));
+    }
+    if (object.site_city != null) {
+      result
+        ..add('site_city')
+        ..add(serializers.serialize(object.site_city,
+            specifiedType: const FullType(String)));
+    }
+    if (object.site_state != null) {
+      result
+        ..add('site_state')
+        ..add(serializers.serialize(object.site_state,
+            specifiedType: const FullType(String)));
+    }
+    if (object.site_country != null) {
+      result
+        ..add('site_country')
+        ..add(serializers.serialize(object.site_country,
+            specifiedType: const FullType(String)));
+    }
+    if (object.site_zipcode != null) {
+      result
+        ..add('site_zipcode')
+        ..add(serializers.serialize(object.site_zipcode,
             specifiedType: const FullType(String)));
     }
     if (object.site_supervisor_name != null) {
@@ -354,6 +438,60 @@ class _$ResourceSerializer implements StructuredSerializer<Resource> {
         ..add(serializers.serialize(object.main_license,
             specifiedType: const FullType(String)));
     }
+    if (object.application != null) {
+      result
+        ..add('application')
+        ..add(serializers.serialize(object.application,
+            specifiedType: const FullType(String)));
+    }
+    if (object.reading_unit != null) {
+      result
+        ..add('reading_unit')
+        ..add(serializers.serialize(object.reading_unit,
+            specifiedType: const FullType(String)));
+    }
+    if (object.currency != null) {
+      result
+        ..add('currency')
+        ..add(serializers.serialize(object.currency,
+            specifiedType: const FullType(String)));
+    }
+    if (object.site_code != null) {
+      result
+        ..add('site_code')
+        ..add(serializers.serialize(object.site_code,
+            specifiedType: const FullType(String)));
+    }
+    if (object.balance_enable != null) {
+      result
+        ..add('balance_enable')
+        ..add(serializers.serialize(object.balance_enable,
+            specifiedType: const FullType(String)));
+    }
+    if (object.reading_enable != null) {
+      result
+        ..add('reading_enable')
+        ..add(serializers.serialize(object.reading_enable,
+            specifiedType: const FullType(String)));
+    }
+    if (object.monthly_bill_enable != null) {
+      result
+        ..add('monthly_bill_enable')
+        ..add(serializers.serialize(object.monthly_bill_enable,
+            specifiedType: const FullType(String)));
+    }
+    if (object.monthly_bill_no_of_month != null) {
+      result
+        ..add('monthly_bill_no_of_month')
+        ..add(serializers.serialize(object.monthly_bill_no_of_month,
+            specifiedType: const FullType(String)));
+    }
+    if (object.PLM != null) {
+      result
+        ..add('PLM')
+        ..add(serializers.serialize(object.PLM,
+            specifiedType: const FullType(String)));
+    }
     if (object.pg_enable_paytm != null) {
       result
         ..add('pg_enable_paytm')
@@ -378,10 +516,124 @@ class _$ResourceSerializer implements StructuredSerializer<Resource> {
         ..add(serializers.serialize(object.mobikwik_mobile_url,
             specifiedType: const FullType(String)));
     }
+    if (object.pg_enable_hdfc != null) {
+      result
+        ..add('pg_enable_hdfc')
+        ..add(serializers.serialize(object.pg_enable_hdfc,
+            specifiedType: const FullType(String)));
+    }
+    if (object.paytm_image != null) {
+      result
+        ..add('paytm_image')
+        ..add(serializers.serialize(object.paytm_image,
+            specifiedType: const FullType(String)));
+    }
     if (object.recharge_popup_message != null) {
       result
         ..add('recharge_popup_message')
         ..add(serializers.serialize(object.recharge_popup_message,
+            specifiedType: const FullType(String)));
+    }
+    if (object.energy_source != null) {
+      result
+        ..add('energy_source')
+        ..add(serializers.serialize(object.energy_source,
+            specifiedType: const FullType(String)));
+    }
+    if (object.last_reading_updated_dg != null) {
+      result
+        ..add('last_reading_updated_dg')
+        ..add(serializers.serialize(object.last_reading_updated_dg,
+            specifiedType: const FullType(String)));
+    }
+    if (object.display_load_setting_screen != null) {
+      result
+        ..add('display_load_setting_screen')
+        ..add(serializers.serialize(object.display_load_setting_screen,
+            specifiedType: const FullType(String)));
+    }
+    if (object.daily_dg_unit != null) {
+      result
+        ..add('daily_dg_unit')
+        ..add(serializers.serialize(object.daily_dg_unit,
+            specifiedType: const FullType(double)));
+    }
+    if (object.daily_grid_unit != null) {
+      result
+        ..add('daily_grid_unit')
+        ..add(serializers.serialize(object.daily_grid_unit,
+            specifiedType: const FullType(double)));
+    }
+    if (object.monthly_dg_unit != null) {
+      result
+        ..add('monthly_dg_unit')
+        ..add(serializers.serialize(object.monthly_dg_unit,
+            specifiedType: const FullType(double)));
+    }
+    if (object.monthly_grid_unit != null) {
+      result
+        ..add('monthly_grid_unit')
+        ..add(serializers.serialize(object.monthly_grid_unit,
+            specifiedType: const FullType(double)));
+    }
+    if (object.daily_dg_amount != null) {
+      result
+        ..add('daily_dg_amount')
+        ..add(serializers.serialize(object.daily_dg_amount,
+            specifiedType: const FullType(double)));
+    }
+    if (object.daily_grid_amount != null) {
+      result
+        ..add('daily_grid_amount')
+        ..add(serializers.serialize(object.daily_grid_amount,
+            specifiedType: const FullType(double)));
+    }
+    if (object.monthly_dg_amount != null) {
+      result
+        ..add('monthly_dg_amount')
+        ..add(serializers.serialize(object.monthly_dg_amount,
+            specifiedType: const FullType(double)));
+    }
+    if (object.monthly_grid_amount != null) {
+      result
+        ..add('monthly_grid_amount')
+        ..add(serializers.serialize(object.monthly_grid_amount,
+            specifiedType: const FullType(double)));
+    }
+    if (object.fix_charges != null) {
+      result
+        ..add('fix_charges')
+        ..add(serializers.serialize(object.fix_charges,
+            specifiedType: const FullType(double)));
+    }
+    if (object.dr_cr != null) {
+      result
+        ..add('dr_cr')
+        ..add(serializers.serialize(object.dr_cr,
+            specifiedType: const FullType(double)));
+    }
+    if (object.fix_charges_monthly != null) {
+      result
+        ..add('fix_charges_monthly')
+        ..add(serializers.serialize(object.fix_charges_monthly,
+            specifiedType: const FullType(double)));
+    }
+    if (object.dr_cr_monthly != null) {
+      result
+        ..add('dr_cr_monthly')
+        ..add(serializers.serialize(object.dr_cr_monthly,
+            specifiedType: const FullType(String)));
+    }
+    if (object.dg_fix_charges_monthly != null) {
+      result
+        ..add('dg_fix_charges_monthly')
+        ..add(serializers.serialize(object.dg_fix_charges_monthly,
+            specifiedType: const FullType(double)));
+    }
+    if (object.dg_dr_cr_monthly != null) {
+      result
+        ..add('dg_dr_cr_monthly')
+        ..add(serializers.serialize(object.dg_dr_cr_monthly,
             specifiedType: const FullType(String)));
     }
     return result;
@@ -1133,268 +1385,7 @@ class _$Resource extends Resource {
       this.dr_cr_monthly,
       this.dg_fix_charges_monthly,
       this.dg_dr_cr_monthly})
-      : super._() {
-    if (location_id == null) {
-      throw new BuiltValueNullFieldError('Resource', 'location_id');
-    }
-    if (login_count == null) {
-      throw new BuiltValueNullFieldError('Resource', 'login_count');
-    }
-    if (flat_number == null) {
-      throw new BuiltValueNullFieldError('Resource', 'flat_number');
-    }
-    if (consumer_name == null) {
-      throw new BuiltValueNullFieldError('Resource', 'consumer_name');
-    }
-    if (consumer_mobile_no == null) {
-      throw new BuiltValueNullFieldError('Resource', 'consumer_mobile_no');
-    }
-    if (balance_amount == null) {
-      throw new BuiltValueNullFieldError('Resource', 'balance_amount');
-    }
-    if (dg_balance_amount == null) {
-      throw new BuiltValueNullFieldError('Resource', 'dg_balance_amount');
-    }
-    if (dg_last_recharge_time == null) {
-      throw new BuiltValueNullFieldError('Resource', 'dg_last_recharge_time');
-    }
-    if (dg_last_coupon_number == null) {
-      throw new BuiltValueNullFieldError('Resource', 'dg_last_coupon_number');
-    }
-    if (last_coupon_amount == null) {
-      throw new BuiltValueNullFieldError('Resource', 'last_coupon_amount');
-    }
-    if (dg_last_coupon_amount == null) {
-      throw new BuiltValueNullFieldError('Resource', 'dg_last_coupon_amount');
-    }
-    if (dg_reading == null) {
-      throw new BuiltValueNullFieldError('Resource', 'dg_reading');
-    }
-    if (grid_reading == null) {
-      throw new BuiltValueNullFieldError('Resource', 'grid_reading');
-    }
-    if (dg_amt == null) {
-      throw new BuiltValueNullFieldError('Resource', 'dg_amt');
-    }
-    if (grid_amt == null) {
-      throw new BuiltValueNullFieldError('Resource', 'grid_amt');
-    }
-    if (last_reading_updated == null) {
-      throw new BuiltValueNullFieldError('Resource', 'last_reading_updated');
-    }
-    if (dg_last_reading_updated == null) {
-      throw new BuiltValueNullFieldError('Resource', 'dg_last_reading_updated');
-    }
-    if (notification_email == null) {
-      throw new BuiltValueNullFieldError('Resource', 'notification_email');
-    }
-    if (notification_sms == null) {
-      throw new BuiltValueNullFieldError('Resource', 'notification_sms');
-    }
-    if (bp_no == null) {
-      throw new BuiltValueNullFieldError('Resource', 'bp_no');
-    }
-    if (consumer_no == null) {
-      throw new BuiltValueNullFieldError('Resource', 'consumer_no');
-    }
-    if (account_no == null) {
-      throw new BuiltValueNullFieldError('Resource', 'account_no');
-    }
-    if (move_in_date == null) {
-      throw new BuiltValueNullFieldError('Resource', 'move_in_date');
-    }
-    if (notification_ivrs == null) {
-      throw new BuiltValueNullFieldError('Resource', 'notification_ivrs');
-    }
-    if (notification_app_load == null) {
-      throw new BuiltValueNullFieldError('Resource', 'notification_app_load');
-    }
-    if (notification_app_balance == null) {
-      throw new BuiltValueNullFieldError(
-          'Resource', 'notification_app_balance');
-    }
-    if (low_bal_alert == null) {
-      throw new BuiltValueNullFieldError('Resource', 'low_bal_alert');
-    }
-    if (dg_low_bal_alert == null) {
-      throw new BuiltValueNullFieldError('Resource', 'dg_low_bal_alert');
-    }
-    if (notification_app_esource == null) {
-      throw new BuiltValueNullFieldError(
-          'Resource', 'notification_app_esource');
-    }
-    if (notification_app_unit_consumption == null) {
-      throw new BuiltValueNullFieldError(
-          'Resource', 'notification_app_unit_consumption');
-    }
-    if (alert_daily_consumption_grid == null) {
-      throw new BuiltValueNullFieldError(
-          'Resource', 'alert_daily_consumption_grid');
-    }
-    if (alert_daily_consumption_dg == null) {
-      throw new BuiltValueNullFieldError(
-          'Resource', 'alert_daily_consumption_dg');
-    }
-    if (load_setting_enabled == null) {
-      throw new BuiltValueNullFieldError('Resource', 'load_setting_enabled');
-    }
-    if (power_cut_restore_notification == null) {
-      throw new BuiltValueNullFieldError(
-          'Resource', 'power_cut_restore_notification');
-    }
-    if (recharge_notification == null) {
-      throw new BuiltValueNullFieldError('Resource', 'recharge_notification');
-    }
-    if (grid_sanctioned_load == null) {
-      throw new BuiltValueNullFieldError('Resource', 'grid_sanctioned_load');
-    }
-    if (dg_sanctioned_load == null) {
-      throw new BuiltValueNullFieldError('Resource', 'dg_sanctioned_load');
-    }
-    if (load_unit == null) {
-      throw new BuiltValueNullFieldError('Resource', 'load_unit');
-    }
-    if (meter_type == null) {
-      throw new BuiltValueNullFieldError('Resource', 'meter_type');
-    }
-    if (grid_load_alarm == null) {
-      throw new BuiltValueNullFieldError('Resource', 'grid_load_alarm');
-    }
-    if (dg_load_alarm == null) {
-      throw new BuiltValueNullFieldError('Resource', 'dg_load_alarm');
-    }
-    if (grid_overload_setting == null) {
-      throw new BuiltValueNullFieldError('Resource', 'grid_overload_setting');
-    }
-    if (dg_overload_setting == null) {
-      throw new BuiltValueNullFieldError('Resource', 'dg_overload_setting');
-    }
-    if (grid_overload_from_time == null) {
-      throw new BuiltValueNullFieldError('Resource', 'grid_overload_from_time');
-    }
-    if (grid_overload_to_time == null) {
-      throw new BuiltValueNullFieldError('Resource', 'grid_overload_to_time');
-    }
-    if (dg_overload_from_time == null) {
-      throw new BuiltValueNullFieldError('Resource', 'dg_overload_from_time');
-    }
-    if (dg_overload_to_time == null) {
-      throw new BuiltValueNullFieldError('Resource', 'dg_overload_to_time');
-    }
-    if (overload_grid == null) {
-      throw new BuiltValueNullFieldError('Resource', 'overload_grid');
-    }
-    if (overload_dg == null) {
-      throw new BuiltValueNullFieldError('Resource', 'overload_dg');
-    }
-    if (site_id == null) {
-      throw new BuiltValueNullFieldError('Resource', 'site_id');
-    }
-    if (site_name == null) {
-      throw new BuiltValueNullFieldError('Resource', 'site_name');
-    }
-    if (site_address == null) {
-      throw new BuiltValueNullFieldError('Resource', 'site_address');
-    }
-    if (site_city == null) {
-      throw new BuiltValueNullFieldError('Resource', 'site_city');
-    }
-    if (site_state == null) {
-      throw new BuiltValueNullFieldError('Resource', 'site_state');
-    }
-    if (site_country == null) {
-      throw new BuiltValueNullFieldError('Resource', 'site_country');
-    }
-    if (site_zipcode == null) {
-      throw new BuiltValueNullFieldError('Resource', 'site_zipcode');
-    }
-    if (application == null) {
-      throw new BuiltValueNullFieldError('Resource', 'application');
-    }
-    if (reading_unit == null) {
-      throw new BuiltValueNullFieldError('Resource', 'reading_unit');
-    }
-    if (currency == null) {
-      throw new BuiltValueNullFieldError('Resource', 'currency');
-    }
-    if (site_code == null) {
-      throw new BuiltValueNullFieldError('Resource', 'site_code');
-    }
-    if (balance_enable == null) {
-      throw new BuiltValueNullFieldError('Resource', 'balance_enable');
-    }
-    if (reading_enable == null) {
-      throw new BuiltValueNullFieldError('Resource', 'reading_enable');
-    }
-    if (monthly_bill_enable == null) {
-      throw new BuiltValueNullFieldError('Resource', 'monthly_bill_enable');
-    }
-    if (monthly_bill_no_of_month == null) {
-      throw new BuiltValueNullFieldError(
-          'Resource', 'monthly_bill_no_of_month');
-    }
-    if (PLM == null) {
-      throw new BuiltValueNullFieldError('Resource', 'PLM');
-    }
-    if (pg_enable_hdfc == null) {
-      throw new BuiltValueNullFieldError('Resource', 'pg_enable_hdfc');
-    }
-    if (paytm_image == null) {
-      throw new BuiltValueNullFieldError('Resource', 'paytm_image');
-    }
-    if (energy_source == null) {
-      throw new BuiltValueNullFieldError('Resource', 'energy_source');
-    }
-    if (last_reading_updated_dg == null) {
-      throw new BuiltValueNullFieldError('Resource', 'last_reading_updated_dg');
-    }
-    if (display_load_setting_screen == null) {
-      throw new BuiltValueNullFieldError(
-          'Resource', 'display_load_setting_screen');
-    }
-    if (daily_dg_unit == null) {
-      throw new BuiltValueNullFieldError('Resource', 'daily_dg_unit');
-    }
-    if (daily_grid_unit == null) {
-      throw new BuiltValueNullFieldError('Resource', 'daily_grid_unit');
-    }
-    if (monthly_dg_unit == null) {
-      throw new BuiltValueNullFieldError('Resource', 'monthly_dg_unit');
-    }
-    if (monthly_grid_unit == null) {
-      throw new BuiltValueNullFieldError('Resource', 'monthly_grid_unit');
-    }
-    if (daily_dg_amount == null) {
-      throw new BuiltValueNullFieldError('Resource', 'daily_dg_amount');
-    }
-    if (daily_grid_amount == null) {
-      throw new BuiltValueNullFieldError('Resource', 'daily_grid_amount');
-    }
-    if (monthly_dg_amount == null) {
-      throw new BuiltValueNullFieldError('Resource', 'monthly_dg_amount');
-    }
-    if (monthly_grid_amount == null) {
-      throw new BuiltValueNullFieldError('Resource', 'monthly_grid_amount');
-    }
-    if (fix_charges == null) {
-      throw new BuiltValueNullFieldError('Resource', 'fix_charges');
-    }
-    if (dr_cr == null) {
-      throw new BuiltValueNullFieldError('Resource', 'dr_cr');
-    }
-    if (fix_charges_monthly == null) {
-      throw new BuiltValueNullFieldError('Resource', 'fix_charges_monthly');
-    }
-    if (dr_cr_monthly == null) {
-      throw new BuiltValueNullFieldError('Resource', 'dr_cr_monthly');
-    }
-    if (dg_fix_charges_monthly == null) {
-      throw new BuiltValueNullFieldError('Resource', 'dg_fix_charges_monthly');
-    }
-    if (dg_dr_cr_monthly == null) {
-      throw new BuiltValueNullFieldError('Resource', 'dg_dr_cr_monthly');
-    }
-  }
+      : super._();
 
   @override
   Resource rebuild(void Function(ResourceBuilder) updates) =>
@@ -2400,13 +2391,3 @@ class ResourceBuilder implements Builder<Resource, ResourceBuilder> {
 }
 
 // ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
-
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-Resource _$ResourceFromJson(Map<String, dynamic> json) {
-  return Resource();
-}
-
-Map<String, dynamic> _$ResourceToJson(Resource instance) => <String, dynamic>{};

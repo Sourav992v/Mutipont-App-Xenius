@@ -1,3 +1,4 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:chopper/chopper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,20 +21,23 @@ class DailyReportView extends StatefulWidget {
 
 class _DailyReportViewState extends State<DailyReportView> {
   DailyReportViewModel dailyReportViewModel = locator<DailyReportViewModel>();
-  List<Grid> gridData;
-  List<Dg> dgData;
+  BuiltList<Grid> gridData;
+  BuiltList<Dg> dgData;
 
   @override
   void initState() {
+    _loadDailyReport();
     super.initState();
   }
 
   void _loadDailyReport() async {
-    Response<DailyReportResponse> dailyReportResponse =
+    var dailyReportResponse =
         await dailyReportViewModel.getDailyReportResource(2020, 09);
 
     gridData = dailyReportResponse.body.resource.grid;
     dgData = dailyReportResponse.body.resource.dg;
+
+    print(dgData.toString());
   }
 
   List<charts.Series<ChartData, DateTime>> _createSampleData(int index) {

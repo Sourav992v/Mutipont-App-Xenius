@@ -14,7 +14,7 @@ abstract class AuthenticationService extends ChopperService {
   static AuthenticationService create() {
     final client = ChopperClient(
       baseUrl: 'http://13.232.173.148/thirdparty/api',
-      interceptors: [HeaderInterceptor(), HttpLoggingInterceptor()],
+      interceptors: [HttpLoggingInterceptor()],
       converter: BuiltValueConverter(),
       errorConverter: JsonConverter(),
       services: [
@@ -26,10 +26,13 @@ abstract class AuthenticationService extends ChopperService {
   }
 
   @Get(path: 'login')
-  Future<Response<LoginResource>> getUser();
+  Future<Response<LoginResource>> getUser(
+      @Query('login_id') String login_id, @Query('password') String password);
 
   @Get(path: 'consumption/daily')
   Future<Response<DailyReportResponse>> getDailyReport(
+    @Query('login_id') String login_id,
+    @Query('password') String password,
     @Query('year') int year,
     @Query('month') int month,
   );

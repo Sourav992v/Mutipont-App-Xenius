@@ -1,21 +1,20 @@
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'grid.g.dart';
 
 @JsonSerializable()
-class Grid {
-  @JsonKey(name: 'date')
-  String date;
+abstract class Grid implements Built<Grid, GridBuilder> {
+  String get date;
 
-  @JsonKey(name: 'grid_unit')
-  String gridUnit;
+  String get grid_unit;
 
-  @JsonKey(name: 'grid_amt')
-  double gridAmt;
+  double get grid_amt;
 
-  Grid({this.date, this.gridUnit, this.gridAmt});
+  Grid._();
 
-  factory Grid.fromJson(Map<String, dynamic> json) => _$GridFromJson(json);
+  factory Grid([updates(GridBuilder b)]) = _$Grid;
 
-  Map<String, dynamic> toJson() => _$GridToJson(this);
+  static Serializer<Grid> get serializer => _$gridSerializer;
 }

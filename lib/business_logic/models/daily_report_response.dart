@@ -1,3 +1,5 @@
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'daily_report_resource.dart';
@@ -5,15 +7,17 @@ import 'daily_report_resource.dart';
 part 'daily_report_response.g.dart';
 
 @JsonSerializable()
-class DailyReportResponse {
-  int rc;
-  String message;
-  DailyReportResource resource;
+abstract class DailyReportResponse
+    implements Built<DailyReportResponse, DailyReportResponseBuilder> {
+  int get rc;
+  String get message;
+  DailyReportResource get resource;
 
-  DailyReportResponse({this.rc, this.message, this.resource});
+  DailyReportResponse._();
 
-  factory DailyReportResponse.fromJson(Map<String, dynamic> json) =>
-      _$DailyReportResponseFromJson(json);
+  factory DailyReportResponse([updates(DailyReportResponseBuilder b)]) =
+      _$DailyReportResponse;
 
-  Map<String, dynamic> toJson() => _$DailyReportResponseToJson(this);
+  static Serializer<DailyReportResponse> get serializer =>
+      _$dailyReportResponseSerializer;
 }

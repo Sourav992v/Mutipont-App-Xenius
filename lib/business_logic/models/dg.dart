@@ -1,20 +1,22 @@
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'dg.g.dart';
 
 @JsonSerializable()
-class Dg {
+abstract class Dg implements Built<Dg, DgBuilder> {
   @JsonKey(name: 'date')
-  String date;
+  String get date;
 
   @JsonKey(name: 'dg_unit')
-  String dgUnit;
+  String get dg_unit;
 
   @JsonKey(name: 'dg_amt')
-  double dgAmt;
+  double get dg_amt;
 
-  Dg({this.date, this.dgUnit, this.dgAmt});
+  Dg._();
 
-  factory Dg.fromJson(Map<String, dynamic> json) => _$DgFromJson(json);
+  factory Dg([updates(DgBuilder b)]) = _$Dg;
 
-  Map<String, dynamic> toJson() => _$DgToJson(this);
+  static Serializer<Dg> get serializer => _$dgSerializer;
 }

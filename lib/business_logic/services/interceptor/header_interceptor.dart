@@ -13,8 +13,7 @@ class HeaderInterceptor implements RequestInterceptor {
     String loginId = userPref.getString('login_id');
     String password = userPref.getString('password');
 
-    Request newRequest = request.copyWith(
-        parameters: {"login_id": "$loginId", "password": "$password"});
-    return newRequest;
+    return applyHeaders(
+        request, {'login_id': '$loginId', 'password': '$password'});
   }
 }

@@ -1,18 +1,22 @@
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'dg.dart';
 import 'grid.dart';
 part 'daily_report_resource.g.dart';
 
-@JsonSerializable()
-class DailyReportResource {
-  List<Grid> grid;
-  List<Dg> dg;
+abstract class DailyReportResource
+    implements Built<DailyReportResource, DailyReportResourceBuilder> {
+  BuiltList<Grid> get grid;
+  BuiltList<Dg> get dg;
 
-  DailyReportResource({this.grid, this.dg});
+  DailyReportResource._();
 
-  factory DailyReportResource.fromJson(Map<String, dynamic> json) =>
-      _$DailyReportResourceFromJson(json);
+  factory DailyReportResource([updates(DailyReportResourceBuilder b)]) =
+      _$DailyReportResource;
 
-  Map<String, dynamic> toJson() => _$DailyReportResourceToJson(this);
+  static Serializer<DailyReportResource> get serializer =>
+      _$dailyReportResourceSerializer;
 }
