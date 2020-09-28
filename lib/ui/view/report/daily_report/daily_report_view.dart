@@ -21,100 +21,92 @@ class DailyReportView extends StatefulWidget {
 
 class _DailyReportViewState extends State<DailyReportView> {
   DailyReportViewModel dailyReportViewModel = locator<DailyReportViewModel>();
-  BuiltList<Grid> gridData;
-  BuiltList<Dg> dgData;
+
+  DailyReportResponse dailyReportResponse;
+
+  String dateString =
+      DateFormat('yyyy-MMM-dd').format(DateTime.now().toLocal());
+  int day = DateTime.now().toLocal().day;
+  int month = DateTime.now().toLocal().month;
+  int year = DateTime.now().toLocal().year;
 
   @override
   void initState() {
-    _loadDailyReport();
+    initDailyChart(year, month);
     super.initState();
   }
 
-  void _loadDailyReport() async {
-    var dailyReportResponse =
-        await dailyReportViewModel.getDailyReportResource(2020, 09);
-
-    gridData = dailyReportResponse.body.resource.grid;
-    dgData = dailyReportResponse.body.resource.dg;
-
-    print(dgData.toString());
+  void initDailyChart(int year, int month) {
+    dailyReportViewModel.getDailyReportResource(year, month).then((value) {
+      setState(() {
+        dailyReportResponse = value.body;
+      });
+    });
   }
 
   List<charts.Series<ChartData, DateTime>> _createSampleData(int index) {
-    var myFakeTabletData = [
-      new ChartData(new DateTime(2020, 9, 25), 34, 10),
-      new ChartData(new DateTime(2020, 9, 26), 54, 455),
-      new ChartData(new DateTime(2020, 9, 27), 53, 4443),
-      new ChartData(new DateTime(2020, 9, 28), 56, 345),
-      new ChartData(new DateTime(2020, 9, 29), 43, 107),
-      new ChartData(new DateTime(2020, 9, 30), 24, 108),
-      new ChartData(new DateTime(2020, 9, 31), 76, 109),
-      new ChartData(DateTime(2020, 10, 1), 90, 1109),
-    ];
+    List<int> date = List();
+    date = dailyReportResponse.resource.grid.date.asList();
+    List<double> gridUnit =
+        dailyReportResponse.resource.grid.grid_unit.asList();
+    List<double> gridAmount =
+        dailyReportResponse.resource.grid.grid_amt.asList();
 
-    var myFakeMobileData = [
-      new ChartData(new DateTime(2020, 9, 25), 43, 101),
-      new ChartData(new DateTime(2020, 9, 26), 54, 230),
-      new ChartData(new DateTime(2020, 9, 27), 64, 450),
-      new ChartData(new DateTime(2020, 9, 28), 74, 540),
-      new ChartData(new DateTime(2020, 9, 29), 51, 10),
-      new ChartData(new DateTime(2020, 9, 30), 61, 102),
-      new ChartData(new DateTime(2020, 9, 31), 71, 103),
-      new ChartData(new DateTime(2020, 10, 1), 81, 104),
-    ];
-    var myFakeTabletData1 = [
-      new ChartData(new DateTime(2017, 9, 25), 51, 10),
-      new ChartData(new DateTime(2017, 9, 26), 61, 102),
-      new ChartData(new DateTime(2017, 9, 27), 71, 103),
-      new ChartData(new DateTime(2017, 9, 28), 81, 104),
-    ];
+    List<double> dgUnit = dailyReportResponse.resource.dg.dg_unit.asList();
+    List<double> dgAmount = dailyReportResponse.resource.dg.dg_amt.asList();
 
-    var myFakeMobileData2 = [
-      new ChartData(new DateTime(2017, 9, 25), 43, 107),
-      new ChartData(new DateTime(2017, 9, 26), 24, 108),
-      new ChartData(new DateTime(2017, 9, 27), 76, 109),
-      new ChartData(DateTime(2017, 9, 28), 90, 1109),
-    ];
+    List<ChartData> chartDataGridUnit = List();
+    List<ChartData> chartDataDgUnit = List();
+    List<ChartData> chartDataGridAmt = List();
+    List<ChartData> chartDataDgAmt = List();
+
+    for (int i = date.length - 1; i > 0; i--) {
+      chartDataGridUnit
+          .add(ChartData(DateTime(year, month, date[i]), gridUnit[i]));
+      chartDataDgUnit.add(ChartData(DateTime(year, month, date[i]), dgUnit[i]));
+
+      chartDataGridAmt
+          .add(ChartData(DateTime(year, month, date[i]), gridAmount[i]));
+      chartDataDgAmt
+          .add(ChartData(DateTime(year, month, date[i]), dgAmount[i]));
+    }
 
     if (index == 1) {
       return [
         charts.Series<ChartData, DateTime>(
-          id: 'Tablet',
+          id: 'Grid kWh',
           colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
           domainFn: (ChartData date, _) => date.date,
-          measureFn: (ChartData unit, _) => unit.unit,
-          data: myFakeTabletData,
+          measureFn: (ChartData value, _) => value.value,
+          data: chartDataGridUnit,
         ),
         charts.Series<ChartData, DateTime>(
-          id: 'Mobile',
+          id: 'DG kWh',
           colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
           domainFn: (ChartData date, _) => date.date,
-          measureFn: (ChartData unit, _) => unit.unit,
-          data: myFakeMobileData,
+          measureFn: (ChartData value, _) => value.value,
+          data: chartDataDgUnit,
         ),
       ];
     } else {
       return [
         charts.Series<ChartData, DateTime>(
-          id: 'Tablet',
+          id: 'Grid INR',
           colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
-          domainFn: (ChartData unit, _) => unit.date,
-          measureFn: (ChartData unit, _) => unit.unit,
-          data: myFakeTabletData1,
+          domainFn: (ChartData date, _) => date.date,
+          measureFn: (ChartData value, _) => value.value,
+          data: chartDataGridAmt,
         ),
         charts.Series<ChartData, DateTime>(
-          id: 'Mobile',
+          id: 'DG INR',
           colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
-          domainFn: (ChartData unit, _) => unit.date,
-          measureFn: (ChartData unit, _) => unit.unit,
-          data: myFakeMobileData2,
+          domainFn: (ChartData date, _) => date.date,
+          measureFn: (ChartData value, _) => value.value,
+          data: chartDataDgAmt,
         ),
       ];
     }
   }
-
-  String dateString =
-      DateFormat('yyyy-MMM-dd').format(DateTime.now().toLocal());
 
   _selectedDate(BuildContext context) async {
     DateTime selectedDate = DateTime.now();
@@ -150,7 +142,10 @@ class _DailyReportViewState extends State<DailyReportView> {
                   if (pickedDate != null && pickedDate != selectedDate) {
                     setState(() {
                       dateString = DateFormat('yyyy-MMM-dd').format(pickedDate);
+                      month = pickedDate.month;
+                      year = pickedDate.year;
                     });
+                    initDailyChart(year, month);
                   }
                 },
                 initialDateTime: selectedDate,
@@ -182,63 +177,70 @@ class _DailyReportViewState extends State<DailyReportView> {
         ),
         centerTitle: true,
       ),
-      body: Stack(children: [
-        Container(
-          alignment: Alignment.center,
-          margin: EdgeInsets.only(top: 0, bottom: 0, left: 16, right: 16),
-          child: SizedBox(
-            height: double.infinity,
-            child: ListView.builder(
-                itemCount: 2,
-                itemBuilder: (context, index) {
-                  return Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0)),
-                    margin: EdgeInsets.only(
-                        top: 16.0, bottom: 16.0, left: 4.0, right: 4.0),
-                    color: Colors.white,
-                    shadowColor: Colors.white54,
-                    elevation: 16.0,
-                    child: ListTile(
-                      title: Padding(
-                        padding: const EdgeInsets.only(top: 16.0, bottom: 0),
-                        child: Center(
-                            child: Text(
-                          '$dateString'.split('-')[1],
-                          style: kLabelTextStyle,
-                        )),
-                      ),
-                      subtitle: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Container(
-                            width: 500,
-                            height: 300,
-                            child: charts.TimeSeriesChart(
-                              _createSampleData(index),
-                              animate: true,
-                              defaultRenderer: new charts.LineRendererConfig(
-                                  includePoints: true,
-                                  includeArea: true,
-                                  stacked: true),
-                              behaviors: [
-                                charts.SlidingViewport(),
-                                charts.PanAndZoomBehavior(),
-                              ],
-                              domainAxis: new charts.DateTimeAxisSpec(
-                                  tickFormatterSpec:
-                                      new charts.AutoDateTimeTickFormatterSpec(
-                                          day: new charts.TimeFormatterSpec(
-                                              format: 'd',
-                                              transitionFormat: 'dd MMM'))),
-                            )),
-                      ),
-                    ),
-                  );
-                }),
-          ),
-        ),
-        Positioned(top: 25.0, right: 25.0, child: datePickerDaily(context)),
-      ]),
+      body: dailyReportResponse != null
+          ? Stack(children: [
+              Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.only(top: 0, bottom: 0, left: 16, right: 16),
+                child: SizedBox(
+                  height: double.infinity,
+                  child: ListView.builder(
+                      itemCount: 2,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0)),
+                          margin: EdgeInsets.only(
+                              top: 16.0, bottom: 16.0, left: 4.0, right: 4.0),
+                          color: Colors.white,
+                          shadowColor: Colors.white54,
+                          elevation: 16.0,
+                          child: ListTile(
+                            title: Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 16.0, bottom: 0),
+                              child: Center(
+                                  child: Text(
+                                '$dateString'.split('-')[1],
+                                style: kLabelTextStyle,
+                              )),
+                            ),
+                            subtitle: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Container(
+                                  width: 500,
+                                  height: 300,
+                                  child: charts.TimeSeriesChart(
+                                    _createSampleData(index),
+                                    animate: true,
+                                    defaultRenderer:
+                                        new charts.LineRendererConfig(
+                                            includePoints: true,
+                                            includeArea: true,
+                                            stacked: true),
+                                    behaviors: [
+                                      charts.SlidingViewport(),
+                                      charts.PanAndZoomBehavior(),
+                                    ],
+                                    domainAxis: new charts.DateTimeAxisSpec(
+                                        tickFormatterSpec: new charts
+                                                .AutoDateTimeTickFormatterSpec(
+                                            day: new charts.TimeFormatterSpec(
+                                                format: 'd',
+                                                transitionFormat: 'dd MMM'))),
+                                  )),
+                            ),
+                          ),
+                        );
+                      }),
+                ),
+              ),
+              Positioned(
+                  top: 25.0, right: 25.0, child: datePickerDaily(context)),
+            ])
+          : Container(
+              child: Center(child: Text('Loading..')),
+            ),
     );
   }
 
@@ -292,8 +294,7 @@ class _DailyReportViewState extends State<DailyReportView> {
 
 class ChartData {
   final DateTime date;
-  final double unit;
-  final double amount;
+  final double value;
 
-  ChartData(this.date, this.unit, this.amount);
+  ChartData(this.date, this.value);
 }

@@ -9,8 +9,8 @@ part 'daily_report_resource.g.dart';
 
 abstract class DailyReportResource
     implements Built<DailyReportResource, DailyReportResourceBuilder> {
-  BuiltList<Grid> get grid;
-  BuiltList<Dg> get dg;
+  Grid get grid;
+  Dg get dg;
 
   DailyReportResource._();
 

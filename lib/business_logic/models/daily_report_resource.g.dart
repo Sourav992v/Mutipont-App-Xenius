@@ -25,12 +25,9 @@ class _$DailyReportResourceSerializer
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
       'grid',
-      serializers.serialize(object.grid,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(Grid)])),
+      serializers.serialize(object.grid, specifiedType: const FullType(Grid)),
       'dg',
-      serializers.serialize(object.dg,
-          specifiedType: const FullType(BuiltList, const [const FullType(Dg)])),
+      serializers.serialize(object.dg, specifiedType: const FullType(Dg)),
     ];
 
     return result;
@@ -50,15 +47,11 @@ class _$DailyReportResourceSerializer
       switch (key) {
         case 'grid':
           result.grid.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(Grid)]))
-              as BuiltList<Object>);
+              specifiedType: const FullType(Grid)) as Grid);
           break;
         case 'dg':
           result.dg.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(Dg)]))
-              as BuiltList<Object>);
+              specifiedType: const FullType(Dg)) as Dg);
           break;
       }
     }
@@ -69,9 +62,9 @@ class _$DailyReportResourceSerializer
 
 class _$DailyReportResource extends DailyReportResource {
   @override
-  final BuiltList<Grid> grid;
+  final Grid grid;
   @override
-  final BuiltList<Dg> dg;
+  final Dg dg;
 
   factory _$DailyReportResource(
           [void Function(DailyReportResourceBuilder) updates]) =>
@@ -119,13 +112,13 @@ class DailyReportResourceBuilder
     implements Builder<DailyReportResource, DailyReportResourceBuilder> {
   _$DailyReportResource _$v;
 
-  ListBuilder<Grid> _grid;
-  ListBuilder<Grid> get grid => _$this._grid ??= new ListBuilder<Grid>();
-  set grid(ListBuilder<Grid> grid) => _$this._grid = grid;
+  GridBuilder _grid;
+  GridBuilder get grid => _$this._grid ??= new GridBuilder();
+  set grid(GridBuilder grid) => _$this._grid = grid;
 
-  ListBuilder<Dg> _dg;
-  ListBuilder<Dg> get dg => _$this._dg ??= new ListBuilder<Dg>();
-  set dg(ListBuilder<Dg> dg) => _$this._dg = dg;
+  DgBuilder _dg;
+  DgBuilder get dg => _$this._dg ??= new DgBuilder();
+  set dg(DgBuilder dg) => _$this._dg = dg;
 
   DailyReportResourceBuilder();
 

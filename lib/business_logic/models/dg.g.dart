@@ -19,13 +19,17 @@ class _$DgSerializer implements StructuredSerializer<Dg> {
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
       'date',
-      serializers.serialize(object.date, specifiedType: const FullType(String)),
+      serializers.serialize(object.date,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(int)])),
       'dg_unit',
       serializers.serialize(object.dg_unit,
-          specifiedType: const FullType(String)),
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(double)])),
       'dg_amt',
       serializers.serialize(object.dg_amt,
-          specifiedType: const FullType(double)),
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(double)])),
     ];
 
     return result;
@@ -43,16 +47,22 @@ class _$DgSerializer implements StructuredSerializer<Dg> {
       final dynamic value = iterator.current;
       switch (key) {
         case 'date':
-          result.date = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+          result.date.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(int)]))
+              as BuiltList<Object>);
           break;
         case 'dg_unit':
-          result.dg_unit = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+          result.dg_unit.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(double)]))
+              as BuiltList<Object>);
           break;
         case 'dg_amt':
-          result.dg_amt = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double;
+          result.dg_amt.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(double)]))
+              as BuiltList<Object>);
           break;
       }
     }
@@ -63,11 +73,11 @@ class _$DgSerializer implements StructuredSerializer<Dg> {
 
 class _$Dg extends Dg {
   @override
-  final String date;
+  final BuiltList<int> date;
   @override
-  final String dg_unit;
+  final BuiltList<double> dg_unit;
   @override
-  final double dg_amt;
+  final BuiltList<double> dg_amt;
 
   factory _$Dg([void Function(DgBuilder) updates]) =>
       (new DgBuilder()..update(updates)).build();
@@ -119,25 +129,27 @@ class _$Dg extends Dg {
 class DgBuilder implements Builder<Dg, DgBuilder> {
   _$Dg _$v;
 
-  String _date;
-  String get date => _$this._date;
-  set date(String date) => _$this._date = date;
+  ListBuilder<int> _date;
+  ListBuilder<int> get date => _$this._date ??= new ListBuilder<int>();
+  set date(ListBuilder<int> date) => _$this._date = date;
 
-  String _dg_unit;
-  String get dg_unit => _$this._dg_unit;
-  set dg_unit(String dg_unit) => _$this._dg_unit = dg_unit;
+  ListBuilder<double> _dg_unit;
+  ListBuilder<double> get dg_unit =>
+      _$this._dg_unit ??= new ListBuilder<double>();
+  set dg_unit(ListBuilder<double> dg_unit) => _$this._dg_unit = dg_unit;
 
-  double _dg_amt;
-  double get dg_amt => _$this._dg_amt;
-  set dg_amt(double dg_amt) => _$this._dg_amt = dg_amt;
+  ListBuilder<double> _dg_amt;
+  ListBuilder<double> get dg_amt =>
+      _$this._dg_amt ??= new ListBuilder<double>();
+  set dg_amt(ListBuilder<double> dg_amt) => _$this._dg_amt = dg_amt;
 
   DgBuilder();
 
   DgBuilder get _$this {
     if (_$v != null) {
-      _date = _$v.date;
-      _dg_unit = _$v.dg_unit;
-      _dg_amt = _$v.dg_amt;
+      _date = _$v.date?.toBuilder();
+      _dg_unit = _$v.dg_unit?.toBuilder();
+      _dg_amt = _$v.dg_amt?.toBuilder();
       _$v = null;
     }
     return this;
@@ -158,8 +170,27 @@ class DgBuilder implements Builder<Dg, DgBuilder> {
 
   @override
   _$Dg build() {
-    final _$result =
-        _$v ?? new _$Dg._(date: date, dg_unit: dg_unit, dg_amt: dg_amt);
+    _$Dg _$result;
+    try {
+      _$result = _$v ??
+          new _$Dg._(
+              date: date.build(),
+              dg_unit: dg_unit.build(),
+              dg_amt: dg_amt.build());
+    } catch (_) {
+      String _$failedField;
+      try {
+        _$failedField = 'date';
+        date.build();
+        _$failedField = 'dg_unit';
+        dg_unit.build();
+        _$failedField = 'dg_amt';
+        dg_amt.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError('Dg', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

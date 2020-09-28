@@ -19,13 +19,17 @@ class _$GridSerializer implements StructuredSerializer<Grid> {
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
       'date',
-      serializers.serialize(object.date, specifiedType: const FullType(String)),
+      serializers.serialize(object.date,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(int)])),
       'grid_unit',
       serializers.serialize(object.grid_unit,
-          specifiedType: const FullType(String)),
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(double)])),
       'grid_amt',
       serializers.serialize(object.grid_amt,
-          specifiedType: const FullType(double)),
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(double)])),
     ];
 
     return result;
@@ -43,16 +47,22 @@ class _$GridSerializer implements StructuredSerializer<Grid> {
       final dynamic value = iterator.current;
       switch (key) {
         case 'date':
-          result.date = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+          result.date.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(int)]))
+              as BuiltList<Object>);
           break;
         case 'grid_unit':
-          result.grid_unit = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+          result.grid_unit.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(double)]))
+              as BuiltList<Object>);
           break;
         case 'grid_amt':
-          result.grid_amt = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double;
+          result.grid_amt.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(double)]))
+              as BuiltList<Object>);
           break;
       }
     }
@@ -63,11 +73,11 @@ class _$GridSerializer implements StructuredSerializer<Grid> {
 
 class _$Grid extends Grid {
   @override
-  final String date;
+  final BuiltList<int> date;
   @override
-  final String grid_unit;
+  final BuiltList<double> grid_unit;
   @override
-  final double grid_amt;
+  final BuiltList<double> grid_amt;
 
   factory _$Grid([void Function(GridBuilder) updates]) =>
       (new GridBuilder()..update(updates)).build();
@@ -119,25 +129,27 @@ class _$Grid extends Grid {
 class GridBuilder implements Builder<Grid, GridBuilder> {
   _$Grid _$v;
 
-  String _date;
-  String get date => _$this._date;
-  set date(String date) => _$this._date = date;
+  ListBuilder<int> _date;
+  ListBuilder<int> get date => _$this._date ??= new ListBuilder<int>();
+  set date(ListBuilder<int> date) => _$this._date = date;
 
-  String _grid_unit;
-  String get grid_unit => _$this._grid_unit;
-  set grid_unit(String grid_unit) => _$this._grid_unit = grid_unit;
+  ListBuilder<double> _grid_unit;
+  ListBuilder<double> get grid_unit =>
+      _$this._grid_unit ??= new ListBuilder<double>();
+  set grid_unit(ListBuilder<double> grid_unit) => _$this._grid_unit = grid_unit;
 
-  double _grid_amt;
-  double get grid_amt => _$this._grid_amt;
-  set grid_amt(double grid_amt) => _$this._grid_amt = grid_amt;
+  ListBuilder<double> _grid_amt;
+  ListBuilder<double> get grid_amt =>
+      _$this._grid_amt ??= new ListBuilder<double>();
+  set grid_amt(ListBuilder<double> grid_amt) => _$this._grid_amt = grid_amt;
 
   GridBuilder();
 
   GridBuilder get _$this {
     if (_$v != null) {
-      _date = _$v.date;
-      _grid_unit = _$v.grid_unit;
-      _grid_amt = _$v.grid_amt;
+      _date = _$v.date?.toBuilder();
+      _grid_unit = _$v.grid_unit?.toBuilder();
+      _grid_amt = _$v.grid_amt?.toBuilder();
       _$v = null;
     }
     return this;
@@ -158,8 +170,28 @@ class GridBuilder implements Builder<Grid, GridBuilder> {
 
   @override
   _$Grid build() {
-    final _$result = _$v ??
-        new _$Grid._(date: date, grid_unit: grid_unit, grid_amt: grid_amt);
+    _$Grid _$result;
+    try {
+      _$result = _$v ??
+          new _$Grid._(
+              date: date.build(),
+              grid_unit: grid_unit.build(),
+              grid_amt: grid_amt.build());
+    } catch (_) {
+      String _$failedField;
+      try {
+        _$failedField = 'date';
+        date.build();
+        _$failedField = 'grid_unit';
+        grid_unit.build();
+        _$failedField = 'grid_amt';
+        grid_amt.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'Grid', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

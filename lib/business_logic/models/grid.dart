@@ -1,3 +1,4 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -6,11 +7,11 @@ part 'grid.g.dart';
 
 @JsonSerializable()
 abstract class Grid implements Built<Grid, GridBuilder> {
-  String get date;
+  BuiltList<int> get date;
 
-  String get grid_unit;
+  BuiltList<double> get grid_unit;
 
-  double get grid_amt;
+  BuiltList<double> get grid_amt;
 
   Grid._();
 
