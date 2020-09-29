@@ -17,10 +17,10 @@ class _$AuthenticationService extends AuthenticationService {
   final definitionType = AuthenticationService;
 
   @override
-  Future<Response<LoginResource>> getUser(String login_id, String password) {
+  Future<Response<LoginResource>> getUser(String loginId, String password) {
     final $url = 'login';
     final $params = <String, dynamic>{
-      'login_id': login_id,
+      'login_id': loginId,
       'password': password
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
@@ -29,15 +29,28 @@ class _$AuthenticationService extends AuthenticationService {
 
   @override
   Future<Response<DailyReportResponse>> getDailyReport(
-      String login_id, String password, int year, int month) {
+      String loginId, String password, int year, int month) {
     final $url = 'consumption/daily';
     final $params = <String, dynamic>{
-      'login_id': login_id,
+      'login_id': loginId,
       'password': password,
       'year': year,
       'month': month
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<DailyReportResponse, DailyReportResponse>($request);
+  }
+
+  @override
+  Future<Response<MonthlyReportResponse>> getMonthlyReport(
+      String loginId, String password, int year) {
+    final $url = 'consumption/monthly';
+    final $params = <String, dynamic>{
+      'login_id': loginId,
+      'password': password,
+      'year': year
+    };
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    return client.send<MonthlyReportResponse, MonthlyReportResponse>($request);
   }
 }

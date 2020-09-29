@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+
 import 'package:intl/intl.dart';
 import 'package:multipoint_app_xenius/business_logic/models/daily_report_resource.dart';
-import 'package:multipoint_app_xenius/business_logic/viewmodels/home_viewmodel.dart';
-import 'package:multipoint_app_xenius/constants.dart';
-import 'package:multipoint_app_xenius/ui/view/base_view.dart';
+import 'package:multipoint_app_xenius/business_logic/models/monthly_report.dart/monthly_report_response.dart';
+import 'package:multipoint_app_xenius/business_logic/viewmodels/monthly_report_viewmodel.dart';
+import 'package:multipoint_app_xenius/locator.dart';
+
 import 'package:multipoint_app_xenius/ui/view/report/monthly_report/bar_chart_list_view.dart';
 import 'package:multipoint_app_xenius/ui/view/report/monthly_report/list_item.dart';
 
@@ -17,8 +18,28 @@ class MonthlyReportView extends StatefulWidget {
 
 class _MonthlyReportViewState extends State<MonthlyReportView> {
   String dateString = DateFormat('yyyy-MMM').format(DateTime.now().toLocal());
+  int year = DateTime.now().toLocal().year;
+
+  MonthlyReportViewModel _viewModel = locator<MonthlyReportViewModel>();
 
   List<String> dateStringValue = [];
+  MonthlyReportResponse monthlyReportResponse;
+
+  @override
+  void initState() {
+    initMonthlyChart(year);
+    super.initState();
+  }
+
+  void initMonthlyChart(int year) {
+    _viewModel.getMonthlyReportResource(year).then((value) {
+      setState(() {
+        monthlyReportResponse = value.body;
+      });
+
+      print(monthlyReportResponse.resource.grid[0].grid_amt);
+    });
+  }
 
   DailyReportResource reportResource;
 

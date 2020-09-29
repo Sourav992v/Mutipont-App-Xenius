@@ -12,7 +12,17 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Dg.serializer)
       ..add(Grid.serializer)
       ..add(LoginResource.serializer)
+      ..add(MonthlyDG.serializer)
+      ..add(MonthlyGrid.serializer)
+      ..add(MonthlyReportResource.serializer)
+      ..add(MonthlyReportResponse.serializer)
       ..add(Resource.serializer)
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(MonthlyGrid)]),
+          () => new ListBuilder<MonthlyGrid>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(MonthlyDG)]),
+          () => new ListBuilder<MonthlyDG>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(int)]),
           () => new ListBuilder<int>())

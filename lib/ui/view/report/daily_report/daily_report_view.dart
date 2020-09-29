@@ -1,16 +1,17 @@
-import 'package:built_collection/built_collection.dart';
-import 'package:chopper/chopper.dart';
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:intl/intl.dart';
 import 'package:multipoint_app_xenius/business_logic/models/daily_report_response.dart';
-import 'package:multipoint_app_xenius/business_logic/models/dg.dart';
-import 'package:multipoint_app_xenius/business_logic/models/grid.dart';
+import 'package:charts_flutter/src/text_element.dart' as chartsTextElement;
+import 'package:charts_flutter/src/text_style.dart' as chartsTextStyle;
 import 'package:multipoint_app_xenius/business_logic/viewmodels/daily_report_viewmodel.dart';
 import 'package:multipoint_app_xenius/constants.dart';
 import 'package:multipoint_app_xenius/locator.dart';
+import 'package:multipoint_app_xenius/ui/view/base_view.dart';
 
 class DailyReportView extends StatefulWidget {
   static const String id = 'daily_report_view';
@@ -46,7 +47,11 @@ class _DailyReportViewState extends State<DailyReportView> {
 
   List<charts.Series<ChartData, DateTime>> _createSampleData(int index) {
     List<int> date = List();
-    date = dailyReportResponse.resource.grid.date.asList();
+    if (date.length != null) {
+      date = dailyReportResponse.resource.grid.date.asList();
+    } else {
+      date.clear();
+    }
     List<double> gridUnit =
         dailyReportResponse.resource.grid.grid_unit.asList();
     List<double> gridAmount =
@@ -79,31 +84,35 @@ class _DailyReportViewState extends State<DailyReportView> {
           domainFn: (ChartData date, _) => date.date,
           measureFn: (ChartData value, _) => value.value,
           data: chartDataGridUnit,
+          labelAccessorFn: (ChartData value, _) => '${value.value.toString()}',
         ),
         charts.Series<ChartData, DateTime>(
-          id: 'DG kWh',
-          colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
-          domainFn: (ChartData date, _) => date.date,
-          measureFn: (ChartData value, _) => value.value,
-          data: chartDataDgUnit,
-        ),
+            id: 'DG kWh',
+            colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
+            domainFn: (ChartData date, _) => date.date,
+            measureFn: (ChartData value, _) => value.value,
+            data: chartDataDgUnit,
+            labelAccessorFn: (ChartData value, _) =>
+                '${value.value.toString()}'),
       ];
     } else {
       return [
         charts.Series<ChartData, DateTime>(
-          id: 'Grid INR',
-          colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
-          domainFn: (ChartData date, _) => date.date,
-          measureFn: (ChartData value, _) => value.value,
-          data: chartDataGridAmt,
-        ),
+            id: 'Grid INR',
+            colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
+            domainFn: (ChartData date, _) => date.date,
+            measureFn: (ChartData value, _) => value.value,
+            data: chartDataGridAmt,
+            labelAccessorFn: (ChartData value, _) =>
+                '${value.value.toString()}'),
         charts.Series<ChartData, DateTime>(
-          id: 'DG INR',
-          colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
-          domainFn: (ChartData date, _) => date.date,
-          measureFn: (ChartData value, _) => value.value,
-          data: chartDataDgAmt,
-        ),
+            id: 'DG INR',
+            colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
+            domainFn: (ChartData date, _) => date.date,
+            measureFn: (ChartData value, _) => value.value,
+            data: chartDataDgAmt,
+            labelAccessorFn: (ChartData value, _) =>
+                '${value.value.toString()}'),
       ];
     }
   }
@@ -160,25 +169,28 @@ class _DailyReportViewState extends State<DailyReportView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Icon(
-            Icons.arrow_back,
-            color: Colors.white,
+        appBar: AppBar(
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
           ),
+          title: Text(
+            'Daily Report',
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                fontSize: 16.0),
+          ),
+          centerTitle: true,
         ),
-        title: Text(
-          'Daily Report',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, color: Colors.white, fontSize: 16.0),
-        ),
-        centerTitle: true,
-      ),
-      body: dailyReportResponse != null
-          ? Stack(children: [
+        body: BaseView<DailyReportViewModel>(builder: (context, value, child) {
+          if (dailyReportResponse != null) {
+            return Stack(children: [
               Container(
                 alignment: Alignment.center,
                 margin: EdgeInsets.only(top: 0, bottom: 0, left: 16, right: 16),
@@ -187,61 +199,102 @@ class _DailyReportViewState extends State<DailyReportView> {
                   child: ListView.builder(
                       itemCount: 2,
                       itemBuilder: (context, index) {
-                        return Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0)),
-                          margin: EdgeInsets.only(
-                              top: 16.0, bottom: 16.0, left: 4.0, right: 4.0),
-                          color: Colors.white,
-                          shadowColor: Colors.white54,
-                          elevation: 16.0,
-                          child: ListTile(
-                            title: Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 16.0, bottom: 0),
-                              child: Center(
-                                  child: Text(
-                                '$dateString'.split('-')[1],
-                                style: kLabelTextStyle,
-                              )),
+                        if (dailyReportResponse.resource.dg.dg_unit.length !=
+                            0) {
+                          return Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0)),
+                            margin: EdgeInsets.only(
+                                top: 16.0, bottom: 16.0, left: 4.0, right: 4.0),
+                            color: Colors.white,
+                            shadowColor: Colors.white54,
+                            elevation: 16.0,
+                            child: ListTile(
+                              title: Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 16.0, bottom: 0),
+                                child: Center(
+                                    child: Text(
+                                  '$dateString'.split('-')[1],
+                                  style: kLabelTextStyle,
+                                )),
+                              ),
+                              subtitle: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Container(
+                                    width: 500,
+                                    height: 300,
+                                    child: charts.TimeSeriesChart(
+                                      _createSampleData(index),
+                                      animate: true,
+                                      defaultRenderer:
+                                          charts.LineRendererConfig(
+                                        includePoints: true,
+                                        includeArea: true,
+                                        stacked: true,
+                                        includeLine: true,
+                                      ),
+                                      behaviors: [
+                                        charts.SlidingViewport(),
+                                        charts.PanAndZoomBehavior(),
+                                        charts.LinePointHighlighter(
+                                            showHorizontalFollowLine: charts
+                                                .LinePointHighlighterFollowLineType
+                                                .all,
+                                            showVerticalFollowLine: charts
+                                                .LinePointHighlighterFollowLineType
+                                                .nearest),
+                                        charts.SelectNearest(
+                                            eventTrigger: charts
+                                                .SelectionTrigger.tapAndDrag),
+                                        charts.SeriesLegend(
+                                          position:
+                                              charts.BehaviorPosition.bottom,
+                                          desiredMaxRows: 2,
+                                          horizontalFirst: false,
+                                          cellPadding: new EdgeInsets.only(
+                                              right: 4.0,
+                                              bottom: 4.0,
+                                              left: 96.0,
+                                              top: 4.0),
+                                          showMeasures: true,
+                                          outsideJustification: charts
+                                              .OutsideJustification
+                                              .middleDrawArea,
+                                          measureFormatter: (num value) {
+                                            return value == null
+                                                ? '-'
+                                                : '$value';
+                                          },
+                                        ),
+                                      ],
+                                      domainAxis: new charts.DateTimeAxisSpec(
+                                          showAxisLine: true,
+                                          tickFormatterSpec: new charts
+                                                  .AutoDateTimeTickFormatterSpec(
+                                              day: new charts.TimeFormatterSpec(
+                                            format: 'dd MMM',
+                                            transitionFormat: 'dd MMM',
+                                          ))),
+                                    )),
+                              ),
                             ),
-                            subtitle: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Container(
-                                  width: 500,
-                                  height: 300,
-                                  child: charts.TimeSeriesChart(
-                                    _createSampleData(index),
-                                    animate: true,
-                                    defaultRenderer:
-                                        new charts.LineRendererConfig(
-                                            includePoints: true,
-                                            includeArea: true,
-                                            stacked: true),
-                                    behaviors: [
-                                      charts.SlidingViewport(),
-                                      charts.PanAndZoomBehavior(),
-                                    ],
-                                    domainAxis: new charts.DateTimeAxisSpec(
-                                        tickFormatterSpec: new charts
-                                                .AutoDateTimeTickFormatterSpec(
-                                            day: new charts.TimeFormatterSpec(
-                                                format: 'd',
-                                                transitionFormat: 'dd MMM'))),
-                                  )),
-                            ),
-                          ),
-                        );
+                          );
+                        } else
+                          return Container(
+                            child: Center(child: Text('Loading..')),
+                          );
                       }),
                 ),
               ),
               Positioned(
                   top: 25.0, right: 25.0, child: datePickerDaily(context)),
-            ])
-          : Container(
+            ]);
+          } else
+            return Container(
               child: Center(child: Text('Loading..')),
-            ),
-    );
+            );
+        }));
   }
 
   Container datePickerDaily(BuildContext context) {

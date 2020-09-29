@@ -4,6 +4,7 @@ import 'package:multipoint_app_xenius/business_logic/viewmodels/daily_report_vie
 import 'business_logic/services/authentication_service.dart';
 import 'business_logic/viewmodels/home_viewmodel.dart';
 import 'business_logic/viewmodels/login_viewmodel.dart';
+import 'business_logic/viewmodels/monthly_report_viewmodel.dart';
 
 GetIt locator = GetIt.instance;
 
@@ -13,4 +14,5 @@ void setupLoactor() {
   locator.registerFactory(() => LoginViewModel());
   locator.registerFactory(() => HomeViewModel());
   locator.registerFactory(() => DailyReportViewModel());
+  locator.registerFactory(() => MonthlyReportViewModel());
 }

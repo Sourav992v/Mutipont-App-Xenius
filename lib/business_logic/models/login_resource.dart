@@ -5,16 +5,19 @@ import 'package:multipoint_app_xenius/business_logic/models/resource.dart';
 
 part 'login_resource.g.dart';
 
-
 abstract class LoginResource
     implements Built<LoginResource, LoginResourceBuilder> {
+  @nullable
   int get rc;
+  @nullable
   String get message;
+  @nullable
   String get application;
 
- 
+  @nullable
   String get app_base_url;
 
+  @nullable
   Resource get resource;
 
   LoginResource._();

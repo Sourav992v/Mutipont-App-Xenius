@@ -18,23 +18,37 @@ class _$LoginResourceSerializer implements StructuredSerializer<LoginResource> {
   @override
   Iterable<Object> serialize(Serializers serializers, LoginResource object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
-      'rc',
-      serializers.serialize(object.rc, specifiedType: const FullType(int)),
-      'message',
-      serializers.serialize(object.message,
-          specifiedType: const FullType(String)),
-      'application',
-      serializers.serialize(object.application,
-          specifiedType: const FullType(String)),
-      'app_base_url',
-      serializers.serialize(object.app_base_url,
-          specifiedType: const FullType(String)),
-      'resource',
-      serializers.serialize(object.resource,
-          specifiedType: const FullType(Resource)),
-    ];
-
+    final result = <Object>[];
+    if (object.rc != null) {
+      result
+        ..add('rc')
+        ..add(serializers.serialize(object.rc,
+            specifiedType: const FullType(int)));
+    }
+    if (object.message != null) {
+      result
+        ..add('message')
+        ..add(serializers.serialize(object.message,
+            specifiedType: const FullType(String)));
+    }
+    if (object.application != null) {
+      result
+        ..add('application')
+        ..add(serializers.serialize(object.application,
+            specifiedType: const FullType(String)));
+    }
+    if (object.app_base_url != null) {
+      result
+        ..add('app_base_url')
+        ..add(serializers.serialize(object.app_base_url,
+            specifiedType: const FullType(String)));
+    }
+    if (object.resource != null) {
+      result
+        ..add('resource')
+        ..add(serializers.serialize(object.resource,
+            specifiedType: const FullType(Resource)));
+    }
     return result;
   }
 
@@ -98,23 +112,7 @@ class _$LoginResource extends LoginResource {
       this.application,
       this.app_base_url,
       this.resource})
-      : super._() {
-    if (rc == null) {
-      throw new BuiltValueNullFieldError('LoginResource', 'rc');
-    }
-    if (message == null) {
-      throw new BuiltValueNullFieldError('LoginResource', 'message');
-    }
-    if (application == null) {
-      throw new BuiltValueNullFieldError('LoginResource', 'application');
-    }
-    if (app_base_url == null) {
-      throw new BuiltValueNullFieldError('LoginResource', 'app_base_url');
-    }
-    if (resource == null) {
-      throw new BuiltValueNullFieldError('LoginResource', 'resource');
-    }
-  }
+      : super._();
 
   @override
   LoginResource rebuild(void Function(LoginResourceBuilder) updates) =>
@@ -217,12 +215,12 @@ class LoginResourceBuilder
               message: message,
               application: application,
               app_base_url: app_base_url,
-              resource: resource.build());
+              resource: _resource?.build());
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'resource';
-        resource.build();
+        _resource?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'LoginResource', _$failedField, e.toString());
