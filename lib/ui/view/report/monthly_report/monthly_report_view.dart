@@ -20,6 +20,7 @@ class MonthlyReportView extends StatefulWidget {
 class _MonthlyReportViewState extends State<MonthlyReportView> {
   String dateString = DateFormat('yyyy-MMM').format(DateTime.now().toLocal());
   int year = DateTime.now().toLocal().year;
+  int month = DateTime.now().toLocal().month;
 
   MonthlyReportViewModel _viewModel = locator<MonthlyReportViewModel>();
 
@@ -82,10 +83,11 @@ class _MonthlyReportViewState extends State<MonthlyReportView> {
                   if (pickedDate != null && pickedDate != selectedDate) {
                     setState(() {
                       dateString = DateFormat('yyyy-MMM').format(pickedDate);
-                      int month = pickedDate.toLocal().month;
-                      int year = pickedDate.toLocal().year;
+                      month = pickedDate.toLocal().month;
+                      year = pickedDate.toLocal().year;
                       _date(month, year);
                     });
+                    initMonthlyChart(year);
                   }
                 },
                 initialDateTime: selectedDate,

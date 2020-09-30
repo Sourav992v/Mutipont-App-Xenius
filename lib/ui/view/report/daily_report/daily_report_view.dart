@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:intl/intl.dart';
 import 'package:multipoint_app_xenius/business_logic/models/daily_report_response.dart';
-import 'package:charts_flutter/src/text_element.dart' as chartsTextElement;
-import 'package:charts_flutter/src/text_style.dart' as chartsTextStyle;
+
 import 'package:multipoint_app_xenius/business_logic/viewmodels/daily_report_viewmodel.dart';
 import 'package:multipoint_app_xenius/constants.dart';
 import 'package:multipoint_app_xenius/locator.dart';
@@ -46,6 +45,10 @@ class _DailyReportViewState extends State<DailyReportView> {
   }
 
   List<charts.Series<ChartData, DateTime>> _createSampleData(int index) {
+    final gridUnitColor = charts.ColorUtil.fromDartColor(kChartGridUnit);
+    final gridAmountColor = charts.ColorUtil.fromDartColor(kChartGridAmount);
+    final dgUnitColor = charts.ColorUtil.fromDartColor(kChartDGUnit);
+    final dgAmountColor = charts.ColorUtil.fromDartColor(kChartDGAMount);
     List<int> date = List();
     if (date.length != null) {
       date = dailyReportResponse.resource.grid.date.asList();
@@ -76,11 +79,11 @@ class _DailyReportViewState extends State<DailyReportView> {
           .add(ChartData(DateTime(year, month, date[i]), dgAmount[i]));
     }
 
-    if (index == 1) {
+    if (index == 0) {
       return [
         charts.Series<ChartData, DateTime>(
           id: 'Grid kWh',
-          colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
+          colorFn: (_, __) => gridUnitColor,
           domainFn: (ChartData date, _) => date.date,
           measureFn: (ChartData value, _) => value.value,
           data: chartDataGridUnit,
@@ -88,7 +91,7 @@ class _DailyReportViewState extends State<DailyReportView> {
         ),
         charts.Series<ChartData, DateTime>(
             id: 'DG kWh',
-            colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
+            colorFn: (_, __) => dgUnitColor,
             domainFn: (ChartData date, _) => date.date,
             measureFn: (ChartData value, _) => value.value,
             data: chartDataDgUnit,
@@ -99,7 +102,7 @@ class _DailyReportViewState extends State<DailyReportView> {
       return [
         charts.Series<ChartData, DateTime>(
             id: 'Grid INR',
-            colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
+            colorFn: (_, __) => gridAmountColor,
             domainFn: (ChartData date, _) => date.date,
             measureFn: (ChartData value, _) => value.value,
             data: chartDataGridAmt,
@@ -107,7 +110,7 @@ class _DailyReportViewState extends State<DailyReportView> {
                 '${value.value.toString()}'),
         charts.Series<ChartData, DateTime>(
             id: 'DG INR',
-            colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
+            colorFn: (_, __) => dgAmountColor,
             domainFn: (ChartData date, _) => date.date,
             measureFn: (ChartData value, _) => value.value,
             data: chartDataDgAmt,

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:multipoint_app_xenius/business_logic/models/daily_report_resource.dart';
 import 'package:multipoint_app_xenius/business_logic/models/monthly_report.dart/monthly_report_resource.dart';
 import 'package:multipoint_app_xenius/business_logic/models/monthly_report.dart/monthly_report_response.dart';
+import 'package:multipoint_app_xenius/constants.dart';
 import 'package:multipoint_app_xenius/ui/view/report/monthly_report/bar_chart_model.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
@@ -55,9 +56,10 @@ class HeadingItem implements ListItem {
   }
 
   List<charts.Series<Monthly, String>> _createSampleData() {
-    final blue = charts.MaterialPalette.blue.makeShades(2);
-    final red = charts.MaterialPalette.red.makeShades(2);
-    final green = charts.MaterialPalette.green.makeShades(2);
+    final gridUnitColor = charts.ColorUtil.fromDartColor(kChartGridUnit);
+    final gridAmountColor = charts.ColorUtil.fromDartColor(kChartGridAmount);
+    final dgUnitColor = charts.ColorUtil.fromDartColor(kChartDGUnit);
+    final dgAmountColor = charts.ColorUtil.fromDartColor(kChartDGAMount);
 
     List<Monthly> assessmentData = [];
     for (int i = 0; i < 4; i++) {
@@ -80,33 +82,34 @@ class HeadingItem implements ListItem {
       new charts.Series(
         id: 'Monthly Report',
         data: assessmentData,
-        domainFn: (Monthly assessment, _) => assessment.label,
-        measureFn: (Monthly assessment, _) => assessment.value,
+        domainFn: (Monthly monthlyReport, _) => monthlyReport.label,
+        measureFn: (Monthly monthlyReport, _) => monthlyReport.value,
+        labelAccessorFn: (Monthly monthlyReport, _) => '${monthlyReport.value}',
         colorFn: (Monthly assessment, _) {
           switch (assessment.label) {
             case 'Grid kWh':
               {
-                return blue[1];
+                return gridUnitColor;
               }
 
             case 'Grid INR':
               {
-                return red[1];
+                return gridAmountColor;
               }
 
             case 'DG kWh':
               {
-                return green[1];
+                return dgUnitColor;
               }
 
             case 'DG INR':
               {
-                return blue[0];
+                return dgAmountColor;
               }
 
             default:
               {
-                return red[0];
+                return dgUnitColor;
               }
           }
         },
@@ -119,17 +122,16 @@ class HeadingItem implements ListItem {
       seriesList,
       animate: animate,
       vertical: true,
+      barRendererDecorator: new charts.BarLabelDecorator<String>(),
 
       primaryMeasureAxis: new charts.NumericAxisSpec(
         showAxisLine: true,
         renderSpec: charts.GridlineRendererSpec(
-            labelStyle: new charts.TextStyleSpec(
-              fontSize: 10,
-              color: charts.MaterialPalette.black,
-            ),
-            lineStyle: charts.LineStyleSpec(
-              color: charts.MaterialPalette.gray.shadeDefault,
-            )),
+          labelStyle: new charts.TextStyleSpec(
+            fontSize: 12,
+            color: charts.MaterialPalette.black,
+          ),
+        ),
       ),
 
       /// This is an OrdinalAxisSpec to match up with BarChart's default
@@ -137,13 +139,11 @@ class HeadingItem implements ListItem {
       /// other charts).
       domainAxis: new charts.OrdinalAxisSpec(
         renderSpec: charts.GridlineRendererSpec(
-            labelStyle: new charts.TextStyleSpec(
-              fontSize: 10,
-              color: charts.MaterialPalette.black,
-            ),
-            lineStyle: charts.LineStyleSpec(
-              color: charts.MaterialPalette.gray.shadeDefault,
-            )),
+          labelStyle: new charts.TextStyleSpec(
+            fontSize: 12,
+            color: charts.MaterialPalette.black,
+          ),
+        ),
       ),
     );
   }

@@ -17,23 +17,26 @@ class _BarChartListViewState extends State<BarChartListView> {
   }
 
   Widget _buildList(BuildContext context) {
-    return Expanded(
-      child: SizedBox(
-        child: ListView.builder(
-          itemCount: widget.items.length,
-          itemBuilder: (context, index) {
-            final item = widget.items[index];
-            return Container(
-              margin: EdgeInsets.all(16),
-              child: Card(
-                child: ListTile(
-                  title: item.buildTitle(context),
-                  subtitle: item.buildChartTitle(context),
-                ),
-              ),
-            );
-          },
-        ),
+    return SizedBox(
+      height: double.maxFinite,
+      child: ListView.builder(
+        itemCount: widget.items.length,
+        itemBuilder: (context, index) {
+          final item = widget.items[index];
+          return Card(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0)),
+            margin: EdgeInsets.only(
+                top: 16.0, bottom: 16.0, left: 16.0, right: 16.0),
+            color: Colors.white,
+            shadowColor: Colors.white54,
+            elevation: 16.0,
+            child: ListTile(
+              title: item.buildTitle(context),
+              subtitle: item.buildChartTitle(context),
+            ),
+          );
+        },
       ),
     );
   }

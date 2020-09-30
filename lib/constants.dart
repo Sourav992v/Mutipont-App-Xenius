@@ -9,6 +9,11 @@ const kColorAccentRed = Color(0xFFD03445);
 const kTextColor = Color(0xFF37474F);
 const kTextBackgroundGrey = Color(0xFFECEFF1);
 
+const kChartGridUnit = Color(0xFF457BAA);
+const kChartGridAmount = Color(0xFF5FA3E0);
+const kChartDGUnit = Color(0xFFBE3142);
+const kChartDGAMount = Color(0xFFFF6378);
+
 const kLabelTextStyle = TextStyle(
     fontSize: 16.0,
     fontFamily: 'Lato',
