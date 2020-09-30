@@ -6,6 +6,7 @@ import 'package:multipoint_app_xenius/business_logic/models/daily_report_resourc
 import 'package:multipoint_app_xenius/business_logic/models/monthly_report.dart/monthly_report_response.dart';
 import 'package:multipoint_app_xenius/business_logic/viewmodels/monthly_report_viewmodel.dart';
 import 'package:multipoint_app_xenius/locator.dart';
+import 'package:multipoint_app_xenius/ui/view/base_view.dart';
 
 import 'package:multipoint_app_xenius/ui/view/report/monthly_report/bar_chart_list_view.dart';
 import 'package:multipoint_app_xenius/ui/view/report/monthly_report/list_item.dart';
@@ -36,8 +37,6 @@ class _MonthlyReportViewState extends State<MonthlyReportView> {
       setState(() {
         monthlyReportResponse = value.body;
       });
-
-      print(monthlyReportResponse.resource.grid[0].grid_amt);
     });
   }
 
@@ -121,12 +120,25 @@ class _MonthlyReportViewState extends State<MonthlyReportView> {
           ),
           centerTitle: true,
         ),
-        body: Stack(children: [
-          BarChartListView(
-              items: List<ListItem>.generate(
-                  4, (i) => HeadingItem(reportResource, 'Month $i'))),
-          Positioned(top: 25.0, right: 25.0, child: datePickerDaily(context)),
-        ]));
+        body:
+            BaseView<MonthlyReportViewModel>(builder: (context, value, child) {
+          if (monthlyReportResponse != null) {
+            return Stack(children: [
+              BarChartListView(
+                  items: List<ListItem>.generate(
+                      monthlyReportResponse.resource.grid.length,
+                      (i) => HeadingItem(
+                          monthlyReportResponse: monthlyReportResponse,
+                          index: i))),
+              Positioned(
+                  top: 25.0, right: 25.0, child: datePickerDaily(context)),
+            ]);
+          } else {
+            return Container(
+              child: Center(child: Text('Loading..')),
+            );
+          }
+        }));
   }
 
   Container datePickerDaily(BuildContext context) {

@@ -6,7 +6,7 @@ class MonthlyReport {
 
 class Monthly {
   final String label;
-  final int values;
+  final double value;
 
-  Monthly(this.label, this.values);
+  Monthly({this.label, this.value});
 }
