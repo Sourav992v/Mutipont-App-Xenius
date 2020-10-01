@@ -622,19 +622,13 @@ class _$ResourceSerializer implements StructuredSerializer<Resource> {
       result
         ..add('dr_cr_monthly')
         ..add(serializers.serialize(object.dr_cr_monthly,
-            specifiedType: const FullType(String)));
+            specifiedType: const FullType(double)));
     }
     if (object.dg_fix_charges_monthly != null) {
       result
         ..add('dg_fix_charges_monthly')
         ..add(serializers.serialize(object.dg_fix_charges_monthly,
             specifiedType: const FullType(double)));
-    }
-    if (object.dg_dr_cr_monthly != null) {
-      result
-        ..add('dg_dr_cr_monthly')
-        ..add(serializers.serialize(object.dg_dr_cr_monthly,
-            specifiedType: const FullType(String)));
     }
     return result;
   }
@@ -1053,15 +1047,11 @@ class _$ResourceSerializer implements StructuredSerializer<Resource> {
           break;
         case 'dr_cr_monthly':
           result.dr_cr_monthly = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(double)) as double;
           break;
         case 'dg_fix_charges_monthly':
           result.dg_fix_charges_monthly = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double;
-          break;
-        case 'dg_dr_cr_monthly':
-          result.dg_dr_cr_monthly = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
           break;
       }
     }
@@ -1272,11 +1262,9 @@ class _$Resource extends Resource {
   @override
   final double fix_charges_monthly;
   @override
-  final String dr_cr_monthly;
+  final double dr_cr_monthly;
   @override
   final double dg_fix_charges_monthly;
-  @override
-  final String dg_dr_cr_monthly;
 
   factory _$Resource([void Function(ResourceBuilder) updates]) =>
       (new ResourceBuilder()..update(updates)).build();
@@ -1383,8 +1371,7 @@ class _$Resource extends Resource {
       this.dr_cr,
       this.fix_charges_monthly,
       this.dr_cr_monthly,
-      this.dg_fix_charges_monthly,
-      this.dg_dr_cr_monthly})
+      this.dg_fix_charges_monthly})
       : super._();
 
   @override
@@ -1501,8 +1488,7 @@ class _$Resource extends Resource {
         dr_cr == other.dr_cr &&
         fix_charges_monthly == other.fix_charges_monthly &&
         dr_cr_monthly == other.dr_cr_monthly &&
-        dg_fix_charges_monthly == other.dg_fix_charges_monthly &&
-        dg_dr_cr_monthly == other.dg_dr_cr_monthly;
+        dg_fix_charges_monthly == other.dg_fix_charges_monthly;
   }
 
   @override
@@ -1525,26 +1511,26 @@ class _$Resource extends Resource {
                                                                 $jc(
                                                                     $jc(
                                                                         $jc(
-                                                                            $jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc(0, android_version.hashCode), ios_version.hashCode), mobile_app_status.hashCode), location_id.hashCode), login_count.hashCode), device_app_ver.hashCode), flat_number.hashCode), consumer_name.hashCode), consumer_mobile_no.hashCode), consumer_email_id.hashCode), balance_amount.hashCode), dg_balance_amount.hashCode), last_recharge_time.hashCode), dg_last_recharge_time.hashCode), last_coupon_number.hashCode), dg_last_coupon_number.hashCode), last_coupon_amount.hashCode), dg_last_coupon_amount.hashCode), dg_reading.hashCode), grid_reading.hashCode), dg_amt.hashCode), grid_amt.hashCode), last_reading_updated.hashCode), dg_last_reading_updated.hashCode), notification_email.hashCode), notification_sms.hashCode), bp_no.hashCode), consumer_no.hashCode), account_no.hashCode), move_in_date.hashCode), notification_ivrs.hashCode), notification_app_load.hashCode), notification_app_balance.hashCode), low_bal_alert.hashCode), dg_low_bal_alert.hashCode), notification_app_esource.hashCode), notification_app_unit_consumption.hashCode), alert_daily_consumption_grid.hashCode), alert_daily_consumption_dg.hashCode), load_setting_enabled.hashCode), power_cut_restore_notification.hashCode), recharge_notification.hashCode), grid_sanctioned_load.hashCode), dg_sanctioned_load.hashCode), load_unit.hashCode), meter_type.hashCode), grid_load_alarm.hashCode), dg_load_alarm.hashCode), grid_overload_setting.hashCode), dg_overload_setting.hashCode), grid_overload_from_time.hashCode), grid_overload_to_time.hashCode), dg_overload_from_time.hashCode), dg_overload_to_time.hashCode), overload_grid.hashCode), overload_dg.hashCode), site_id.hashCode), site_name.hashCode), site_address.hashCode), site_city.hashCode), site_state.hashCode), site_country.hashCode), site_zipcode.hashCode), site_supervisor_name.hashCode), site_supervisor_contact_no.hashCode), site_supervisor_email_id.hashCode), site_support_concern_name.hashCode), site_support_contact_no.hashCode), site_support_email_id.hashCode), main_license.hashCode), application.hashCode), reading_unit.hashCode), currency.hashCode), site_code.hashCode), balance_enable.hashCode), reading_enable.hashCode), monthly_bill_enable.hashCode), monthly_bill_no_of_month.hashCode), PLM.hashCode), pg_enable_paytm.hashCode), pg_enable_mobikwik.hashCode), paytmMobileUrl.hashCode), mobikwik_mobile_url.hashCode), pg_enable_hdfc.hashCode),
-                                                                                paytm_image.hashCode),
-                                                                            recharge_popup_message.hashCode),
-                                                                        energy_source.hashCode),
-                                                                    last_reading_updated_dg.hashCode),
-                                                                display_load_setting_screen.hashCode),
-                                                            daily_dg_unit.hashCode),
-                                                        daily_grid_unit.hashCode),
-                                                    monthly_dg_unit.hashCode),
-                                                monthly_grid_unit.hashCode),
-                                            daily_dg_amount.hashCode),
-                                        daily_grid_amount.hashCode),
-                                    monthly_dg_amount.hashCode),
-                                monthly_grid_amount.hashCode),
-                            fix_charges.hashCode),
-                        dr_cr.hashCode),
-                    fix_charges_monthly.hashCode),
-                dr_cr_monthly.hashCode),
-            dg_fix_charges_monthly.hashCode),
-        dg_dr_cr_monthly.hashCode));
+                                                                            $jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc($jc(0, android_version.hashCode), ios_version.hashCode), mobile_app_status.hashCode), location_id.hashCode), login_count.hashCode), device_app_ver.hashCode), flat_number.hashCode), consumer_name.hashCode), consumer_mobile_no.hashCode), consumer_email_id.hashCode), balance_amount.hashCode), dg_balance_amount.hashCode), last_recharge_time.hashCode), dg_last_recharge_time.hashCode), last_coupon_number.hashCode), dg_last_coupon_number.hashCode), last_coupon_amount.hashCode), dg_last_coupon_amount.hashCode), dg_reading.hashCode), grid_reading.hashCode), dg_amt.hashCode), grid_amt.hashCode), last_reading_updated.hashCode), dg_last_reading_updated.hashCode), notification_email.hashCode), notification_sms.hashCode), bp_no.hashCode), consumer_no.hashCode), account_no.hashCode), move_in_date.hashCode), notification_ivrs.hashCode), notification_app_load.hashCode), notification_app_balance.hashCode), low_bal_alert.hashCode), dg_low_bal_alert.hashCode), notification_app_esource.hashCode), notification_app_unit_consumption.hashCode), alert_daily_consumption_grid.hashCode), alert_daily_consumption_dg.hashCode), load_setting_enabled.hashCode), power_cut_restore_notification.hashCode), recharge_notification.hashCode), grid_sanctioned_load.hashCode), dg_sanctioned_load.hashCode), load_unit.hashCode), meter_type.hashCode), grid_load_alarm.hashCode), dg_load_alarm.hashCode), grid_overload_setting.hashCode), dg_overload_setting.hashCode), grid_overload_from_time.hashCode), grid_overload_to_time.hashCode), dg_overload_from_time.hashCode), dg_overload_to_time.hashCode), overload_grid.hashCode), overload_dg.hashCode), site_id.hashCode), site_name.hashCode), site_address.hashCode), site_city.hashCode), site_state.hashCode), site_country.hashCode), site_zipcode.hashCode), site_supervisor_name.hashCode), site_supervisor_contact_no.hashCode), site_supervisor_email_id.hashCode), site_support_concern_name.hashCode), site_support_contact_no.hashCode), site_support_email_id.hashCode), main_license.hashCode), application.hashCode), reading_unit.hashCode), currency.hashCode), site_code.hashCode), balance_enable.hashCode), reading_enable.hashCode), monthly_bill_enable.hashCode), monthly_bill_no_of_month.hashCode), PLM.hashCode), pg_enable_paytm.hashCode), pg_enable_mobikwik.hashCode), paytmMobileUrl.hashCode), mobikwik_mobile_url.hashCode),
+                                                                                pg_enable_hdfc.hashCode),
+                                                                            paytm_image.hashCode),
+                                                                        recharge_popup_message.hashCode),
+                                                                    energy_source.hashCode),
+                                                                last_reading_updated_dg.hashCode),
+                                                            display_load_setting_screen.hashCode),
+                                                        daily_dg_unit.hashCode),
+                                                    daily_grid_unit.hashCode),
+                                                monthly_dg_unit.hashCode),
+                                            monthly_grid_unit.hashCode),
+                                        daily_dg_amount.hashCode),
+                                    daily_grid_amount.hashCode),
+                                monthly_dg_amount.hashCode),
+                            monthly_grid_amount.hashCode),
+                        fix_charges.hashCode),
+                    dr_cr.hashCode),
+                fix_charges_monthly.hashCode),
+            dr_cr_monthly.hashCode),
+        dg_fix_charges_monthly.hashCode));
   }
 
   @override
@@ -1653,8 +1639,7 @@ class _$Resource extends Resource {
           ..add('dr_cr', dr_cr)
           ..add('fix_charges_monthly', fix_charges_monthly)
           ..add('dr_cr_monthly', dr_cr_monthly)
-          ..add('dg_fix_charges_monthly', dg_fix_charges_monthly)
-          ..add('dg_dr_cr_monthly', dg_dr_cr_monthly))
+          ..add('dg_fix_charges_monthly', dg_fix_charges_monthly))
         .toString();
   }
 }
@@ -2136,20 +2121,15 @@ class ResourceBuilder implements Builder<Resource, ResourceBuilder> {
   set fix_charges_monthly(double fix_charges_monthly) =>
       _$this._fix_charges_monthly = fix_charges_monthly;
 
-  String _dr_cr_monthly;
-  String get dr_cr_monthly => _$this._dr_cr_monthly;
-  set dr_cr_monthly(String dr_cr_monthly) =>
+  double _dr_cr_monthly;
+  double get dr_cr_monthly => _$this._dr_cr_monthly;
+  set dr_cr_monthly(double dr_cr_monthly) =>
       _$this._dr_cr_monthly = dr_cr_monthly;
 
   double _dg_fix_charges_monthly;
   double get dg_fix_charges_monthly => _$this._dg_fix_charges_monthly;
   set dg_fix_charges_monthly(double dg_fix_charges_monthly) =>
       _$this._dg_fix_charges_monthly = dg_fix_charges_monthly;
-
-  String _dg_dr_cr_monthly;
-  String get dg_dr_cr_monthly => _$this._dg_dr_cr_monthly;
-  set dg_dr_cr_monthly(String dg_dr_cr_monthly) =>
-      _$this._dg_dr_cr_monthly = dg_dr_cr_monthly;
 
   ResourceBuilder();
 
@@ -2258,7 +2238,6 @@ class ResourceBuilder implements Builder<Resource, ResourceBuilder> {
       _fix_charges_monthly = _$v.fix_charges_monthly;
       _dr_cr_monthly = _$v.dr_cr_monthly;
       _dg_fix_charges_monthly = _$v.dg_fix_charges_monthly;
-      _dg_dr_cr_monthly = _$v.dg_dr_cr_monthly;
       _$v = null;
     }
     return this;
@@ -2383,8 +2362,7 @@ class ResourceBuilder implements Builder<Resource, ResourceBuilder> {
             dr_cr: dr_cr,
             fix_charges_monthly: fix_charges_monthly,
             dr_cr_monthly: dr_cr_monthly,
-            dg_fix_charges_monthly: dg_fix_charges_monthly,
-            dg_dr_cr_monthly: dg_dr_cr_monthly);
+            dg_fix_charges_monthly: dg_fix_charges_monthly);
     replace(_$result);
     return _$result;
   }

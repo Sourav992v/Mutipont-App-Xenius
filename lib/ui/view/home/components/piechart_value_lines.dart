@@ -61,35 +61,35 @@ class _PiechartRecyclerViewState extends State<PiechartRecyclerView> {
           ),
         );
       } else {
-        return Expanded(
-          child: SizedBox(
-            height: 300,
-            child: ListView.builder(
-              controller: ScrollController(),
-              itemCount: 2,
-              itemBuilder: (context, index) {
-                return Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0)),
-                  margin: EdgeInsets.only(
-                      top: 4.0, bottom: 4.0, left: 4.0, right: 4.0),
-                  color: Colors.white,
-                  shadowColor: Colors.white70,
-                  elevation: 16.0,
-                  child: ListTile(
-                    title: Padding(
-                      padding: const EdgeInsets.only(top: 16.0, bottom: 0),
-                      child: Center(
-                          child: Text(
-                        '${pieChartListText[index]}',
-                        style: kLabelTextStyle,
-                      )),
-                    ),
-                    subtitle: _initPieChart(index, pieChartListText.length),
+        return SizedBox(
+          height: 480,
+          width: 1000,
+          child: ListView.builder(
+            controller: ScrollController(),
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: 2,
+            itemBuilder: (context, index) {
+              return Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0)),
+                margin: EdgeInsets.only(
+                    top: 4.0, bottom: 4.0, left: 16.0, right: 16.0),
+                color: Colors.white,
+                shadowColor: Colors.white70,
+                elevation: 16.0,
+                child: ListTile(
+                  title: Padding(
+                    padding: const EdgeInsets.only(top: 16.0, bottom: 0),
+                    child: Center(
+                        child: Text(
+                      '${pieChartListText[index]}',
+                      style: kLabelTextStyle,
+                    )),
                   ),
-                );
-              },
-            ),
+                  subtitle: _initPieChart(index, pieChartListText.length),
+                ),
+              );
+            },
           ),
         );
       }

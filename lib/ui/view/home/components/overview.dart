@@ -15,16 +15,12 @@ List<Widget> layoutList = [
 class OverviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            PageViewBalance(),
-            PiechartRecyclerView(),
-          ],
-        ),
+    return Container(
+      child: ListView(
+        children: [
+          PageViewBalance(),
+          PiechartRecyclerView(),
+        ],
       ),
     );
   }

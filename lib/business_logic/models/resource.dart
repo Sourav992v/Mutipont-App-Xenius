@@ -308,13 +308,10 @@ abstract class Resource implements Built<Resource, ResourceBuilder> {
   double get fix_charges_monthly;
 
   @nullable
-  String get dr_cr_monthly;
+  double get dr_cr_monthly;
 
   @nullable
   double get dg_fix_charges_monthly;
-
-  @nullable
-  String get dg_dr_cr_monthly;
 
   Resource._();
 

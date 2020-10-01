@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:multipoint_app_xenius/constants.dart';
 import 'package:multipoint_app_xenius/ui/view/home/components/collapsing_toolbar.dart';
 import 'package:multipoint_app_xenius/ui/view/home/components/overview.dart';
+import 'package:multipoint_app_xenius/ui/view/recharge/recharge_view.dart';
 import 'package:multipoint_app_xenius/ui/view/report/report_view.dart';
 
 class Home extends StatefulWidget {
@@ -14,14 +15,10 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
+
   final List<Widget> _widgetOption = [
     OverviewPage(),
-    Text(
-      'Index 1: Recharge',
-      style: optionStyle,
-    ),
+    RechargeView(),
     ReportView(),
   ];
 
@@ -41,7 +38,8 @@ class _HomeState extends State<Home> {
             CollapsingToolBar(),
           ];
         },
-        body: _widgetOption.elementAt(_selectedIndex),
+        body: Expanded(
+            child: Container(child: _widgetOption.elementAt(_selectedIndex))),
       ),
       bottomNavigationBar: BottomNavigationBar(
         elevation: 5.0,
