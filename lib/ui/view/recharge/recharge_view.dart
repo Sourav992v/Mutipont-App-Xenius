@@ -52,8 +52,60 @@ class _RechargeViewState extends State<RechargeView>
           ),
         ),
         Card(
-          child: new ListTile(
-            title: const Text('Some more information'),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          margin:
+              EdgeInsets.only(top: 16.0, bottom: 16.0, left: 4.0, right: 4.0),
+          color: Colors.white,
+          clipBehavior: Clip.antiAlias,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Available balance',
+                      style: kLabelTextStyle,
+                    ),
+                    Text(
+                      'Value',
+                      style: kLabelTextStyle,
+                    ),
+                  ],
+                ),
+                SizedBox(height: 8.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Updated on',
+                      style: kSubLabelTextStyle,
+                    ),
+                    Text(
+                      '2-10-2020 12:00:56',
+                      style: kSubValueTextStyle,
+                    ),
+                  ],
+                ),
+                SizedBox(height: 4.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Recent Recharge',
+                      style: kSubLabelTextStyle,
+                    ),
+                    Text(
+                      '2-10-2020 12:00:56',
+                      style: kSubValueTextStyle,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
         Card(
