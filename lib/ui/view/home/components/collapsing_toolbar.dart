@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:multipoint_app_xenius/constants.dart';
+import 'package:multipoint_app_xenius/ui/view/login/login_view.dart';
+import 'package:multipoint_app_xenius/ui/view/profile/user_profile_dialog.dart';
+import 'package:multipoint_app_xenius/ui/view/recharge/recharge_status_dialog.dart';
 
 class CollapsingToolBar extends StatelessWidget {
   const CollapsingToolBar({
@@ -38,7 +42,13 @@ class CollapsingToolBar extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(right: 20),
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute<Null>(
+                  builder: (BuildContext context) {
+                    return UserProfileDialog();
+                  },
+                  fullscreenDialog: true));
+            },
             child: Container(
               height: 24.0,
               width: 24.0,
@@ -51,11 +61,30 @@ class CollapsingToolBar extends StatelessWidget {
           ),
         ),
         Padding(
-            padding: EdgeInsets.only(right: 20.0),
-            child: GestureDetector(
-              onTap: () {},
+          padding: EdgeInsets.only(right: 20.0),
+          child: Container(
+            height: 24.0,
+            child: PopupMenuButton(
+              onSelected: (value) {
+                if (value == 1) {
+                  Navigator.pushNamed(context, LoginView.id);
+                }
+              },
+              color: kColorAccentRed,
               child: Icon(Icons.more_vert),
-            )),
+              itemBuilder: (context) {
+                return [
+                  PopupMenuItem(
+                      value: 1,
+                      child: Text(
+                        'Sign out',
+                        style: TextStyle(color: Colors.white, fontSize: 12.0),
+                      ))
+                ];
+              },
+            ),
+          ),
+        ),
       ],
       expandedHeight: 128.0,
       floating: false,

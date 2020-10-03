@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:multipoint_app_xenius/components/rouded_button.dart';
 import 'package:multipoint_app_xenius/components/rouded_button_recharge.dart';
 import 'package:multipoint_app_xenius/constants.dart';
+import 'package:multipoint_app_xenius/ui/view/recharge/recharge_status_dialog.dart';
 
 enum SingingCharacter { grid, dg }
 
@@ -206,7 +207,17 @@ class _RechargeViewState extends State<RechargeView>
       ),
       trailing: RoundedButtonRecharge(
         text: 'Submit',
-        press: () {},
+        press: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) => RechargeDialog(
+              title: "Success",
+              description:
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+              buttonText: "Okay",
+            ),
+          );
+        },
         color: kColorPrimary,
         textColor: Colors.white,
         width: 72.0,
