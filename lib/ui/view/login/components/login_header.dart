@@ -166,7 +166,8 @@ class _LoginHeaderState extends State<LoginHeader> {
                           var success = await model.login();
 
                           if (success.body.rc == 0) {
-                            Navigator.pushNamed(context, Home.id);
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                                Home.id, (Route<dynamic> route) => false);
                           } else {
                             Scaffold.of(context).showSnackBar(SnackBar(
                               content: Text(

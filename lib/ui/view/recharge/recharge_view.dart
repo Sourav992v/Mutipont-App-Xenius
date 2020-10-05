@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:multipoint_app_xenius/components/rouded_button.dart';
 import 'package:multipoint_app_xenius/components/rouded_button_recharge.dart';
 import 'package:multipoint_app_xenius/constants.dart';
+import 'package:multipoint_app_xenius/ui/view/recharge/recharge_history/recharge_history_view.dart';
 import 'package:multipoint_app_xenius/ui/view/recharge/recharge_status_dialog.dart';
 
 enum SingingCharacter { grid, dg }
@@ -109,11 +110,35 @@ class _RechargeViewState extends State<RechargeView>
             ),
           ),
         ),
-        Card(
-          child: new ListTile(
-            title: const Text('Some more information'),
-          ),
-        ),
+        Container(
+          height: 348,
+          margin: EdgeInsets.only(bottom: 24.0),
+          child: Card(
+              child: Padding(
+            padding: const EdgeInsets.only(left: 40.0, right: 40.0),
+            child: ListView(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                      child: Text(
+                    'Recharge History',
+                    style: kLabelTextStyle,
+                  )),
+                ),
+                Center(
+                  child: Container(
+                    height: 300.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: RechargeHistoryView(),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )),
+        )
       ],
     ));
   }

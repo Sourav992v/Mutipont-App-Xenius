@@ -67,7 +67,8 @@ class CollapsingToolBar extends StatelessWidget {
             child: PopupMenuButton(
               onSelected: (value) {
                 if (value == 1) {
-                  Navigator.pushNamed(context, LoginView.id);
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      LoginView.id, (Route<dynamic> route) => false);
                 }
               },
               color: kColorAccentRed,
