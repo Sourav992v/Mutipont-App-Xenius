@@ -57,7 +57,7 @@ class _MultipointAppXeniusState extends State<MultipointAppXenius> {
         fontFamily: 'Lato',
         scaffoldBackgroundColor: Colors.white,
       ),
-      initialRoute: Home.id,
+      initialRoute: LoginView.id,
       //loginId != null || password != null ? Home.id : LoginView.id,//
       routes: {
         Home.id: (context) => Home(),

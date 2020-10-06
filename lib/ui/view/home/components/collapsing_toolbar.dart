@@ -31,6 +31,17 @@ class CollapsingToolBar extends StatelessWidget {
             child: Container(
               height: 24.0,
               width: 24.0,
+              child: Icon(Icons.settings),
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(right: 20),
+          child: GestureDetector(
+            onTap: () {},
+            child: Container(
+              height: 24.0,
+              width: 24.0,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
