@@ -8,6 +8,7 @@ class UserProfileDialog extends StatefulWidget {
 }
 
 class _UserProfileDialogState extends State<UserProfileDialog> {
+  bool isExpanded = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,8 +87,10 @@ class _UserProfileDialogState extends State<UserProfileDialog> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 24.0),
+                  margin:
+                      EdgeInsets.only(left: 24.0, right: 24.0, bottom: 16.0),
                   child: Card(
+                    elevation: 5.0,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0)),
                     child: Column(
@@ -95,6 +98,11 @@ class _UserProfileDialogState extends State<UserProfileDialog> {
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 64.0),
                           child: ExpansionTile(
+                            onExpansionChanged: (value) {
+                              setState(() {
+                                isExpanded = value;
+                              });
+                            },
                             leading: Image.asset(
                               'assets/images/ic_support.png',
                               height: 24.0,
@@ -105,6 +113,17 @@ class _UserProfileDialogState extends State<UserProfileDialog> {
                               style: kLabelTextStyle,
                               textAlign: TextAlign.center,
                             ),
+                            trailing: isExpanded
+                                ? Image.asset(
+                                    'assets/images/ic_up_arrow.png',
+                                    height: 24.0,
+                                    width: 24.0,
+                                  )
+                                : Image.asset(
+                                    'assets/images/ic_down_arrow.png',
+                                    height: 24.0,
+                                    width: 24.0,
+                                  ),
                             children: [
                               ListTile(
                                 title: Text(
@@ -169,6 +188,34 @@ class _UserProfileDialogState extends State<UserProfileDialog> {
                           ),
                         )
                       ],
+                    ),
+                  ),
+                ),
+                Container(
+                  margin:
+                      EdgeInsets.only(left: 24.0, right: 24.0, bottom: 16.0),
+                  child: Card(
+                    elevation: 5.0,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0)),
+                    child: Container(
+                      margin: EdgeInsets.only(left: 64.0, right: 56),
+                      child: ListTile(
+                        leading: Image.asset(
+                          'assets/images/ic_change_password.png',
+                          height: 24.0,
+                          width: 24.0,
+                        ),
+                        title: Text(
+                          'Change Password',
+                          style: kLabelTextStyle,
+                          textAlign: TextAlign.center,
+                        ),
+                        trailing: Icon(
+                          Icons.arrow_right,
+                          color: Colors.greenAccent,
+                        ),
+                      ),
                     ),
                   ),
                 )
