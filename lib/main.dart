@@ -8,6 +8,7 @@ import 'package:multipoint_app_xenius/ui/view/login/login_view.dart';
 
 import 'package:multipoint_app_xenius/ui/view/report/daily_report/daily_report_view.dart';
 import 'package:multipoint_app_xenius/ui/view/report/monthly_report/monthly_report_view.dart';
+import 'package:multipoint_app_xenius/ui/view/util/notification_settings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -64,6 +65,7 @@ class _MultipointAppXeniusState extends State<MultipointAppXenius> {
         LoginView.id: (context) => LoginView(),
         DailyReportView.id: (context) => DailyReportView(),
         MonthlyReportView.id: (context) => MonthlyReportView(),
+        NotificationSettings.id: (context) => NotificationSettings(),
       },
     );
   }
