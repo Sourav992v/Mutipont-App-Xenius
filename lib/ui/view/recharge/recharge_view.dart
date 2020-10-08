@@ -1,10 +1,10 @@
-import 'package:charts_flutter/flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:multipoint_app_xenius/components/rouded_button.dart';
+
 import 'package:multipoint_app_xenius/components/rouded_button_recharge.dart';
 import 'package:multipoint_app_xenius/constants.dart';
 import 'package:multipoint_app_xenius/ui/view/recharge/recharge_history/recharge_history_view.dart';
 import 'package:multipoint_app_xenius/ui/view/recharge/recharge_status_dialog.dart';
+import 'package:multipoint_app_xenius/ui/view/recharge/recharge_webview_dialog.dart';
 
 enum SingingCharacter { grid, dg }
 
@@ -193,26 +193,86 @@ class _RechargeViewState extends State<RechargeView>
                 return Container(
                   color: Colors.transparent,
                   child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 8.0),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            topLeft: const Radius.circular(10.0),
-                            topRight: const Radius.circular(10.0))),
-                    child: Wrap(
-                      children: <Widget>[
-                        ListTile(
-                            leading: Icon(Icons.music_note),
-                            title: Text('Music'),
-                            onTap: () => {}),
-                        ListTile(
-                          leading: Icon(Icons.videocam),
-                          title: Text('Video'),
-                          onTap: () => {},
+                      margin:
+                          EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                              topLeft: const Radius.circular(8.0),
+                              topRight: const Radius.circular(8.0))),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: 3,
+                          itemBuilder: (context, index) {
+                            var icon;
+                            var title;
+                            if (index == 0) {
+                              icon = Image.asset(
+                                'assets/images/ic_hdfc.png',
+                                height: 24.0,
+                                width: 24.0,
+                              );
+                              title = Text(
+                                'HDFC',
+                                style: kLabelTextStyle,
+                              );
+                            } else if (index == 1) {
+                              icon = Image.asset(
+                                'assets/images/ic_paytm.png',
+                                height: 24.0,
+                                width: 24.0,
+                              );
+                              title = Text(
+                                'PAYTM',
+                                style: kLabelTextStyle,
+                              );
+                            } else {
+                              icon = Image.asset(
+                                'assets/images/ic_mobikwik.png',
+                                height: 24.0,
+                                width: 24.0,
+                              );
+                              title = Text(
+                                'MOBIKWIK',
+                                style: kLabelTextStyle,
+                              );
+                            }
+                            return Card(
+                              child: ListTile(
+                                leading: icon,
+                                title: Center(
+                                  child: title,
+                                ),
+                                trailing: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: kColorAccentGreen,
+                                ),
+                                onTap: () {
+                                  var url;
+                                  if (index == 0) {
+                                    url =
+                                        'https://netbanking.hdfcbank.com/netbanking/';
+                                  } else if (index == 1) {
+                                    url = 'https://paytm.com/';
+                                  } else {
+                                    url = 'https://www.mobikwik.com/';
+                                  }
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: (context) {
+                                          return RechargeProgressDialog(
+                                              url: url);
+                                        },
+                                        fullscreenDialog: true),
+                                  );
+                                },
+                              ),
+                            );
+                          },
                         ),
-                      ],
-                    ),
-                  ),
+                      )),
                 );
               });
         },
