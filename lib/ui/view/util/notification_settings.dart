@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:multipoint_app_xenius/constants.dart';
 import 'package:multipoint_app_xenius/ui/view/util/dimen.dart';
+import 'package:numberpicker/numberpicker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class NotificationSettings extends StatefulWidget {
@@ -136,8 +137,23 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                   ),
                   enabled: dgGridNotificationToggle,
                   onTap: () {
+                    //showDialog(child: gridInputDialog(context), context: context);
+
                     showDialog(
-                        child: gridInputDialog(context), context: context);
+                      context: context,
+                      child: NumberPickerDialog.decimal(
+                        minValue: 1,
+                        maxValue: 20,
+                        initialDoubleValue: _gridAlertValue,
+                        title: new Text("Pick a value"),
+                      ),
+                    ).then((value) {
+                      if (value != null) {
+                        sharedPreferences.setDouble('gridAlert', value);
+
+                        setState(() => _gridAlertValue = value);
+                      }
+                    });
                   },
                 ),
                 ListTile(
@@ -155,7 +171,23 @@ class _NotificationSettingsState extends State<NotificationSettings> {
                   ),
                   enabled: dgGridNotificationToggle ? true : false,
                   onTap: () {
-                    showDialog(child: dgInputDialog(context), context: context);
+                    //showDialog(child: dgInputDialog(context), context: context);
+
+                    showDialog(
+                      context: context,
+                      child: NumberPickerDialog.decimal(
+                        minValue: 1,
+                        maxValue: 20,
+                        initialDoubleValue: _gridAlertValue,
+                        title: new Text("Pick a value"),
+                      ),
+                    ).then((value) {
+                      if (value != null) {
+                        sharedPreferences.setDouble('dgAlert', value);
+
+                        setState(() => _dgAlertValue = value);
+                      }
+                    });
                   },
                 ),
                 _buildDivider(),

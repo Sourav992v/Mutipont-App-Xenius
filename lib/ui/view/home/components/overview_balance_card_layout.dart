@@ -87,24 +87,36 @@ class GridBalanceCard extends StatelessWidget {
                     'Grid',
                     style: kLabelTextStyle,
                   ),
-                  SpinKitDoubleBounce(
-                    color: kColorPrimary,
-                    size: 24.0,
-                  ),
+                  resource.energy_source == 'Grid'
+                      ? SpinKitDoubleBounce(
+                          color: kColorPrimary,
+                          size: 24.0,
+                        )
+                      : Text(''),
                 ],
               ),
               SizedBox(height: 8.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Start Time',
-                    style: kSubLabelTextStyle,
-                  ),
-                  Text(
-                    '${resource.last_reading_updated}',
-                    style: kSubValueTextStyle,
-                  ),
+                  resource.energy_source == 'Grid'
+                      ? Text(
+                          'Start Time',
+                          style: kSubLabelTextStyle,
+                        )
+                      : Text(
+                          'Off',
+                          style: kSubLabelTextStyle,
+                        ),
+                  resource.energy_source == 'Grid'
+                      ? Text(
+                          '${resource.last_reading_updated}',
+                          style: kSubValueTextStyle,
+                        )
+                      : Text(
+                          '',
+                          style: kSubLabelTextStyle,
+                        ),
                 ],
               ),
               SizedBox(height: 4.0),
@@ -195,24 +207,30 @@ class DGBalanceCard extends StatelessWidget {
                     'DG',
                     style: kLabelTextStyle,
                   ),
-                  SpinKitDoubleBounce(
-                    color: kColorAccentRed,
-                    size: 24.0,
-                  ),
+                  resource.energy_source == 'DG'
+                      ? SpinKitDoubleBounce(
+                          color: kColorAccentRed,
+                          size: 24.0,
+                        )
+                      : Text(''),
                 ],
               ),
               SizedBox(height: 8.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Start Time',
-                    style: kSubLabelTextStyle,
-                  ),
-                  Text(
-                    '${resource.dg_last_reading_updated}',
-                    style: kSubValueTextStyle,
-                  ),
+                  resource.energy_source == 'DG'
+                      ? Text(
+                          'Start Time',
+                          style: kSubLabelTextStyle,
+                        )
+                      : Text('Off', style: kSubLabelTextStyle),
+                  resource.energy_source == 'DG'
+                      ? Text(
+                          '${resource.dg_last_reading_updated}',
+                          style: kSubValueTextStyle,
+                        )
+                      : Text(''),
                 ],
               ),
               SizedBox(height: 4.0),

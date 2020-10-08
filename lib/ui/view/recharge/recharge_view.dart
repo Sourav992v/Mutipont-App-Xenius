@@ -1,3 +1,4 @@
+import 'package:charts_flutter/flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:multipoint_app_xenius/components/rouded_button.dart';
 import 'package:multipoint_app_xenius/components/rouded_button_recharge.dart';
@@ -182,7 +183,39 @@ class _RechargeViewState extends State<RechargeView>
       ),
       trailing: RoundedButtonRecharge(
         text: 'Pay',
-        press: () {},
+        press: () {
+          showBottomSheet(
+              context: context,
+              elevation: 5.0,
+              backgroundColor: Colors.transparent,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              builder: (builder) {
+                return Container(
+                  color: Colors.transparent,
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 8.0),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topLeft: const Radius.circular(10.0),
+                            topRight: const Radius.circular(10.0))),
+                    child: Wrap(
+                      children: <Widget>[
+                        ListTile(
+                            leading: Icon(Icons.music_note),
+                            title: Text('Music'),
+                            onTap: () => {}),
+                        ListTile(
+                          leading: Icon(Icons.videocam),
+                          title: Text('Video'),
+                          onTap: () => {},
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              });
+        },
         color: kColorPrimary,
         textColor: Colors.white,
         width: 72.0,

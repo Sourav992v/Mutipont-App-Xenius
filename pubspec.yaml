@@ -50,6 +50,8 @@ dependencies:
   cached_network_image: ^2.3.2+1
   built_collection: ^4.3.2
 
+  numberpicker: ^1.2.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
