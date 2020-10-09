@@ -14,7 +14,8 @@ part 'authentication_service.chopper.dart';
 abstract class AuthenticationService extends ChopperService {
   static AuthenticationService create() {
     final client = ChopperClient(
-      baseUrl: 'http://vapt.myxenius.com/thirdparty/api',
+      //baseUrl: 'http://vapt.myxenius.com/thirdparty/api',
+      baseUrl: 'http://13.232.173.148/thirdparty/api',
       interceptors: [HttpLoggingInterceptor()],
       converter: BuiltValueConverter(),
       errorConverter: JsonConverter(),

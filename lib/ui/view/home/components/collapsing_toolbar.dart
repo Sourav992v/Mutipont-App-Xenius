@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:multipoint_app_xenius/constants.dart';
 import 'package:multipoint_app_xenius/ui/view/login/login_view.dart';
 import 'package:multipoint_app_xenius/ui/view/profile/user_profile_dialog.dart';
+import 'package:multipoint_app_xenius/ui/view/util/dg_event_logging.dart';
+import 'package:multipoint_app_xenius/ui/view/util/marquee_widget.dart';
+import 'package:multipoint_app_xenius/ui/view/util/notice.dart';
 import 'package:multipoint_app_xenius/ui/view/util/notification_settings.dart';
 
 class CollapsingToolBar extends StatelessWidget {
@@ -16,7 +19,13 @@ class CollapsingToolBar extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(right: 20),
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return NoticeDialog();
+                  },
+                  fullscreenDialog: true));
+            },
             child: Container(
               height: 24.0,
               width: 24.0,
@@ -40,7 +49,13 @@ class CollapsingToolBar extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(right: 20),
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return DgEventLogging();
+                  },
+                  fullscreenDialog: true));
+            },
             child: Container(
               height: 24.0,
               width: 24.0,
@@ -76,7 +91,7 @@ class CollapsingToolBar extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(right: 20.0),
           child: Container(
-            height: 24.0,
+            height: 16.0,
             child: PopupMenuButton(
               onSelected: (value) {
                 if (value == 1) {
@@ -90,9 +105,17 @@ class CollapsingToolBar extends StatelessWidget {
                 return [
                   PopupMenuItem(
                       value: 1,
-                      child: Text(
-                        'Sign out',
-                        style: TextStyle(color: Colors.white, fontSize: 12.0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(1.0),
+                        child: Text(
+                          'Sign out',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.0,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
                       ))
                 ];
               },
@@ -101,17 +124,32 @@ class CollapsingToolBar extends StatelessWidget {
         ),
       ],
       expandedHeight: 128.0,
-      floating: false,
+      floating: true,
       pinned: true,
       flexibleSpace: FlexibleSpaceBar(
+        collapseMode: CollapseMode.parallax,
+        centerTitle: true,
         title: Container(
-          child: Text(
-            'Unit No\nXYZ',
-            style: TextStyle(
-              fontFamily: 'Lato',
-              fontSize: 12.0,
-            ),
-            textAlign: TextAlign.justify,
+          margin: EdgeInsets.only(left: 24.0, top: 48.0),
+          child: ListView(
+            children: [
+              Text('Unit No\nXYZ',
+                  style: TextStyle(
+                    fontFamily: 'Lato',
+                    fontSize: 12.0,
+                  )),
+              Padding(
+                padding:
+                    const EdgeInsets.only(top: 16.0, right: 24.0, bottom: 16.0),
+                child: MarqueeWidget(
+                    direction: Axis.horizontal,
+                    child: Text(
+                      "This text is to long to be shown in just one line. This text is to long to be shown in just one line",
+                      style: TextStyle(
+                          backgroundColor: kColorAccentRed, fontSize: 12.0),
+                    )),
+              )
+            ],
           ),
         ),
         background: Container(

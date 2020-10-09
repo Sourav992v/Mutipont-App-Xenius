@@ -162,6 +162,7 @@ class _LoginHeaderState extends State<LoginHeader> {
                               'login_id', widget.loginIdController.text);
                           userPref.setString(
                               'password', widget.passwordController.text);
+                          userPref.setBool('login', true);
 
                           var success = await model.login();
 

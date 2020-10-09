@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:multipoint_app_xenius/constants.dart';
 import 'package:multipoint_app_xenius/locator.dart';
+import 'package:multipoint_app_xenius/splash_screen.dart';
 
 import 'package:multipoint_app_xenius/ui/view/home/home.dart';
 import 'package:multipoint_app_xenius/ui/view/login/login_view.dart';
@@ -58,9 +59,10 @@ class _MultipointAppXeniusState extends State<MultipointAppXenius> {
         fontFamily: 'Lato',
         scaffoldBackgroundColor: Colors.white,
       ),
-      initialRoute: LoginView.id,
+      initialRoute: SplashScreen.id,
       //loginId != null || password != null ? Home.id : LoginView.id,//
       routes: {
+        SplashScreen.id: (context) => SplashScreen(),
         Home.id: (context) => Home(),
         LoginView.id: (context) => LoginView(),
         DailyReportView.id: (context) => DailyReportView(),
