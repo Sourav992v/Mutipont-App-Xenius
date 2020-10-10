@@ -14,18 +14,23 @@ class RoudedPasswordField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFieldContainer(
-      child: TextField(
-        obscureText: obscureText,
-        controller: passwordController,
-        cursorColor: kTextColor,
-        decoration: InputDecoration(
-          hintText: "Password",
-          icon: Icon(
-            Icons.lock,
-            color: kTextColor,
-          ),
-          border: InputBorder.none,
+    return TextField(
+      obscureText: obscureText,
+      controller: passwordController,
+      cursorColor: kTextColor,
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
+        hintText: "Password",
+        prefixIcon: Icon(
+          Icons.lock,
+          color: kTextColor,
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: kColorPrimaryDark),
+          borderRadius: BorderRadius.circular(12.0),
         ),
       ),
     );

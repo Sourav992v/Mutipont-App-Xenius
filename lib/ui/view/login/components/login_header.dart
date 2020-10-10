@@ -99,131 +99,153 @@ class _LoginHeaderState extends State<LoginHeader> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return BaseView<LoginViewModel>(
-      builder: (context, model, child) => Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/login_xenius_background.png"),
-              fit: BoxFit.fill,
-              alignment: Alignment.center),
-        ),
-        child: Container(
-          height: double.maxFinite,
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  top: 190, bottom: 190, left: 20, right: 20),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+      builder: (context, model, child) => Scaffold(
+        body: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: Stack(
+                  fit: StackFit.expand,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 12.0),
-                      child: Text(
-                        "Smart Energy Management Solution",
-                        style: TextStyle(
-                            fontFamily: 'Lato',
-                            fontWeight: FontWeight.bold,
-                            color: kTextColor),
+                    Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(
+                                "assets/images/login_xenius_background.png"),
+                            fit: BoxFit.fill,
+                            alignment: Alignment.center),
                       ),
                     ),
-                    SizedBox(
-                      height: size.height * 0.03,
-                    ),
-                    RoudedInputField(
-                      loginIdController: widget.loginIdController,
-                      icon: Icons.person,
-                      hintText: "Login Id",
-                    ),
-                    RoudedPasswordField(
-                      passwordController: widget.passwordController,
-                      obscureText: _obscureText,
-                    ),
-                    CheckBoxCostume(
-                      title: 'Show Password',
-                      value: !_obscureText,
-                      checked: (bool value) {
-                        toggle();
-                      },
-                    ),
-                    RoundedButton(
-                      text: 'Sign In',
-                      press: () async {
-                        FocusScope.of(context).unfocus();
-
-                        if (_connectivityStatus ==
-                                "ConnectivityResult.mobile" ||
-                            _connectivityStatus == "ConnectivityResult.wifi") {
-                          SharedPreferences userPref =
-                              await SharedPreferences.getInstance();
-                          userPref.setString(
-                              'login_id', widget.loginIdController.text);
-                          userPref.setString(
-                              'password', widget.passwordController.text);
-                          userPref.setBool('login', true);
-
-                          var success = await model.login();
-
-                          if (success.body.rc == 0) {
-                            Navigator.of(context).pushNamedAndRemoveUntil(
-                                Home.id, (Route<dynamic> route) => false);
-                          } else {
-                            Scaffold.of(context).showSnackBar(SnackBar(
-                              content: Text(
-                                'Invalid credentials!',
+                    Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                        margin: EdgeInsets.symmetric(
+                            horizontal: 32.0, vertical: 32.0),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0)),
+                          child: ListView(
+                            physics: MediaQuery.of(context).viewInsets ==
+                                    EdgeInsets.zero
+                                ? NeverScrollableScrollPhysics()
+                                : null,
+                            padding: const EdgeInsets.all(32.0),
+                            shrinkWrap: true,
+                            children: [
+                              Text(
+                                "Smart Energy Management Solution",
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  fontFamily: 'Lato',
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 12.0,
+                                    fontFamily: 'Lato',
+                                    fontWeight: FontWeight.bold,
+                                    color: kTextColor),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              RoudedInputField(
+                                loginIdController: widget.loginIdController,
+                                icon: Icons.person,
+                                hintText: "Login Id",
+                              ),
+                              SizedBox(
+                                height: 10.0,
+                              ),
+                              RoudedPasswordField(
+                                passwordController: widget.passwordController,
+                                obscureText: _obscureText,
+                              ),
+                              CheckBoxCostume(
+                                title: 'Show Password',
+                                value: !_obscureText,
+                                checked: (bool value) {
+                                  toggle();
+                                },
+                              ),
+                              RoundedButton(
+                                text: 'Sign In',
+                                press: () async {
+                                  FocusScope.of(context).unfocus();
+
+                                  if (_connectivityStatus ==
+                                          "ConnectivityResult.mobile" ||
+                                      _connectivityStatus ==
+                                          "ConnectivityResult.wifi") {
+                                    SharedPreferences userPref =
+                                        await SharedPreferences.getInstance();
+                                    userPref.setString('login_id',
+                                        widget.loginIdController.text);
+                                    userPref.setString('password',
+                                        widget.passwordController.text);
+                                    userPref.setBool('login', true);
+
+                                    var success = await model.login();
+
+                                    if (success.body.rc == 0) {
+                                      Navigator.of(context)
+                                          .pushNamedAndRemoveUntil(Home.id,
+                                              (Route<dynamic> route) => false);
+                                    } else {
+                                      Scaffold.of(context)
+                                          .showSnackBar(SnackBar(
+                                        content: Text(
+                                          'Invalid credentials!',
+                                          style: TextStyle(
+                                            fontFamily: 'Lato',
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 12.0,
+                                          ),
+                                        ),
+                                        backgroundColor: kColorPrimaryDark,
+                                      ));
+                                    }
+                                  } else {
+                                    Scaffold.of(context).showSnackBar(SnackBar(
+                                      content: Text(
+                                        'No Internet!',
+                                        style: TextStyle(
+                                          fontFamily: 'Lato',
+                                          fontWeight: FontWeight.normal,
+                                          fontSize: 12.0,
+                                        ),
+                                      ),
+                                      backgroundColor: kColorPrimaryDark,
+                                    ));
+                                  }
+                                },
+                                color: kColorAccentRed,
+                                textColor: Colors.white,
+                              ),
+                              Text(
+                                "Forgot Password?",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontFamily: 'Open Sans',
+                                    fontWeight: FontWeight.bold,
+                                    color: kTextColor),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "Powered by Xenia",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: 'Open Sans',
+                                  fontWeight: FontWeight.bold,
+                                  color: kColorSecondary,
                                 ),
                               ),
-                              backgroundColor: kColorPrimaryDark,
-                            ));
-                          }
-                        } else {
-                          Scaffold.of(context).showSnackBar(SnackBar(
-                            content: Text(
-                              'No Internet!',
-                              style: TextStyle(
-                                fontFamily: 'Lato',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 12.0,
-                              ),
-                            ),
-                            backgroundColor: kColorPrimaryDark,
-                          ));
-                        }
-                      },
-                      color: kColorAccentRed,
-                      textColor: Colors.white,
-                    ),
-                    Text(
-                      "Forgot Password?",
-                      style: TextStyle(
-                          fontFamily: 'Open Sans',
-                          fontWeight: FontWeight.bold,
-                          color: kTextColor),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.03,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 12.0),
-                      child: Text(
-                        "Powered by Xenia",
-                        style: TextStyle(
-                          fontFamily: 'Open Sans',
-                          fontWeight: FontWeight.bold,
-                          color: kColorSecondary,
+                            ],
+                          ),
                         ),
                       ),
-                    ),
+                    )
                   ],
                 ),
-              ),
-            ),
+              )
+            ],
           ),
         ),
       ),

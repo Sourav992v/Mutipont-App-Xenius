@@ -17,13 +17,19 @@ class RoundedButton extends StatelessWidget {
       width: size.width * 0.8,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12.0),
-        child: FlatButton(
+        child: RaisedButton.icon(
           padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 40),
+          elevation: 5.0,
           color: color,
           onPressed: press,
-          child: Text(
+          icon: Icon(
+            Icons.lock,
+            color: Colors.white,
+          ),
+          label: Text(
             text,
-            style: TextStyle(color: textColor),
+            style: TextStyle(
+                color: textColor, fontSize: 16.0, fontWeight: FontWeight.bold),
           ),
         ),
       ),

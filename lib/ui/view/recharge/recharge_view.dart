@@ -184,7 +184,7 @@ class _RechargeViewState extends State<RechargeView>
           showBottomSheet(
               context: context,
               elevation: 5.0,
-              backgroundColor: Colors.white,
+              backgroundColor: Colors.transparent,
               builder: (builder) {
                 return Container(
                     margin: EdgeInsets.only(top: 2.0, left: 8.0, right: 8.0),

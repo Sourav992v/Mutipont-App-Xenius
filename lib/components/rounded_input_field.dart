@@ -15,18 +15,23 @@ class RoudedInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFieldContainer(
-      child: TextField(
-        keyboardType: TextInputType.number,
-        controller: loginIdController,
-        cursorColor: kTextColor,
-        decoration: InputDecoration(
-          icon: Icon(
-            icon,
-            color: kTextColor,
-          ),
-          hintText: hintText,
-          border: InputBorder.none,
+    return TextField(
+      keyboardType: TextInputType.number,
+      controller: loginIdController,
+      cursorColor: kTextColor,
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
+        prefixIcon: Icon(
+          icon,
+          color: kTextColor,
+        ),
+        hintText: hintText,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: kColorPrimaryDark),
+          borderRadius: BorderRadius.circular(12.0),
         ),
       ),
     );
