@@ -5,6 +5,7 @@ import 'package:multipoint_app_xenius/locator.dart';
 import 'package:multipoint_app_xenius/splash_screen.dart';
 import 'package:multipoint_app_xenius/ui/view/fortgot_password/password_input_view.dart';
 import 'package:multipoint_app_xenius/ui/view/fortgot_password/password_reset_otp.dart';
+import 'package:multipoint_app_xenius/ui/view/fortgot_password/reset_password_view.dart';
 
 import 'package:multipoint_app_xenius/ui/view/home/home.dart';
 import 'package:multipoint_app_xenius/ui/view/login/login_view.dart';
@@ -71,7 +72,8 @@ class _MultipointAppXeniusState extends State<MultipointAppXenius> {
         MonthlyReportView.id: (context) => MonthlyReportView(),
         NotificationSettings.id: (context) => NotificationSettings(),
         PasswordInput.id: (context) => PasswordInput(),
-        PasswordResetOtp.id: (context) => PasswordResetOtp()
+        PasswordResetOtp.id: (context) => PasswordResetOtp(),
+        ResetPassword.id: (context) => ResetPassword()
       },
     );
   }

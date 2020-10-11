@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:multipoint_app_xenius/constants.dart';
+import 'package:multipoint_app_xenius/ui/view/fortgot_password/reset_password_view.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class PasswordResetOtp extends StatefulWidget {
@@ -158,7 +159,10 @@ class _PasswordResetOtpState extends State<PasswordResetOtp> {
                       style: TextStyle(
                           fontSize: 14.0, fontWeight: FontWeight.bold),
                     ),
-                    onPressed: () {}),
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushReplacementNamed(ResetPassword.id);
+                    }),
               ],
             ),
           ),

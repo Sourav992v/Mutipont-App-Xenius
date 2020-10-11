@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:multipoint_app_xenius/constants.dart';
 import 'package:multipoint_app_xenius/ui/view/fortgot_password/password_reset_otp.dart';
+import 'package:multipoint_app_xenius/ui/view/login/login_view.dart';
 
-class PasswordInput extends StatelessWidget {
-  static const String id = 'password_input';
+class ResetPassword extends StatelessWidget {
+  static const String id = 'reset_password_view';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,15 +24,15 @@ class PasswordInput extends StatelessWidget {
                   child: CircleAvatar(
                     radius: 80.0,
                     backgroundColor: Colors.white,
-                    child: Image.asset(
-                        'assets/images/ic_reset_password_details.png'),
+                    child: Image.asset('assets/images/ic_password_reset.png'),
                   ),
                 ),
                 SizedBox(
                   height: 40.0,
                 ),
                 Text(
-                  'Enter your login id and registred phone number.\n We will send youOTP to reset your password',
+                  'Reset Your Password',
+                  style: TextStyle(fontSize: 20),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
@@ -43,9 +44,9 @@ class PasswordInput extends StatelessWidget {
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
                     prefixIcon: Icon(
-                      Icons.person,
+                      Icons.lock,
                     ),
-                    hintText: 'Login Id',
+                    hintText: 'Password',
                     hintStyle: TextStyle(color: Colors.blueGrey),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.0),
@@ -64,8 +65,8 @@ class PasswordInput extends StatelessWidget {
                   decoration: InputDecoration(
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
-                    prefixIcon: Icon(Icons.phone_android),
-                    hintText: 'Registered Number',
+                    prefixIcon: Icon(Icons.lock),
+                    hintText: 'Confirm Password',
                     hintStyle: TextStyle(color: Colors.blueGrey),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.0),
@@ -79,7 +80,7 @@ class PasswordInput extends StatelessWidget {
                 const SizedBox(
                   height: 20.0,
                 ),
-                RaisedButton.icon(
+                RaisedButton(
                     padding: EdgeInsets.all(16.0),
                     elevation: 5.0,
                     shape: RoundedRectangleBorder(
@@ -87,15 +88,13 @@ class PasswordInput extends StatelessWidget {
                     textColor: Colors.white,
                     color: kColorPrimary,
                     highlightElevation: 16.0,
-                    icon: Icon(Icons.navigate_next),
-                    label: Text(
-                      'Next',
+                    child: Text(
+                      'Submit',
                       style: TextStyle(
                           fontSize: 14.0, fontWeight: FontWeight.bold),
                     ),
                     onPressed: () {
-                      Navigator.of(context)
-                          .pushReplacementNamed(PasswordResetOtp.id);
+                      Navigator.of(context).pushReplacementNamed(LoginView.id);
                     }),
               ],
             ),
