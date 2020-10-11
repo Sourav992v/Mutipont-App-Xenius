@@ -37,7 +37,7 @@ class Lists extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
         padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-        itemCount: 16,
+        itemCount: 1,
         itemBuilder: (BuildContext context, int index) {
           return Card(
             elevation: 16,
@@ -47,7 +47,7 @@ class Lists extends StatelessWidget {
                 vertical: 16.0,
               ),
               child: Text(
-                'Loerm jjxsjhascjabc gvhxbshabckabsckasjc bhxbksvxjhasbxahk hbhbahcbjas',
+                'Lorem epsome',
                 style: kLabelTextStyle,
               ),
             ),

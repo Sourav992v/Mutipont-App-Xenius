@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multipoint_app_xenius/constants.dart';
+import 'package:multipoint_app_xenius/ui/view/fortgot_password/password_reset_otp.dart';
 
 class PasswordInput extends StatelessWidget {
   static const String id = 'password_input';
@@ -93,7 +94,10 @@ class PasswordInput extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 14.0, fontWeight: FontWeight.bold),
                     ),
-                    onPressed: () {}),
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushReplacementNamed(PasswordResetOtp.id);
+                    }),
               ],
             ),
           ),

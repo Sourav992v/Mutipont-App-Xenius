@@ -12,6 +12,7 @@ import 'package:multipoint_app_xenius/components/rounded_input_field.dart';
 import 'package:multipoint_app_xenius/components/rounded_password_field.dart';
 import 'package:multipoint_app_xenius/constants.dart';
 import 'package:multipoint_app_xenius/ui/view/base_view.dart';
+import 'package:multipoint_app_xenius/ui/view/fortgot_password/password_input_view.dart';
 import 'package:multipoint_app_xenius/ui/view/home/home.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -217,13 +218,19 @@ class _LoginHeaderState extends State<LoginHeader> {
                                 color: kColorAccentRed,
                                 textColor: Colors.white,
                               ),
-                              Text(
-                                "Forgot Password?",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontFamily: 'Open Sans',
-                                    fontWeight: FontWeight.bold,
-                                    color: kTextColor),
+                              FlatButton(
+                                onPressed: () {
+                                  Navigator.of(context)
+                                      .pushNamed(PasswordInput.id);
+                                },
+                                child: Text(
+                                  "Forgot Password?",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontFamily: 'Open Sans',
+                                      fontWeight: FontWeight.bold,
+                                      color: kTextColor),
+                                ),
                               ),
                               SizedBox(
                                 height: 10,

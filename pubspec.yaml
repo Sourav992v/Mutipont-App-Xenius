@@ -54,6 +54,7 @@ dependencies:
 
   webview_flutter: ^1.0.1
   marquee: ^1.6.1
+  pin_code_fields: ^6.0.0
 
 dev_dependencies:
   flutter_test:
