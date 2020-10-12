@@ -6,6 +6,7 @@ import 'package:multipoint_app_xenius/constants.dart';
 import 'package:multipoint_app_xenius/locator.dart';
 import 'package:multipoint_app_xenius/ui/view/base_view.dart';
 import 'package:multipoint_app_xenius/ui/view/recharge/recharge_webview_dialog.dart';
+import 'package:multipoint_app_xenius/ui/view/report/comparative_report/comparative_report_view.dart';
 
 import 'daily_report/daily_report_view.dart';
 import 'monthly_report/monthly_report_view.dart';
@@ -123,6 +124,9 @@ class ReportViewCard extends StatelessWidget {
                     style: kLabelTextStyle,
                   ),
                 ),
+                onTap: () {
+                  Navigator.pushNamed(context, ComparativeReportView.id);
+                },
               ),
             ),
           ),
@@ -152,9 +156,9 @@ class ReportViewCard extends StatelessWidget {
                         builder: (builder) {
                           return Container(
                               width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height,
+                              height: MediaQuery.of(context).size.height / 2,
                               margin: EdgeInsets.only(
-                                  top: 2.0, left: 8.0, right: 8.0),
+                                  top: 2.0, left: 8.0, right: 8.0, bottom: 8.0),
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   boxShadow: [
@@ -184,10 +188,12 @@ class ReportViewCard extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.all(16.0),
                                     child: Container(
-                                      height: 400,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.3,
                                       child: ListView.builder(
                                         shrinkWrap: true,
-                                        itemCount: 11,
+                                        itemCount: 1,
                                         itemBuilder: (context, index) {
                                           var icon;
                                           var title;
