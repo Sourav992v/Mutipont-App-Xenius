@@ -104,6 +104,71 @@ class _UserProfileDialogState extends State<UserProfileDialog> {
                                 isExpanded = value;
                               });
                             },
+                            leading: Icon(
+                              Icons.settings_remote,
+                              color: Colors.greenAccent[400],
+                            ),
+                            title: Text(
+                              'Power Control',
+                              style: kLabelTextStyle,
+                              textAlign: TextAlign.center,
+                            ),
+                            trailing: isExpanded
+                                ? Image.asset(
+                                    'assets/images/ic_arrow_up.png',
+                                    height: 24.0,
+                                    width: 24.0,
+                                  )
+                                : Image.asset(
+                                    'assets/images/ic_arrow_down.png',
+                                    height: 24.0,
+                                    width: 24.0,
+                                  ),
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 64),
+                                child: ListTile(
+                                  title: Text('Meter Restore'),
+                                  trailing: Icon(
+                                    Icons.restore,
+                                    color: Colors.greenAccent[400],
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 64.0),
+                                child: ListTile(
+                                  title: Text('Verify Balance'),
+                                  trailing: Icon(
+                                    Icons.check_box,
+                                    color: Colors.greenAccent[400],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  margin:
+                      EdgeInsets.only(left: 24.0, right: 24.0, bottom: 16.0),
+                  child: Card(
+                    elevation: 5.0,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0)),
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 64.0),
+                          child: ExpansionTile(
+                            onExpansionChanged: (value) {
+                              setState(() {
+                                isExpanded = value;
+                              });
+                            },
                             leading: Image.asset(
                               'assets/images/ic_support.png',
                               height: 24.0,
