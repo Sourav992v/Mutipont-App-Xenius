@@ -33,272 +33,253 @@ class _ReportViewState extends State<ReportView> {
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<HomeViewModel>(
-        onModelReady: (model) => model.getLoginResource(),
-        builder: (context, value, child) => resource != null
-            ? Container(
-                margin: EdgeInsets.all(4.0),
-                child: Column(
-                  children: [
-                    ReportViewCard(resource),
-                  ],
-                ),
-              )
-            : SpinKitFadingCircle(
-                color: kColorPrimary,
-                size: 24.0,
-              ));
+    return Scaffold(
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        child: ReportViewCard(),
+      ),
+    );
   }
 }
 
 class ReportViewCard extends StatelessWidget {
-  ReportViewCard(this.loginResource);
-  final Resource loginResource;
-
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-              margin: EdgeInsets.only(top: 16.0),
-              height: 96.0,
-              child: Card(
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 16.0),
+            height: 96.0,
+            child: Card(
+              elevation: 16.0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              color: Colors.white,
+              margin: EdgeInsets.only(
+                  top: 0.0, bottom: 8.0, left: 16.0, right: 16.0),
+              child: ListTile(
+                leading: Padding(
+                  padding:
+                      const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 4.0),
+                  child: Container(
+                      height: 64.0,
+                      width: 64.0,
+                      child: Image.asset('assets/images/ic_line_chart.png')),
+                ),
+                title: Center(
+                  child: Text(
+                    'Daily',
+                    style: kLabelTextStyle,
+                  ),
+                ),
+                onTap: () {
+                  Navigator.pushNamed(context, DailyReportView.id);
+                },
+              ),
+            ),
+          ),
+          Container(
+            height: 96.0,
+            child: Card(
                 elevation: 16.0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 color: Colors.white,
                 margin: EdgeInsets.only(
-                    top: 0.0, bottom: 8.0, left: 16.0, right: 16.0),
+                    top: 4.0, bottom: 8.0, left: 16.0, right: 16.0),
                 child: ListTile(
-                  leading: Padding(
-                    padding:
-                        const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 4.0),
-                    child: Container(
-                        height: 64.0,
-                        width: 64.0,
-                        child: Image.asset('assets/images/ic_line_chart.png')),
-                  ),
+                  leading: Image.asset('assets/images/ic_bar_chart.png'),
                   title: Center(
                     child: Text(
-                      'Daily',
+                      'Monthly',
                       style: kLabelTextStyle,
                     ),
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, DailyReportView.id);
+                    Navigator.pushNamed(context, MonthlyReportView.id);
                   },
+                )),
+          ),
+          Container(
+            height: 96.0,
+            child: Card(
+              elevation: 16.0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              color: Colors.white,
+              margin: EdgeInsets.only(
+                  top: 4.0, bottom: 8.0, left: 16.0, right: 16.0),
+              child: ListTile(
+                leading:
+                    Image.asset('assets/images/ic_bar_comparative_chart.png'),
+                title: Center(
+                  child: Text(
+                    'Comparative',
+                    style: kLabelTextStyle,
+                  ),
                 ),
               ),
             ),
-            Container(
-              height: 96.0,
-              child: Card(
-                  elevation: 16.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  color: Colors.white,
-                  margin: EdgeInsets.only(
-                      top: 4.0, bottom: 8.0, left: 16.0, right: 16.0),
-                  child: ListTile(
-                    leading: Image.asset('assets/images/ic_bar_chart.png'),
-                    title: Center(
-                      child: Text(
-                        'Monthly',
-                        style: kLabelTextStyle,
-                      ),
-                    ),
-                    onTap: () {
-                      Navigator.pushNamed(context, MonthlyReportView.id);
-                    },
-                  )),
-            ),
-            Container(
-              height: 96.0,
-              child: Card(
-                elevation: 16.0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                color: Colors.white,
-                margin: EdgeInsets.only(
-                    top: 4.0, bottom: 8.0, left: 16.0, right: 16.0),
-                child: ListTile(
-                  leading:
-                      Image.asset('assets/images/ic_bar_comparative_chart.png'),
+          ),
+          Container(
+            height: 96.0,
+            child: Card(
+              elevation: 16.0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              color: Colors.white,
+              margin: EdgeInsets.only(
+                  top: 4.0, bottom: 8.0, left: 16.0, right: 16.0),
+              child: ListTile(
+                  leading: Image.asset('assets/images/ic_tariff.png'),
                   title: Center(
                     child: Text(
-                      'Comparative',
+                      'Current Tariff',
                       style: kLabelTextStyle,
                     ),
                   ),
-                ),
-              ),
-            ),
-            Container(
-              height: 96.0,
-              child: Card(
-                elevation: 16.0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                color: Colors.white,
-                margin: EdgeInsets.only(
-                    top: 4.0, bottom: 8.0, left: 16.0, right: 16.0),
-                child: ListTile(
-                    leading: Image.asset('assets/images/ic_tariff.png'),
-                    title: Center(
-                      child: Text(
-                        'Current Tariff',
-                        style: kLabelTextStyle,
-                      ),
-                    ),
-                    onTap: () {
-                      showBottomSheet(
-                          context: context,
-                          elevation: 5.0,
-                          backgroundColor: Colors.transparent,
-                          builder: (builder) {
-                            return Container(
-                                margin: EdgeInsets.only(
-                                    top: 2.0, left: 8.0, right: 8.0),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    boxShadow: [
-                                      //background color of box
-                                      BoxShadow(
-                                        color: kColorPrimaryDark,
-                                      ),
-                                    ],
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: const Radius.circular(12.0),
-                                        topRight: const Radius.circular(12.0))),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 48, vertical: 24),
-                                      child: Container(
-                                        margin: const EdgeInsets.symmetric(
-                                          horizontal: 8.0,
-                                        ),
-                                        width: 72.0,
-                                        height: 2.0,
-                                        color: Colors.blueGrey.shade100,
-                                      ),
+                  onTap: () {
+                    showBottomSheet(
+                        context: context,
+                        elevation: 5.0,
+                        backgroundColor: Colors.transparent,
+                        builder: (builder) {
+                          return Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height,
+                              margin: EdgeInsets.only(
+                                  top: 2.0, left: 8.0, right: 8.0),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    //background color of box
+                                    BoxShadow(
+                                      color: kColorPrimaryDark,
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(16.0),
+                                  ],
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: const Radius.circular(12.0),
+                                      topRight: const Radius.circular(12.0))),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 48, vertical: 24),
+                                    child: Container(
+                                      margin: const EdgeInsets.symmetric(
+                                        horizontal: 8.0,
+                                      ),
+                                      width: 72.0,
+                                      height: 2.0,
+                                      color: Colors.blueGrey.shade100,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: Container(
+                                      height: 400,
                                       child: ListView.builder(
                                         shrinkWrap: true,
-                                        itemCount: 3,
+                                        itemCount: 11,
                                         itemBuilder: (context, index) {
                                           var icon;
                                           var title;
-                                          if (index == 0) {
-                                            icon = Image.asset(
-                                              'assets/images/ic_hdfc.png',
-                                              height: 24.0,
-                                              width: 24.0,
-                                            );
-                                            title = Text(
-                                              'HDFC',
-                                              style: kLabelTextStyle,
-                                            );
-                                          } else if (index == 1) {
-                                            icon = Image.asset(
-                                              'assets/images/ic_paytm.png',
-                                              height: 24.0,
-                                              width: 24.0,
-                                            );
-                                            title = Text(
-                                              'PAYTM',
-                                              style: kLabelTextStyle,
-                                            );
-                                          } else {
-                                            icon = Image.asset(
-                                              'assets/images/ic_mobikwik.png',
-                                              height: 24.0,
-                                              width: 24.0,
-                                            );
-                                            title = Text(
-                                              'MOBIKWIK',
-                                              style: kLabelTextStyle,
-                                            );
-                                          }
+
                                           return Card(
                                             elevation: 2.0,
-                                            child: ListTile(
-                                              leading: icon,
-                                              title: Center(
-                                                child: title,
-                                              ),
-                                              trailing: Icon(
-                                                Icons.arrow_forward_ios,
-                                                color: kColorAccentGreen,
-                                              ),
-                                              onTap: () {
-                                                var url;
-                                                if (index == 0) {
-                                                  url =
-                                                      'https://netbanking.hdfcbank.com/netbanking/';
-                                                } else if (index == 1) {
-                                                  url = 'https://paytm.com/';
-                                                } else {
-                                                  url =
-                                                      'https://www.mobikwik.com/';
-                                                }
-                                                Navigator.of(context).push(
-                                                  MaterialPageRoute(
-                                                      builder: (context) {
-                                                        return RechargeProgressDialog(
-                                                            url: url);
-                                                      },
-                                                      fullscreenDialog: true),
-                                                );
-                                              },
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: <Widget>[
+                                                Container(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      3,
+                                                  child: Text(
+                                                    'DGghgkhkhkkbfuyfhhjfcgcghc',
+                                                    style: TextStyle(
+                                                      color: kColorAccentRed,
+                                                      fontFamily: 'Lato',
+                                                      fontSize: 16.0,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 24.0,
+                                                          right: 24.0),
+                                                  child: Container(
+                                                    width: 1,
+                                                    height: 24.0,
+                                                    child: VerticalDivider(
+                                                      color: kColorAccentRed,
+                                                      thickness: 1,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                      3,
+                                                  child: Text('gfxhcuyvhvvy',
+                                                      style: kLabelTextStyle,
+                                                      maxLines: 5,
+                                                      textAlign:
+                                                          TextAlign.center),
+                                                )
+                                              ],
                                             ),
                                           );
                                         },
                                       ),
                                     ),
-                                  ],
-                                ));
-                          });
-                    }),
+                                  ),
+                                ],
+                              ));
+                        });
+                  }),
+            ),
+          ),
+          Container(
+            height: 96.0,
+            child: Card(
+              elevation: 16.0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              color: Colors.white,
+              margin: EdgeInsets.only(
+                  top: 4.0, bottom: 8.0, left: 16.0, right: 16.0),
+              child: ListTile(
+                leading: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Image.asset('assets/images/ic_bill.png'),
+                ),
+                title: Center(
+                  child: Text(
+                    'Bill Download',
+                    style: kLabelTextStyle,
+                  ),
+                ),
               ),
             ),
-            Container(
-              height: 96.0,
-              child: Card(
-                elevation: 16.0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                color: Colors.white,
-                margin: EdgeInsets.only(
-                    top: 4.0, bottom: 8.0, left: 16.0, right: 16.0),
-                child: ListTile(
-                  leading: Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: Image.asset('assets/images/ic_bill.png'),
-                  ),
-                  title: Center(
-                    child: Text(
-                      'Bill Download',
-                      style: kLabelTextStyle,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

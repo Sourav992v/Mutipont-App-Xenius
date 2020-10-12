@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:multipoint_app_xenius/constants.dart';
 import 'package:multipoint_app_xenius/ui/view/recharge/recharge_history/recharge_history_view.dart';
+import 'package:multipoint_app_xenius/ui/view/util/change_password_view.dart';
 
 class UserProfileDialog extends StatefulWidget {
   @override
@@ -215,6 +216,15 @@ class _UserProfileDialogState extends State<UserProfileDialog> {
                           Icons.arrow_right,
                           color: Colors.greenAccent,
                         ),
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) {
+                                  return ChangePassword();
+                                },
+                                fullscreenDialog: true),
+                          );
+                        },
                       ),
                     ),
                   ),

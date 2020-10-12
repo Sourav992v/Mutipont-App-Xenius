@@ -3,11 +3,23 @@ import 'package:multipoint_app_xenius/constants.dart';
 
 import 'package:multipoint_app_xenius/ui/view/login/login_view.dart';
 
-class ResetPassword extends StatelessWidget {
-  static const String id = 'reset_password_view';
+class ChangePassword extends StatelessWidget {
+  static const String id = 'change_password_view';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: GestureDetector(
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            ),
+            onTap: () {
+              Navigator.pop(context);
+            }),
+        title: Text('Change Password',
+            textAlign: TextAlign.center, style: TextStyle(color: Colors.white)),
+      ),
       body: SafeArea(
         child: Container(
           child: Align(
@@ -24,14 +36,14 @@ class ResetPassword extends StatelessWidget {
                   child: CircleAvatar(
                     radius: 80.0,
                     backgroundColor: Colors.white,
-                    child: Image.asset('assets/images/ic_password_reset.png'),
+                    child: Image.asset('assets/images/ic_reset_password.png'),
                   ),
                 ),
                 SizedBox(
                   height: 40.0,
                 ),
                 Text(
-                  'Reset Your Password',
+                  'Change Your Password',
                   style: TextStyle(fontSize: 20),
                   textAlign: TextAlign.center,
                 ),
